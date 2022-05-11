@@ -1,0 +1,41 @@
+export default {
+	clearMocks: true,
+	collectCoverage: true,
+	coverageDirectory: 'coverage',
+	resolver: 'ts-jest-resolver',
+	// preset: '@shelf/jest-mongodb',
+	// globalSetup:'./test-setup/setup.ts',
+	// globalTeardown:'./test-setup/tearDown.ts',
+	moduleNameMapper: {
+		'^@backend-service/(.*)$': '<rootDir>/src/$1',
+		'^@backend-service-app': '<rootDir>/src/app',
+		'^@backend-service-config': '<rootDir>/src/config',
+		'^@backend-service-api/(.*)$': '<rootDir>/src/api/$1',
+		'^@backend-service-setup': '<rootDir>/src/setup',
+		'^@backend-service-setup/(.*)$': '<rootDir>/src/setup/$1',
+		'^@backend-service-features/(.*)$': '<rootDir>/features/$1',
+		'^@backend-service-models/(.*)$': '<rootDir>/src/models/$1',
+		'^@backend-service-common/(.*)$': '<rootDir>/src/common/$1',
+		'^@backend-service-services/(.*)$': '<rootDir>/src/services/$1',
+		'^@backend-service-helpers/(.*)$': '<rootDir>/src/helpers/$1',
+		'^@backend-service-utils/(.*)$': '<rootDir>/src/utils/$1',
+		'^@backend-service-constants/(.*)$': '<rootDir>/src/constants/$1',
+		'^@backend-service-uploadSDK': '<rootDir>/src/uploadSDK',
+		'^@backend-service-uploader': '<rootDir>/src/uploader',
+		'^@backend-service-db/(.*)$': '<rootDir>/src/databases/$1',
+		'^@backend-service-middlewares/(.*)$': '<rootDir>/src/middlewares/$1',
+	},
+
+	coveragePathIgnorePatterns: ['/node_modules/'],
+	// moduleDirectories: ["node_modules", "./", "./src", "./src/domains"],
+	moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+	notify: false,
+	testMatch: [
+		'**/__tests__/**/*.[jt]s?(x)',
+		'**/?(*.)+(spec|test).[tj]s?(x)',
+	],
+
+	testPathIgnorePatterns: ['/node_modules/'],
+
+	transformIgnorePatterns: ['/node_modules/', '\\.pnp\\.[^\\/]+$'],
+};

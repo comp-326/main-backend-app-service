@@ -1,0 +1,655 @@
+swagger: "2.0"
+info:
+  title: "Ostrich API"
+  version: "1.0.0"
+  contact:
+    name: Felix Orinda
+    email: forinda82@gmail.com
+basePath: /api/v1
+host: localhost:6200
+schemes:
+  - http
+  - https
+tags:
+  - name: Metadata
+    description: Metadata related requests
+
+paths:
+  /auth/register:
+    post:
+      description: Register a new user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Auth
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              firstName: Jane
+              lastName: Doe
+              email: JaneDoe@gmail.com
+              password: TestPass1234@Pas
+              confirmPassword: TestPass1234@Pas
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
+  /auth/login:
+    post:
+      description: Login user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Auth
+      parameters:
+        - name: body
+          in: body
+          description: Todo body
+          schema:
+            example:
+              email: JaneDoe@gmail.com
+              password: TestPass1234@Pas
+      responses:
+        "400":
+          description: Given field is required
+        "200":
+          description: Successful entry creation
+        "500":
+          description: Internal server error
+        "401":
+          description: Invalid credentials
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+  /auth/logout:
+    post:
+      description: Logout User
+      tags: 
+        - Auth
+      responses:
+        "200":
+          description: "Ok"
+  /users/delete/{id}:
+    delete:
+      description: Delete user
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Valid Id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /users/email/{email}:
+    post:
+      tags:
+        - User
+      parameters:
+        - name: email
+          in: path
+          required: true
+          type: string
+          description: Input existing title
+      responses:
+        "200":
+          description: Ok
+        "404":
+          description: Not found
+  /users:
+    get:
+      description: Get all users
+      tags:
+        - User
+      parameters:
+        - name: limit
+          in: query
+          type: number
+          default: 10
+        - name: page
+          in: query
+          type: number
+          default: 1
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /users/profile/{id}:
+    get:
+      description: Get single user
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: User resgitration id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /users/update/{id}:
+    put:
+      description: Update user
+      tags:
+        - User
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: User resgitration id
+        - name: body
+          in: body
+          schema:
+            example:
+              firstName: Jane
+              lastName: Doe
+              email: JaneDoe@gmail.com
+              password: TestPass1234@Pas
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /users/account/activate:
+    post:
+      description: Activate user account
+      tags:
+        - User
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              email: JaneDoe@gmail.com
+      responses:
+        "200":
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /users/account/password/reset/{resetToken}:
+    post:
+      description: Reset password(Set new password)
+      tags:
+        - User
+      parameters:
+        - name: resetToken
+          in: path
+          type: string
+          required: true
+          description: User reset token
+        - name: body
+          in: body
+          schema:
+            example:
+              password: TestPass1234@Pas
+              confirmPassword: TestPass1234@Pas
+      responses:
+        "200":
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /users/account/activate/{activationToken}:
+    put:
+      description: Activate user account
+      tags:
+        - User
+      parameters:
+        - name: activationToken
+          in: path
+          type: string
+          required: true
+          description: Activation token
+      responses:
+        "200":
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /users/account/password/forgot:
+    post:
+      tags:
+        - User
+      description: Request new password
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              email: JaneDoe@gmail.com
+
+      responses:
+        "200":
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+
+  /workspaces:
+    get:
+      description: Get all workspaces
+      tags:
+        - Workspace
+      parameters:
+        - name: limit
+          in: query
+          type: number
+          default: 10
+        - name: page
+          in: query
+          type: number
+          default: 1
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /workspaces/single/{id}:
+    get:
+      description: Get single workspace
+      tags:
+        - Workspace
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Workspace id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /workspaces/create:
+    post:
+      description: Create workspace
+      tags:
+        - Workspace
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              name: TestWorkspace
+              description: TestWorkspace
+              userId: 5e9f8f8f8f8f8f8f8f8f8f8
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
+  /workspaces/update/{id}:
+    put:
+      description: Update workspace
+      tags:
+        - Workspace
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Workspace id
+        - name: body
+          in: body
+          schema:
+            example:
+              name: TestWorkspace
+              description: TestWorkspace
+              userId: 5e9f8f8f8f8f8f8f8f8f8f8
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /workspaces/delete/{id}:
+    delete:
+      description: Delete workspace
+      tags:
+        - Workspace
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Workspace id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /workspace/workspace/logo:
+    put:
+      description: Upload workspace logo
+      tags:
+        - Workspace
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              workspaceId: 5e9f8f8f8f8f8f8f8f8f8f8
+              logo: logo.png
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
+  /workspace/member/{userId}:
+    get:
+      description: Get all workspace members
+      tags:
+        - Workspace
+      parameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User id
+        - name: limit
+          in: query
+          type: number
+          default: 10
+        - name: page
+          in: query
+          type: number
+          default: 1
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /folders:
+    get:
+      description: Get all folders
+      tags:
+        - Folder
+      parameters:
+        - name: workspaceId
+          in: query
+          type: string
+          required: true
+          description: Workspace id
+        - name: limit
+          in: query
+          type: number
+          default: 10
+        - name: page
+          in: query
+          type: number
+          default: 1
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /folders/single/{id}:
+    get:
+      description: Get single folder
+      tags:
+        - Folder
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Folder id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /folders/single/{name}:
+    get:
+      description: Get single folder
+      tags:
+        - Folder
+      parameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+          description: Folder name
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+  /folders/create:
+    post:
+      description: Create folder
+      tags:
+        - Folder
+      parameters:
+        - name: body
+          in: body
+          schema:
+            example:
+              name: TestFolder
+              description: TestFolder
+              workspaceId: 5e9f8f8f8f8f8f8f8f8f8f8
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
+  /folders/update/{id}:
+    put:
+      description: Update folder
+      tags:
+        - Folder
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Folder id
+        - name: body
+          in: body
+          schema:
+            example:
+              name: TestFolder
+              description: TestFolder
+              workspaceId: 5e9f8f8f8f8f8f8f8f8f8f8
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /folders/delete/{id}:
+    delete:
+      description: Delete folder
+      tags:
+        - Folder
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Folder id
+      responses:
+        200:
+          description: Ok
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+        "400":
+          description: Invalid request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /folders/copy/{workspaceId}/{folderId}:
+    post:
+      description: Copy folder
+      tags:
+        - Folder
+      parameters:
+        - name: workspaceId
+          in: path
+          type: string
+          required: true
+          description: Workspace id
+        - name: folderId
+          in: path
+          type: string
+          required: true
+          description: Folder id
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
+  /folders/move/{workspaceId}/{folderId}:
+    post:
+      description: Move folder
+      tags:
+        - Folder
+      parameters:
+        - name: workspaceId
+          in: path
+          type: string
+          required: true
+          description: Workspace id
+        - name: folderId
+          in: path
+          type: string
+          required: true
+          description: Folder id
+      responses:
+        "201":
+          description: Successful entry
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
