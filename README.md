@@ -1,5 +1,5 @@
-# Ostrich backend app
-###  Ostrich app setup with TS
+# Exam backend app
+###  Exam app setup with TS
 Check the instructions below to setup your environment
 
 Running project in dev mode
@@ -10,12 +10,9 @@ $ npm install
 #####
 App domains
 1. [x] Users
-1. [x] Availability
-1. [x] Services
-1. [x] Folders
 1. [x] Roles
-1. [x] Appointments
-1. [x] Workspace
+1. [x] Students
+1. [x] Lecturers
 # Running the project
 To set environment variables
 Make sure to run this before you start development otherwise

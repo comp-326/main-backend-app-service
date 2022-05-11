@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  title: "Ostrich API"
+  title: "Class backend API"
   version: "1.0.0"
   contact:
     name: Felix Orinda

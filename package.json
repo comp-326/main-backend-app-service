@@ -1,7 +1,7 @@
 {
-  "name": "ostrich-backend",
+  "name": "class-dev-backend",
   "version": "1.0.0",
-  "description": "Ostrich backend application",
+  "description": "class-dev backend application",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./build/src/server.js",
