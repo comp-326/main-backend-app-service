@@ -6,13 +6,19 @@
   "scripts": {
     "start": "NODE_ENV=production node ./build/src/server.js",
     "dev:start": "NODE_ENV=development nodemon ./src/server.ts",
+    "migrate:dev:roles": "NODE_ENV=development ts-node ./src/roleSchemes/index.ts",
+    "migrate:prod:roles": "NODE_ENV=production node ./build/src/roleSchemes/index.js",
+    "migrate:test:roles": "NODE_ENV=testing ts-node ./src/roleSchemes/index.ts",
+    "prestart": "npm run migrate:prod:roles",
+    "predev": "npm run migrate:dev:roles",
+    "pretest": "npm run migrate:test:roles",
     "env": "ts-node ./src/env.ts",
     "dev": "NODE_ENV=development nodemon",
     "lint": "eslint .  --ext .ts",
     "lint:fix": "eslint .  --ext .ts --fix",
     "build": "rimraf ./dist && rimraf ./build &&  gulp build",
     "test": "jest --coverage",
-    "docs":"ts-node ./src/utils/docs/swagger.ts"
+    "docs": "ts-node ./src/utils/docs/swagger.ts"
   },
   "keywords": [
     "appointment",
@@ -26,11 +32,8 @@
   "author": "Orinda Felix Ochieng <forinda82@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.8.0",
-    "amqplib-as-promised": "^4.1.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.1.2",
-    "cloudinary": "^1.29.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -43,7 +46,6 @@
     "helmet": "^5.0.2",
     "html-to-text": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
     "moment": "^2.29.3",
     "mongoose": "^6.2.9",
     "morgan": "^1.10.0",
@@ -107,13 +109,5 @@
   },
   "directories": {
     "doc": "docs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/reduzersolutions/ostrich-api.git"
-  },
-  "bugs": {
-    "url": "https://github.com/reduzersolutions/ostrich-api/issues"
-  },
-  "homepage": "https://github.com/reduzersolutions/ostrich-api#readme"
+  }
 }

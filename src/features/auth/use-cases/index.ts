@@ -40,6 +40,14 @@ export class AuthUseCase implements IAuthUseCase{
 				statusCode:404
 			});
 		}
+		if(!user.isActive){
+			throw new ExpressError({
+				data:{},
+				message:'Account is not active',
+				status:'warning',
+				statusCode:404
+			});
+		}
 
 		return user._doc;
 	};

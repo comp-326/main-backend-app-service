@@ -5,7 +5,7 @@ import path from 'path';
 dotenv.config();
 const config = {
 	ENV: {
-		PORT: process.env.PORT||'ostrich-app',
+		PORT: process.env.PORT||'exam-cellautomaton-app',
 		API_PREFIX: process.env.API_PREFIX||'/api/v1',
 		APP_NAME: process.env.APP_NAME!,
 		NODE_ENV: process.env.NODE_ENV!,
@@ -13,13 +13,6 @@ const config = {
 		REFRESH_KEY: process.env.REFRESH_KEY!,
 		BASE_URL: process.env.BASE_URL!,
 		ENC_KEY: process.env.ENC_KEY!,
-		COOKIE_SECRET: process.env.COOKIE_SECRET!,
-		COOKIE_DOMAIN: process.env.COOKIE_DOMAIN!,
-		COOKIE_PATH: process.env.COOKIE_PATH!,
-		COOKIE_MAX_AGE: process.env.COOKIE_MAX_AGE!,
-		COOKIE_SAMESITE: process.env.COOKIE_SAMESITE!,
-		COOKIE_SECURE: process.env.COOKIE_SECURE!,
-		COOKIE_HTTPONLY: process.env.COOKIE_HTTPONLY!
 	},
 	MAIL: {
 		EMAIL_USER: process.env.EMAIL_USER || '',
@@ -30,15 +23,7 @@ const config = {
 		EMAIL_SECURE: process.env.EMAIL_SECURE === 'true' ? true : false,
 		EMAIL_PROXY: process.env.EMAIL_PROXY || ''
 	},
-	redisConfig: {
-		host: process.env.REDIS_HOST || '127.0.0.1',
-		port: parseInt(process.env.REDIS_PORT as string) || 6379,
-		username: process.env.REDIS_USER_NAME||'',
-		password: process.env.REDIS_PASSWORD||''
-	},
-	rabbitMqConfig: {
-		url: process.env.RABBIT_MQ_URL||'amqp://localhost',
-	},
+	
 	PATHS: {
 		BASE_DIR: path.join(path.dirname(__filename), '.')
 	},

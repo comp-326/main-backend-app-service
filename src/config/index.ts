@@ -12,13 +12,19 @@ const {
 	redisConfig,
 	rabbitMqConfig
 } = config;
+const DB_URL =
+	ENV.NODE_ENV === 'development' ?
+		MONGOOSE.DATABASE_URL :
+		ENV.NODE_ENV === 'production'
+			? MONGOOSE.DATABASE_URL
+			: MONGOOSE.TEST_DB_URL;
 
 export {
-	MONGOOSE as mongoConfig,
+	DB_URL,
 	MAIL as mailConfig,
 	ENV as environmentConfig,
 	CLOUDINARY as cloudinaryConfig,
 	BASE_DIR,
 	redisConfig,
-	rabbitMqConfig
+	rabbitMqConfig,
 };

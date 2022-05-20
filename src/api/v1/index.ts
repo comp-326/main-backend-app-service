@@ -6,6 +6,7 @@ import userRolesDomain from '@backend-service/features/userRoles';
 import { swaggerServe, swaggerSetup } from '@backend-service/utils/docs';
 
 const apiRoute = Router();
+
 export default function () {
 	apiRoute.get('/test', testRoute);
 	apiRoute.use('/docs', swaggerServe, swaggerSetup);

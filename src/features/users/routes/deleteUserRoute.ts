@@ -3,6 +3,7 @@ import { Router } from 'express';
 import UserController from '../controllers';
 import UserRepository from '../repository';
 import { UserUseCase } from '../use-cases';
+import { adminRequired } from '@backend-service/middlewares/Auth';
 
 
 export default function deleteAccountRoute(app:Router){
@@ -11,7 +12,7 @@ export default function deleteAccountRoute(app:Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`,userRouter);
-		userRouter.get('/account/delete/:id',controller.softDeleteUser);
+		userRouter.get('/account/delete/:id',adminRequired,controller.softDeleteUser);
 
 	};
 }

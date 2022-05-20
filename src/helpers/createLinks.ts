@@ -37,11 +37,13 @@ function createForgotPasswordLink(token: string){
 
 	return baseUrl;
 }
+
 export {
 	createWorkspaceInviteLink,
 	createAccountActivationLink,
 	createForgotPasswordLink
 };
+
 export default Object.freeze({
 	createWorkspaceInviteLink,
 	createAccountActivationLink,

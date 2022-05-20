@@ -11,7 +11,7 @@ export default function resetPasswordRoute(app:Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`,userRouter);
-		userRouter.get('/account/password/reset/:resetToken',controller.updatePassword);
+		userRouter.put('/account/password/reset/:token',controller.updatePassword);
 
 	};
 }

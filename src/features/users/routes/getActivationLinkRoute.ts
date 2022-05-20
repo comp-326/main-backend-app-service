@@ -11,7 +11,7 @@ export default function getActivationLinkRoute(app:Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`,userRouter);
-		userRouter.get('/account/activate',controller.getAccountActivationLink);
+		userRouter.post('/account/activate',controller.getAccountActivationLink);
 
 	};
 }

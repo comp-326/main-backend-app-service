@@ -18,6 +18,7 @@ const template = `<!DOCTYPE html>
 </body>
 </html>
 `;
+
 export default function passwordResetEmailTemplate(props: {
 	link: string;
 	firstName: string;

@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import loginUserRoute from './routes/loginUserRoute';
-import logoutUserRoue from './routes/logoutUserRoue';
+import logoutUserRoute from './routes/logoutUserRoute';
+
 export default ({ app, pathName }: { app: Router, pathName: string }) => {
 	loginUserRoute(app)(pathName);
-	logoutUserRoue(app)(pathName);
+	logoutUserRoute(app)(pathName);
 };

@@ -34,6 +34,5 @@ const endpointsFiles = [path.resolve(BASE_DIR, 'server.ts')];
 /* NOTE: if you use the express Router, you must pass in the 
      'endpointsFiles' only the root file where the route starts,
      such as: index.js, app.js, routes.js, ... */
-console.log('Working...');
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

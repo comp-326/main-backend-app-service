@@ -4,10 +4,7 @@ import { IUser } from '@backend-service-features/users/models/interfaces';
 import { IUserRepository } from '@backend-service-features/users/interfaces';
 import UserModel from '@backend-service-features/users/models';
 import UserRoleModel from '@backend-service-features/userRoles/models';
-import { generateGravatarUrl } from '@backend-service-common/gravatar';
-import mediaModel from '@backend-service-features/media/models';
-
-class UserRepository implements IUserRepository{
+class UserRepository implements IUserRepository {
 
 	softDeleteUser = async (id: string) => {
 		const user = await UserModel.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
@@ -17,44 +14,24 @@ class UserRepository implements IUserRepository{
 
 	createUser = async (userData: IUser) => {
 		const role = await UserRoleModel.getDefaultRole();
-		if (role) {
-			const profilePicture = await mediaModel.create({
-				type: 'profile',
-				url: generateGravatarUrl(userData.email),
-				uploadId: userData.email,
-				size: 200,
-				mediaType: 'image'
-			});
+		const newUser = await UserModel.create({
+			...userData,
+			role,
+		});
 
 
-			const newUser = await UserModel.create({ ...userData, role, profilePicture });
-
-			return newUser;
-		} else {
-
-			await UserRoleModel.InsertRoles();
-			const defaultRole = await UserRoleModel.getDefaultRole();
-			const profilePicture = await mediaModel.create({
-				type: 'profile',
-				url: generateGravatarUrl(userData.email),
-				uploadId: userData.email,
-				size: 200,
-				mediaType: 'image'
-			});
-			const newUser = await UserModel.create({ ...userData, role: defaultRole, profilePicture });
-
-			return newUser;
-		}
+		return newUser;
 	};
 
 	findByEmail = async (email: string) => {
 
-		const user = await UserModel.findByEmail(email );
+		const user = await UserModel.findByEmail(email);
 
 		return user;
 	};
 
 	findById = async (id: string) => {
+
 		const user = await UserModel.findById(id).select('+password');
 
 		return user;

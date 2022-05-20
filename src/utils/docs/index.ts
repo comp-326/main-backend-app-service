@@ -10,11 +10,12 @@ const swaggerDocument =
 
 const options = {
 	explorer: true,
-	customSiteTitle: 'Ostrich app API',
+	customSiteTitle: 'ExamCellAutomaton app API',
 };
 
 const swaggerSetup = swaggerUI.setup(swaggerDocument, options);
 const swaggerServe = swaggerUI.serve;
 
 export default Object.freeze({ swaggerServe, swaggerSetup });
+
 export { swaggerServe, swaggerSetup };

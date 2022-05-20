@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import verifyUserJWT from '../../../utils/jwt/verifyUserJWT';
-import { INext, IRequest, IResponse, JWTPayloadType } from '@backend-service-common/types';
+import { INext, IRequest, IResponse } from '@backend-service-common/types';
 import { IUserController, IUserUseCases } from './../interfaces';
 
 
@@ -12,7 +11,6 @@ class UserController implements IUserController{
 	constructor(useCase: IUserUseCases){
 		this.useCase = useCase;
 	}
-
 
 	/**
 	 * Soft delete a user from db
@@ -114,26 +112,11 @@ class UserController implements IUserController{
 		}
 	};
 
-
-	resetAccountPassword = async (req: IRequest, res: IResponse, next: INext) => {
-		try {
-			const { userId } = await verifyUserJWT.verifyPasswordToken(req.params.token) as unknown as JWTPayloadType;
-			await this.useCase.changeUserPassword(userId,
-				req.body
-			);
-
-			return res.sendStatus(200);
-		} catch (err) {
-			return next(err);
-		}
-	};
-
-
 	activateAccount = async (req: IRequest, res: IResponse, next: INext) => {
 		try {
+			
 			await this.useCase.activateUserAccount(
-				req.params.token,
-				req.body.email
+				req.params.token
 			);
 
 			return res.sendStatus(200);
@@ -165,6 +148,7 @@ class UserController implements IUserController{
 		try{
 
 			const { id } = req.params;
+			
 			await this.useCase.editUserProfile(
 				id,
 				req.body
@@ -205,8 +189,7 @@ class UserController implements IUserController{
 
 	updatePassword = async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const { userId } = await verifyUserJWT.verifyPasswordToken(req.params.token) as unknown as JWTPayloadType;
-			await this.useCase.changeUserPassword(userId, req.body);
+			await this.useCase.resetPassword(req.params.token, req.body);
 
 			return res.status(200).json('Success');
 		} catch (err) {

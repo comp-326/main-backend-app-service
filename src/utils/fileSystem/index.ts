@@ -14,6 +14,7 @@ export default Object.freeze({
 	deleteFile,
 	setEnvironmentVariables
 });
+
 export {
 	dirExistAsync,
 	dirExistSync,

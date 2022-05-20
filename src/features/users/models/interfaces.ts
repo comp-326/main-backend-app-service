@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from '@backend-service-db/mongodb';
+
 export interface IUser {
     firstName: string
     lastName: string

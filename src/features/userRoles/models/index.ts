@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Permissions from '@backend-service-constants/permissions';
+import Permissions from '@backend-service-constants/userPermissions';
 import mongoose from '@backend-service-db/mongodb';
 import { IUserRoleDocument, IUserRoleDocumentModel } from './interfaces';
 
@@ -23,34 +23,34 @@ const userRoleSchema: mongoose.Schema<IUserRoleDocument> = new mongoose.Schema({
 });
 
 
-userRoleSchema.methods.hasPermission = function (permission: number){
+userRoleSchema.methods.hasPermission = function (permission: number) {
 	const permitted = (this.permissions & permission) === permission;
 
 	return permitted;
 };
 
-userRoleSchema.methods.addPermission = function (permission: number){
+userRoleSchema.methods.addPermission = function (permission: number) {
 	if (!this.hasPermission(permission))
 		this.permissions += permission;
 
 };
-userRoleSchema.methods.removePermission = function (permission: number){
+userRoleSchema.methods.removePermission = function (permission: number) {
 	if (this.hasPermission(permission))
 		this.permissions -= permission;
 
 };
 
-userRoleSchema.methods.resetPermission = function (){
+userRoleSchema.methods.resetPermission = function () {
 	this.permissions = 0;
 };
 
-userRoleSchema.statics.getDefaultRole = async function (){
+userRoleSchema.statics.getDefaultRole = async function () {
 	const defaultRole = await userRoleModel.findOne({ default: true });
 
 	return defaultRole;
 };
 
-userRoleSchema.statics.InsertRoles = async function (){
+userRoleSchema.statics.InsertRoles = async function () {
 	const roles: { [key: string]: number[] } = {
 		['User']: [
 			Permissions.VIEW,
@@ -68,9 +68,8 @@ userRoleSchema.statics.InsertRoles = async function (){
 			Permissions.ADMIN
 		]
 	};
-
 	const defaultRole = 'User';
-	Object.keys(roles).forEach(async(r) => {
+	Object.keys(roles).forEach(async (r) => {
 		let role = await userRoleModel.findOne({ name: r });
 		if (!role)
 			role = new userRoleModel({ name: r });
@@ -84,4 +83,5 @@ userRoleSchema.statics.InsertRoles = async function (){
 	});
 };
 const userRoleModel = mongoose.model<IUserRoleDocument, IUserRoleDocumentModel>('UserRoles', userRoleSchema);
+
 export default userRoleModel;
