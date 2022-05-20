@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventBus from '@backend-service/services/eventBus';
 import { ExpressError } from '@backend-service-common/errors/ExpressError';
 import { IUser } from '@backend-service-features/users/models/interfaces';
 import { JWTPayloadType } from '@backend-service/common/types';
@@ -103,15 +102,6 @@ export class UserUseCase implements IUserUseCases {
 				}
 			});
 		}
-		const queue = new EventBus('activateAccount');
-		const token = await tokenGEN.generateSimpleToken({ userId: existing._id, email: existing.email });
-		queue.sendToQueue(JSON.stringify({
-			name: `${existing.firstName} ${existing.lastName}`,
-			email: existing.email,
-			token
-
-		}));
-
 		return existing;
 	};
 
@@ -471,16 +461,6 @@ export class UserUseCase implements IUserUseCases {
 			});
 		}
 	
-		const queue = new EventBus('resetPassword');
-		const token = await tokenGEN.generateSimpleToken({ userId: existing._id, email: existing.email });
-		queue.sendToQueue(JSON.stringify({
-			name: `${existing.firstName} ${existing.lastName}`,
-			email: existing.email,
-			token
-
-		}));
-
-
 		return existing;
 	};
 

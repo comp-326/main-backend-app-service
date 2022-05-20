@@ -1,7 +1,5 @@
-import EventBus from '@backend-service/services/eventBus';
 import { ExpressError } from '@backend-service/common/errors/ExpressError';
 import { IUserRepository } from '@backend-service-features/users/interfaces';
-import tokenGEN from '@backend-service/utils/jwt/tokenGEN';
 
 export function makeSendPasswordLink({repository}:{repository:IUserRepository}){
 	return async (email: string) => {
@@ -36,16 +34,6 @@ export function makeSendPasswordLink({repository}:{repository:IUserRepository}){
 			});
 		}
 	
-		const queue = new EventBus('resetPassword');
-		const token = await tokenGEN.generateSimpleToken({ userId: existing._id, email: existing.email });
-		queue.sendToQueue(JSON.stringify({
-			name: `${existing.firstName} ${existing.lastName}`,
-			email: existing.email,
-			token
-
-		}));
-
-
 		return existing;
 	};
 

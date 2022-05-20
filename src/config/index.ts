@@ -9,8 +9,6 @@ const {
 	PATHS: { BASE_DIR },
 	MAIL,
 	CLOUDINARY,
-	redisConfig,
-	rabbitMqConfig
 } = config;
 const DB_URL =
 	ENV.NODE_ENV === 'development' ?
@@ -25,6 +23,4 @@ export {
 	ENV as environmentConfig,
 	CLOUDINARY as cloudinaryConfig,
 	BASE_DIR,
-	redisConfig,
-	rabbitMqConfig,
 };
