@@ -1,3 +1,4 @@
+// import { ExpressError } from '@backend-service/common/errors/ExpressError';
 import tokenGEN from '@backend-service/utils/jwt/tokenGEN';
 import { IAuthController, IAuthUseCase } from '../interfaces';
 import { INext, IRequest, IResponse } from '@backend-service/common/types';
@@ -10,10 +11,26 @@ export class AuthController implements IAuthController {
 		try {
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const { password: _use, ...props } = await this.authUseCase.login(req.body);
-			const authToken = tokenGEN.generateToken({
+			const authToken = tokenGEN.generateEncodedToken({
 				userId: props._id,
 				email: props.email
 			});
+
+			// if(req.headers.cookie){
+			// 	const cookies = req.headers.cookie.split(';');
+			// 	cookies.forEach(cookie => {
+			// 		if(cookie.includes('access_token')){
+			// 			throw new ExpressError({
+			// 				message: 'You are already logged in',
+			// 				data:{},
+			// 				status:'warning',
+			// 				statusCode: 401
+						
+			// 			});
+			// 		}
+			// 	});
+			// }
+			// req.cookies.
 
 			return res.cookie('access_token', authToken, {
 				httpOnly: true,
@@ -27,6 +44,7 @@ export class AuthController implements IAuthController {
 		} catch (err) {
 			return next(err);
 		}
+
 	};
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars

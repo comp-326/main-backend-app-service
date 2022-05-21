@@ -1,5 +1,6 @@
 import { Application } from 'express';
 import expressApp from './express';
+
 export default function ({ app }: { app: Application }){
 	process.on('unhandledRejection', (reason, p) => {
 		console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);

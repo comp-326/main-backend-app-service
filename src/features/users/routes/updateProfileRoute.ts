@@ -3,6 +3,7 @@ import { Router } from 'express';
 import UserController from '../controllers';
 import UserRepository from '../repository';
 import { UserUseCase } from '../use-cases';
+import { loginRequired } from '@backend-service/middlewares/Auth';
 
 export default function updateAccountRoute(app: Router){
 	return (pathName: string) => {
@@ -10,6 +11,6 @@ export default function updateAccountRoute(app: Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`, userRouter);
-		userRouter.put('/account/profile/update/:id', controller.updateAccount);
+		userRouter.put('/account/profile/update/:id', loginRequired, controller.updateAccount);
 	};
 }

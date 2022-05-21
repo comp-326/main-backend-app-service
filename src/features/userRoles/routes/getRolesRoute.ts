@@ -2,6 +2,7 @@
 import { Router } from 'express';
 import { UserRoleController } from '@backend-service-features/userRoles/controllers';
 import { UserRoleUseCases } from '@backend-service-features/userRoles/use-cases';
+import { adminRequired } from '@backend-service/middlewares/Auth';
 import userRolesRepository from '@backend-service-features/userRoles/repository';
 
 
@@ -11,7 +12,7 @@ export default function getUserRolesRoute(app: Router){
 		const controller = new UserRoleController(userRolesUseCase);
 		const folderRouter = Router();
 		app.use(`${pathName}`, folderRouter);
-		folderRouter.put('/all', controller.getRoles);
+		folderRouter.get('/all', adminRequired,controller.getRoles);
 
 	};
 }

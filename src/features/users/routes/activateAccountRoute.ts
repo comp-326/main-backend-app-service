@@ -11,7 +11,7 @@ export default function activateAccountRoute(app:Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`,userRouter);
-		userRouter.get('/account/activate/:token',controller.activateAccount);
+		userRouter.put('/account/activate/:token',controller.activateAccount);
 
 	};
 }

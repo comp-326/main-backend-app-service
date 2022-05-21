@@ -4,7 +4,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 
-function setEnvironmentVariables(envFilePath: string){
+function setEnvironmentVariables(envFilePath: string) {
 	let filepath = '';
 
 	try {
@@ -13,42 +13,40 @@ function setEnvironmentVariables(envFilePath: string){
 		console.log('File does not exist');
 		process.exit();
 	}
+	const environmentPath = path.join(path.dirname(envFilePath), '.env');
 	const data: { [x: string]: string } = {};
 	fs.readFileSync(filepath, 'utf8')
 		.split(os.EOL)
-		.forEach(line => {
+		.forEach((line) => {
 			const [k, v] = line.trim().split('=');
 
-			if (k !== '') 
-				data[k] = v;
-			
+			if (k !== '') data[k] = v;
 		});
 
 	data['PORT'] = '6200';
 	data['SECRET_KEY'] = crypto.randomBytes(64).toString('hex');
 	data['REFRESH_KEY'] = crypto.randomBytes(64).toString('hex');
 	data['ENC_KEY'] = crypto.randomBytes(64).toString('hex');
-	data['APP_NAME'] = 'ostrich';
-	data['API_VERSION'] = '/api/v1';
+	data['APP_NAME'] = 'exam-cell-automaton';
+	data['API_PREFIX'] = '/api/v1';
 	data['HOST'] = 'localhost';
-	data['DATABASE_URL'] = `mongodb://localhost:27017/${data['APP_NAME']}-dev-db`;
+	data[
+		'DATABASE_URL'
+	] = `mongodb://localhost:27017/${data['APP_NAME']}dev`;
 	data[
 		'TEST_DB_URL'
-	] = `mongodb://localhost:27017/${data['APP_NAME']}-testing-dev-db`;
+	] = `mongodb://localhost:27017/${data['APP_NAME']}testdb`;
 
 	const envExist = dirExistSync(path.join(path.dirname(envFilePath), '.env'));
 	if (envExist) {
 		fs.readFileSync(path.join(path.dirname(filepath), '.env'), 'utf8')
 			.split(os.EOL)
-			.forEach(line => {
+			.forEach((line) => {
 				if (line !== '') {
 					const [k, v] = line.trim().split('=');
-					if (v !== '') 
-						data[k] = v;
-					
-					if (!Object.keys(data).includes(k)) 
-						data[k] = v;
-					
+					if (v !== '') data[k] = v;
+
+					if (!Object.keys(data).includes(k)) data[k] = v;
 				}
 			});
 	}
@@ -64,15 +62,12 @@ function setEnvironmentVariables(envFilePath: string){
 		.map(([k]) => {
 			return `${k}=`;
 		});
-	fs.writeFileSync(
-		path.join(path.dirname(envFilePath), '.env'),
-		env.join(os.EOL),
-		'utf8'
-	);
+
+	fs.writeFileSync(environmentPath, env.join(os.EOL), 'utf8');
 	fs.writeFileSync(
 		path.join(path.dirname(envFilePath), '.env.example'),
 		sampleEnvBuffer.join(os.EOL),
-		'utf8'
+		'utf8',
 	);
 }
 

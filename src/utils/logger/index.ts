@@ -27,6 +27,7 @@ export const httpErrorLogOptions = {
 	),
 	exitOnError: false
 };
+
 /**
  * ---------------------------- LOG HTTP REQUESTS -----------------------------------
  */

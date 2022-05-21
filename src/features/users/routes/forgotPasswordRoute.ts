@@ -11,7 +11,7 @@ export default function forgotPasswordRoute(app:Router){
 		const controller = new UserController(userUseCase);
 		const userRouter = Router();
 		app.use(`${pathName}`,userRouter);
-		userRouter.get('/account/password/forgot',controller.getPasswordResetLink);
+		userRouter.post('/account/password/forgot',controller.getPasswordResetLink);
 
 	};
 }

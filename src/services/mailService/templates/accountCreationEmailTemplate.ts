@@ -18,7 +18,7 @@ const template =`<!DOCTYPE html>
   >
     <% if (data) { %>
     <p>
-      Hello <%= data.firstName %> <%= data.lastName %> and welcome to Ostrich
+      Hello <%= data.firstName %> <%= data.lastName %> and welcome to ExamCellAutomaton
     </p>
     <p>We are happy to work with you at ostrich and feel at home</p>
     <p>Account has been created for you with the following details</p>

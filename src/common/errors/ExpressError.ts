@@ -8,6 +8,7 @@ export interface IExpressError {
 }
 
 export type StatusType = 'ok' | 'warning' | 'error' | 'info';
+
 export type StatusCodeType =
 	| 100 // Continue
 	| 101 // Switching Protocols
@@ -63,6 +64,7 @@ export type StatusCodeType =
 	| 508 // Loop Detected
 	| 510 // Not Extended
 	| 511; // Network Authentication Required200
+
 export class ExpressError extends Error implements IExpressError{
 	status: StatusType;
 

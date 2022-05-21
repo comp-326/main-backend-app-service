@@ -1,5 +1,5 @@
 import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import OstrichMailer from '@backend-service-services/mailService/mailer';
+import ExamCellAutomatonMailer from '@backend-service-services/mailService/mailer';
 import createLinks from '@backend-service-helpers/createLinks';
 import { mailConfig } from '@backend-service-config';
 import moment from 'moment';
@@ -36,11 +36,11 @@ class Accountmailer{
 			});
 
 			try {
-				const res = await OstrichMailer.sendMail({
+				const res = await ExamCellAutomatonMailer.sendMail({
 					to: email,
 					date: moment(new Date().getTime()).format('LLLL'),
 					from: mailConfig.EMAIL_USER,
-					sender: 'Ostrich Info',
+					sender: 'exam cell Info',
 					subject: 'Reset your password',
 					html: template
 				});
@@ -84,10 +84,10 @@ class Accountmailer{
 			});
 
 			try {
-				const res = await OstrichMailer.sendMail({
+				const res = await ExamCellAutomatonMailer.sendMail({
 					to: email,
 					date: moment(new Date().getTime()).format('LLLL'),
-					sender: 'Ostrich Info',
+					sender: 'ExamCellAutomaton Info',
 					from: mailConfig.EMAIL_USER,
 					subject: 'Activate your account',
 					html: template

@@ -34,6 +34,7 @@ export type PasswordValidatorType = {
 	props: { [x: string]: string };
 	fields: { fieldName: string; name: string }[];
 };
+
 export interface IUserValidator {
 	isValidEmail: (email: string) => boolean;
 	isValidPassword: (body: PasswordValidatorType) => {
@@ -56,7 +57,6 @@ export  interface IUserController {
 	findUserById:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
 	getAccountActivationLink:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
 	getPasswordResetLink:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
-	resetAccountPassword:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
 	activateAccount:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
 	findUsers:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
 	updateAccount:(req: IRequest, res: IResponse,next:INext) => Promise<any>;
@@ -85,10 +85,7 @@ export interface IUserUseCases {
 			offset: number;
 			query?: any;
 		}) => Promise<any>;
-		activateUserAccount: (token:string,email: string) => Promise<any>;
-		changeUserPassword: (id:string,
-			data: IUser
-		) => Promise<any>;
+		activateUserAccount: (token:string) => Promise<any>;
 		resetPassword: (token:string,data:{
 			password:string
 			confirmPassword:string

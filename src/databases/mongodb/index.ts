@@ -3,12 +3,10 @@ import moment from 'moment';
 import mongoose from 'mongoose';
 import path from 'path';
 import winston from 'winston';
-import { BASE_DIR, environmentConfig, mongoConfig } from '@backend-service-config';
+import { BASE_DIR, DB_URL, environmentConfig } from '@backend-service-config';
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const { NODE_ENV } = environmentConfig;
 
-const url =
-	environmentConfig.NODE_ENV === ('development' || 'production')
-		? mongoConfig.DATABASE_URL
-		: mongoConfig.TEST_DB_URL;
 
 const logger = winston.createLogger({
 	format: winston.format.json(),
@@ -30,7 +28,7 @@ const options = {
 	family: 4 // Use IPv4, skip trying IPv6
 };
 
-mongoose.connect(url, options);
+mongoose.connect(DB_URL, options);
 
 mongoose.connection.on('connected', () => {
 	const time = moment(new Date().getTime()).format('LLLL');
@@ -38,7 +36,8 @@ mongoose.connection.on('connected', () => {
 		message: 'Mongoose connected',
 		timestamp: time,
 		level: 'info',
-		service: 'Mongoose'
+		service: 'Mongoose',
+		environment: NODE_ENV,
 	});
 });
 mongoose.connection.on('disconnected', () => {
@@ -46,7 +45,8 @@ mongoose.connection.on('disconnected', () => {
 		message: 'Mongoose dis-connected',
 		timestamp: `${moment(new Date().getTime()).format('LLLL')}`,
 		level: 'info',
-		service: 'Mongoose'
+		service: 'Mongoose',
+		environment: NODE_ENV
 	});
 });
 
@@ -58,7 +58,8 @@ mongoose.connection.on('error', (err: any) => {
 		reason: `${err.message}`,
 		timestamp: `${time}`,
 		level: 'info',
-		service: 'Mongoose'
+		service: 'Mongoose',
+		environment: NODE_ENV
 	});
 });
 mongoose.connection.on('reconnected', () => {
@@ -66,7 +67,8 @@ mongoose.connection.on('reconnected', () => {
 		message: 'Mongoose re-connected',
 		timestamp: `${chalk.yellow(moment(new Date().getTime()).format('LLLL'))}`,
 		level: 'info',
-		service: 'Mongoose'
+		service: 'Mongoose',
+		environment: NODE_ENV
 	});
 });
 

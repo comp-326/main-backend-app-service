@@ -8,6 +8,7 @@ const createUser = makeCreateUserEntity({
 });
 
 export { createUser };
+
 export default createUser;
 
 // export type UserInfoValidator = typeof Validate
