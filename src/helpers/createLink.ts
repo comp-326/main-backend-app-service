@@ -1,4 +1,4 @@
-import { environmentConfig } from '@backend-service-config';
+import { environmentConfig } from '@exam-cell-config';
 
 
 /**

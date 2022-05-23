@@ -1,5 +1,5 @@
 import compression from 'compression';
-import { IRequest, IResponse } from '@backend-service-common/types';
+import { IRequest, IResponse } from '@exam-cell-common/types';
 
 export default function (req: IRequest, res: IResponse){
 	if (req.headers['x-no-compression']) {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { INext, IRequest, IResponse } from '@backend-service-common/types';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 import { IUserRoleController, IUserRoleUseCase } from './../interfaces';
 
 export class UserRoleController implements IUserRoleController{

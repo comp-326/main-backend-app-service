@@ -1,7 +1,7 @@
-// import { ExpressError } from '@backend-service/common/errors/ExpressError';
-import tokenGEN from '@backend-service/utils/jwt/tokenGEN';
+// import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import tokenGEN from '@exam-cell-utils/jwt/tokenGEN';
 import { IAuthController, IAuthUseCase } from '../interfaces';
-import { INext, IRequest, IResponse } from '@backend-service/common/types';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 
 export class AuthController implements IAuthController {

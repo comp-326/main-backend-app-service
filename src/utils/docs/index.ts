@@ -1,7 +1,7 @@
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
 import yaml from 'yamljs';
-import { BASE_DIR, environmentConfig } from '@backend-service-config';
+import { BASE_DIR, environmentConfig } from '@exam-cell-config';
 
 const swaggerDocument =
 	environmentConfig.NODE_ENV === 'development'

@@ -5,8 +5,8 @@ import path from 'path';
 dotenv.config();
 const config = {
 	ENV: {
-		PORT: process.env.PORT||'exam-cellautomaton-app',
-		API_PREFIX: process.env.API_PREFIX||'/api/v1',
+		PORT: process.env.PORT || 'exam-cellautomaton-app',
+		API_PREFIX: process.env.API_PREFIX || '/api/v1',
 		APP_NAME: process.env.APP_NAME!,
 		NODE_ENV: process.env.NODE_ENV!,
 		SECRET_KEY: process.env.SECRET_KEY!,
@@ -23,7 +23,7 @@ const config = {
 		EMAIL_SECURE: process.env.EMAIL_SECURE === 'true' ? true : false,
 		EMAIL_PROXY: process.env.EMAIL_PROXY || ''
 	},
-	
+
 	PATHS: {
 		BASE_DIR: path.join(path.dirname(__filename), '.')
 	},
@@ -41,19 +41,19 @@ const config = {
 			DB_USER: '',
 			DB_PASSWORD: '',
 			DB_NAME: '',
-			DB_PORT: ''
+			DB_PORT: process.env.MONGO_PORT || 27017
 		},
 		MYSQL: {
-			DB_USER: '',
-			DB_PASSWORD: '',
-			DB_NAME: '',
-			DB_PORT: ''
+			DB_USER: process.env.MYSQL_USER || 'root',
+			DB_PASSWORD: process.env.MYSQL_PASSWORD || '',
+			DB_NAME: process.env.MYSQL_DB || 'exam_cell',
+			DB_PORT: parseInt(<string>(process.env.MYSQL_PORT)) || 3306
 		},
 		POSTGRESQL: {
-			DB_USER: '',
-			DB_PASSWORD: '',
-			DB_NAME: '',
-			DB_PORT: ''
+			DB_USER: process.env.POSTGRES_USER || 'postgres',
+			DB_PASSWORD: process.env.POSTGRES_PASSWORD || '',
+			DB_NAME: process.env.POSTGRES_DB || 'exam_cell',
+			DB_PORT: parseInt(<string>(process.env.POSTGRES_PORT)) || 3306
 		}
 	}
 };

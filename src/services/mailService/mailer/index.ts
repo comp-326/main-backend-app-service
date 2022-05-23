@@ -12,7 +12,7 @@ import {
 	ListHeaders,
 	TextEncoding
 } from 'nodemailer/lib/mailer';
-import { mailConfig } from '@backend-service-config';
+import { mailConfig } from '@exam-cell-config';
 
 
 interface IMailer {
