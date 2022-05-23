@@ -3,7 +3,7 @@ import moment from 'moment';
 import mongoose from 'mongoose';
 import path from 'path';
 import winston from 'winston';
-import {  mongoUrl, environmentConfig } from '@exam-cell-config';
+import {  environmentConfig, mongoUrl } from '@exam-cell-config';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const { NODE_ENV } = environmentConfig;
 

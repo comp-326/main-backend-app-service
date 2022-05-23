@@ -4,6 +4,7 @@ import { IUser } from '@exam-cell-features/users/models/interfaces';
 import { IUserRepository } from '@exam-cell-features/users/interfaces';
 import UserModel from '@exam-cell-features/users/models';
 import UserRoleModel from '@exam-cell-features/userRoles/models';
+
 class UserRepository implements IUserRepository {
 
 	softDeleteUser = async (id: string) => {

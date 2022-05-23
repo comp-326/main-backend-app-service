@@ -84,6 +84,7 @@ export const	loginRequired = async (req: IRequest, res: IResponse, next: INext) 
 		return next(error);
 	}
 };
+
 export const studentRequired = async (req: IRequest, res: IResponse, next: INext) => {
 	try {
 		loginRequired(req, res, async () => {
@@ -99,6 +100,7 @@ export const studentRequired = async (req: IRequest, res: IResponse, next: INext
 		return next(error);
 	}
 };
+
 export const lecturerRequired = async (req: IRequest, res: IResponse, next: INext) => {
 	try {
 		loginRequired(req, res, async () => {
@@ -114,6 +116,7 @@ export const lecturerRequired = async (req: IRequest, res: IResponse, next: INex
 		return next(error);
 	}
 };
+
 export const moderatorRequired = async (req: IRequest, res: IResponse, next: INext) => {
 	try {
 		loginRequired(req, res, async () => {

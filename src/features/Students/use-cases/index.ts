@@ -102,6 +102,7 @@ export class UserUseCase implements IUserUseCases {
 				}
 			});
 		}
+
 		return existing;
 	};
 

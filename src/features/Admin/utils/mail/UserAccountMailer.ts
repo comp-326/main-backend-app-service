@@ -1,5 +1,5 @@
-import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import ExamCellAutomatonMailer from '@exam-cell-services/mailService/mailer';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import createLinks from '@exam-cell-helpers/createLinks';
 import { mailConfig } from '@exam-cell-config';
 import moment from 'moment';

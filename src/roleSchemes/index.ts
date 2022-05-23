@@ -7,6 +7,7 @@ class RoleMigrator {
 		await userRoleModel.InsertRoles();
 
 	};
+
 	migrate = async () => {
 		await this.migrateUserPermissions();
 		console.log(`Role migration successful----${environmentConfig.NODE_ENV}`);
