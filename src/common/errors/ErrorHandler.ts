@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from './ExpressError';
-import capitalize from '@backend-service-helpers/capitalize';
-import { INext, IRequest, IResponse } from '@backend-service-common/types';
+import capitalize from '@exam-cell-helpers/capitalize';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 export default function (err: any, req: IRequest, res: IResponse, next: INext){
 	if (err instanceof ExpressError) {

@@ -1,8 +1,8 @@
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IUserRepository } from './../interfaces/index';
-import { JWTPayloadType } from '@backend-service/common/types';
+import { JWTPayloadType } from '@exam-cell-common/types';
 import createUser from '../entities';
-import tokenGEN from '@backend-service/utils/jwt/tokenGEN';
+import tokenGEN from '@exam-cell-utils/jwt/tokenGEN';
 
 export function resetPassword({repository}:{repository:IUserRepository}){
 	return async (token: string, data: { password: string, confirmPassword: string }) => {

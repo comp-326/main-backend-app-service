@@ -4,7 +4,7 @@ import { environmentConfig } from "@exam-cell-config"
 
 type Env = keyof knexEnvType
 
-const mysqlConection = knex(config[environmentConfig.NODE_ENV as unknown as Env]);
+const oracleConnection = knex(config[environmentConfig.NODE_ENV as Env]);
 
-export default mysqlConection
-export { mysqlConection }
+export default oracleConnection
+export { oracleConnection }

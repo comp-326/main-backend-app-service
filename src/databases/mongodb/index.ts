@@ -3,7 +3,7 @@ import moment from 'moment';
 import mongoose from 'mongoose';
 import path from 'path';
 import winston from 'winston';
-import { BASE_DIR, DB_URL, environmentConfig } from '@backend-service-config';
+import {  mongoUrl, environmentConfig } from '@exam-cell-config';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const { NODE_ENV } = environmentConfig;
 
@@ -14,7 +14,7 @@ const logger = winston.createLogger({
 	transports: [
 		new winston.transports.Console(),
 		new winston.transports.File({
-			filename: path.join(path.dirname(BASE_DIR), 'logs', 'db-logs.json'),
+			filename: path.join(path.dirname(mongoUrl), 'logs', 'db-logs.json'),
 			level: 'error'
 		})
 	],
@@ -28,7 +28,7 @@ const options = {
 	family: 4 // Use IPv4, skip trying IPv6
 };
 
-mongoose.connect(DB_URL, options);
+mongoose.connect(mongoUrl, options);
 
 mongoose.connection.on('connected', () => {
 	const time = moment(new Date().getTime()).format('LLLL');

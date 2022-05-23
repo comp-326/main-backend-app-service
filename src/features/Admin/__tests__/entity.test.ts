@@ -1,7 +1,7 @@
 import createUser from '../entities/index';
-// import { mongoConfig } from '@backend-service-config';
-// import mongoose from '@backend-service-db/mongodb';
-// import userRoleModel from '@backend-service-features/userRoles/models';
+// import { mongoConfig } from '@exam-cell-config';
+// import mongoose from '@exam-cell-db/mongodb';
+// import userRoleModel from '@exam-cell-features/userRoles/models';
 
 describe('createUser', () => {
 	// beforeAll(async () => {

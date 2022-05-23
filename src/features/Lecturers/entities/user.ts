@@ -1,6 +1,6 @@
-import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import { IUser } from '@backend-service-features/users/models/interfaces';
-import { IPassword, IUserValidator } from '@backend-service-features/users/interfaces';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IPassword, IUserValidator } from '@exam-cell-features/users/interfaces';
 
 export default function makeCreateUserEntity({
 	validator,

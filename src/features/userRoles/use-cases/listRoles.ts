@@ -1,4 +1,4 @@
-import { IUserRoleRepository } from '@backend-service-features/userRoles/interfaces';
+import { IUserRoleRepository } from '@exam-cell-features/userRoles/interfaces';
 
 export function makeAddRoles({
 	repository,

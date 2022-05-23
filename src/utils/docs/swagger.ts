@@ -1,4 +1,4 @@
-import { BASE_DIR } from '@backend-service/config';
+import { BASE_DIR } from '@exam-cell-config';
 import path from 'path';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

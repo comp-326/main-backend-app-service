@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IUser } from '@backend-service-features/users/models/interfaces';
-import { IUserRepository } from '@backend-service-features/users/interfaces';
-import UserModel from '@backend-service-features/users/models';
-import UserRoleModel from '@backend-service-features/userRoles/models';
+import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IUserRepository } from '@exam-cell-features/users/interfaces';
+import UserModel from '@exam-cell-features/users/models';
+import UserRoleModel from '@exam-cell-features/userRoles/models';
 class UserRepository implements IUserRepository {
 
 	softDeleteUser = async (id: string) => {

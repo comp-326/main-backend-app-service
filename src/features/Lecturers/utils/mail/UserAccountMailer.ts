@@ -1,13 +1,13 @@
-import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import ExamCellAutomatonMailer from '@backend-service-services/mailService/mailer';
-import createLinks from '@backend-service-helpers/createLinks';
-import { mailConfig } from '@backend-service-config';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import ExamCellAutomatonMailer from '@exam-cell-services/mailService/mailer';
+import createLinks from '@exam-cell-helpers/createLinks';
+import { mailConfig } from '@exam-cell-config';
 import moment from 'moment';
-import tokenGenerator from '@backend-service-helpers/tokenGenerator';
+import tokenGenerator from '@exam-cell-helpers/tokenGenerator';
 import {
 	accountActivationEmailTemplate,
 	passwordResetEmailTemplate
-} from '@backend-service-services/mailService';
+} from '@exam-cell-services/mailService';
 
 class Accountmailer{
 	sendPasswordResetLink = () => {

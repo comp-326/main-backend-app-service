@@ -1,4 +1,4 @@
-import Password from '@backend-service-utils/passwords';
+import Password from '@exam-cell-utils/passwords';
 import UserInfoValidator from '../utils/userInfoValidator';
 import makeCreateUserEntity from './user';
 

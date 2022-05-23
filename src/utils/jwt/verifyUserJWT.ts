@@ -1,6 +1,6 @@
-import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import { JWTPayloadType } from '@backend-service-common/types';
-import { environmentConfig } from '@backend-service-config';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { JWTPayloadType } from '@exam-cell-common/types';
+import { environmentConfig } from '@exam-cell-config';
 import jwt from 'jsonwebtoken';
 
 class VerifyUserJWT{

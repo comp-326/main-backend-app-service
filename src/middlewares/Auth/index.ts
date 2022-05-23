@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import Permissions from '@backend-service-constants/userPermissions';
-import RoleModel from '@backend-service-features/userRoles/models';
-import TokenGEN from '@backend-service/utils/jwt/tokenGEN';
-import UserModel from '@backend-service-features/users/models';
-import { environmentConfig } from '@backend-service-config';
+import Permissions from '@exam-cell-constants/userPermissions';
+import RoleModel from '@exam-cell-features/userRoles/models';
+import TokenGEN from '@exam-cell-utils/jwt/tokenGEN';
+import UserModel from '@exam-cell-features/users/models';
+import { environmentConfig } from '@exam-cell-config';
 import jwt from 'jsonwebtoken';
-import { INext, IRequest, IResponse, JWTPayloadType } from '@backend-service-common/types';
+import { INext, IRequest, IResponse, JWTPayloadType } from '@exam-cell-common/types';
 
 
 const verifyCookie = (req: IRequest, res: IResponse, next: INext) => {

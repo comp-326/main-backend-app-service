@@ -3,7 +3,7 @@ import { Router } from 'express';
 import UserController from '../controllers';
 import UserRepository from '../repository';
 import { UserUseCase } from '../use-cases';
-import { adminRequired } from '@backend-service/middlewares/Auth';
+import { adminRequired } from '@exam-cell-middlewares/Auth';
 
 
 export default function deleteAccountRoute(app:Router){

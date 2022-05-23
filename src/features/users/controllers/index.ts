@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import { INext, IRequest, IResponse } from '@backend-service-common/types';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 import { IUserController, IUserUseCases } from './../interfaces';
 
 

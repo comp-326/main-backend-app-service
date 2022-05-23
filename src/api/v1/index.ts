@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import authDomain from '@backend-service/features/auth';
+import authDomain from '@exam-cell-features/auth';
 import testRoute from './testRoute';
-import userDomain from '@backend-service/features/users';
-import userRolesDomain from '@backend-service/features/userRoles';
-import { swaggerServe, swaggerSetup } from '@backend-service/utils/docs';
+import userDomain from '@exam-cell-features/users';
+import userRolesDomain from '@exam-cell-features/userRoles';
+import { swaggerServe, swaggerSetup } from '@exam-cell-utils/docs';
 
 const apiRoute = Router();
 

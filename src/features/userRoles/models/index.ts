@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Permissions from '@backend-service-constants/userPermissions';
-import mongoose from '@backend-service-db/mongodb';
+import Permissions from '@exam-cell-constants/userPermissions';
+import mongoose from '@exam-cell-db/mongodb';
 import { IUserRoleDocument, IUserRoleDocumentModel } from './interfaces';
 
 const userRoleSchema: mongoose.Schema<IUserRoleDocument> = new mongoose.Schema({

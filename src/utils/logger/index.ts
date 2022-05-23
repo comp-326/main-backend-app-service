@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { BASE_DIR } from '@backend-service-config';
+import { BASE_DIR } from '@exam-cell-config';
 import moment from 'moment';
 import path from 'path';
 import winston from 'winston';
-import { IRequest, IResponse } from '@backend-service-common/types';
+import { IRequest, IResponse } from '@exam-cell-common/types';
 
 /**
  * ----------------------------  LOG HTTP ERROR REQUESTS OPTIONS -------------------------

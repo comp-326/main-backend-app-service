@@ -3,7 +3,7 @@ import { Router } from 'express';
 import UserController from '../controllers';
 import UserRepository from '../repository';
 import { UserUseCase } from '../use-cases';
-import { loginRequired } from '@backend-service/middlewares/Auth';
+import { loginRequired } from '@exam-cell-middlewares/Auth';
 
 
 export default function getUserByEmailRoute(app:Router){

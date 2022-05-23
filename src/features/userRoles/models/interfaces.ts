@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import mongoose from '@backend-service-db/mongodb';
+import mongoose from '@exam-cell-db/mongodb';
 
 export interface IUserRole {
     name: string;

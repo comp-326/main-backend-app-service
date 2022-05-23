@@ -1,8 +1,8 @@
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
-import { IUserRepository } from '@backend-service-features/users/interfaces';
-import { JWTPayloadType } from '@backend-service/common/types';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { IUserRepository } from '@exam-cell-features/users/interfaces';
+import { JWTPayloadType } from '@exam-cell-common/types';
 import createUser from '../entities';
-import tokenGEN from '@backend-service/utils/jwt/tokenGEN';
+import tokenGEN from '@exam-cell-utils/jwt/tokenGEN';
 
 
 export  function makeActivateUserAccount({repository}:{repository:IUserRepository}){

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IUserRoleDocument } from '@backend-service-features/userRoles/models/interfaces';
-import { INext, IRequest, IResponse } from '@backend-service-common/types';
+import { IUserRoleDocument } from '@exam-cell-features/userRoles/models/interfaces';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 export interface IUserRoleUseCase {
 	addRoles: () => Promise<IUserRoleDocument[] | IUserRoleDocument|null>

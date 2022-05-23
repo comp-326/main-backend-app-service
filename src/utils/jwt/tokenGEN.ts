@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
-import { JWTPayloadType } from '@backend-service-common/types';
-import {environmentConfig} from '@backend-service-config';
+import { JWTPayloadType } from '@exam-cell-common/types';
+import {environmentConfig} from '@exam-cell-config';
 import jwt from 'jsonwebtoken';
 
 class TokenGEN{

@@ -1,5 +1,5 @@
 // eslint-disable-next-line camelcase
-import ErrorHandler from '@backend-service-common/errors/ErrorHandler';
+import ErrorHandler from '@exam-cell-common/errors/ErrorHandler';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -7,10 +7,10 @@ import expressWinston from 'express-winston';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import pages from './pages';
-import shouldCompress from '@backend-service-utils/compression';
-import v1 from '@backend-service-api/v1';
+import shouldCompress from '@exam-cell-utils/compression';
+import v1 from '@exam-cell-api/v1';
 import express, { Application } from 'express';
-import { httpErrorLogOptions, httpLogOptions } from '@backend-service-utils/logger';
+import { httpErrorLogOptions, httpLogOptions } from '@exam-cell-utils/logger';
 
 export default function ({ app }: { app: Application }) {
 	app.use(express.json({ limit: '30mb' }));

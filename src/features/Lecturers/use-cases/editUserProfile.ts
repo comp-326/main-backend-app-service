@@ -1,8 +1,8 @@
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IUser } from '../models/interfaces';
 import { IUserRepository } from '../interfaces';
 import createUser from '../entities';
-import validateMongodbId from '@backend-service/utils/mongo/ObjectId-validator';
+import validateMongodbId from '@exam-cell-utils/mongo/ObjectId-validator';
 
 export  function makeEditUserProfile ({repository}:{repository:IUserRepository}){
 	return async (userId: string, userData: IUser) => {

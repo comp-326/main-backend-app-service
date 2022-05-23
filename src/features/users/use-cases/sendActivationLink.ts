@@ -1,5 +1,5 @@
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
-import { IUserRepository } from '@backend-service-features/users/interfaces';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { IUserRepository } from '@exam-cell-features/users/interfaces';
 
 export function makeSendAccountActivationLink({ repository }: { repository: IUserRepository }) {
 	return async (email: string) => {

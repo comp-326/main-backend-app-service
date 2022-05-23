@@ -1,4 +1,4 @@
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IUser } from '../models/interfaces';
 import { IUserRepository } from '../interfaces';
 import entity from './../entities';
