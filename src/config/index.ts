@@ -1,26 +1,30 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import config from '@backend-service/node.config';
+import config from '@exam-cell-base/node.config';
 
 const {
 	ENV,
 	DB: {
-		MONGOOSE
+		MONGOOSE: mongoConfig,
+		POSTGRESQL: pgConfig,
+		MYSQL: mysqlConfig
 	},
 	PATHS: { BASE_DIR },
 	MAIL,
 	CLOUDINARY,
 } = config;
-const DB_URL =
+const mongoUrl =
 	ENV.NODE_ENV === 'development' ?
-		MONGOOSE.DATABASE_URL :
+		mongoConfig.DATABASE_URL :
 		ENV.NODE_ENV === 'production'
-			? MONGOOSE.DATABASE_URL
-			: MONGOOSE.TEST_DB_URL;
+			? mongoConfig.DATABASE_URL
+			: mongoConfig.TEST_DB_URL;
 
 export {
-	DB_URL,
+	mongoUrl,
 	MAIL as mailConfig,
 	ENV as environmentConfig,
 	CLOUDINARY as cloudinaryConfig,
 	BASE_DIR,
+	pgConfig,
+	mysqlConfig
 };

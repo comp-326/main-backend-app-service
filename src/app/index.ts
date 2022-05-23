@@ -1,5 +1,5 @@
 import express from 'express';
-import setup from '@backend-service-setup';
+import setup from '@exam-cell-setup';
 
 const app = express();
 setup({ app });

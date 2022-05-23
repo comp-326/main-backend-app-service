@@ -1,5 +1,5 @@
-import { environmentConfig } from '@backend-service-config';
-import userRoleModel from '@backend-service/features/userRoles/models';
+import { environmentConfig } from '@exam-cell-config';
+import userRoleModel from '@exam-cell-features/userRoles/models';
 
 class RoleMigrator {
 
@@ -7,6 +7,7 @@ class RoleMigrator {
 		await userRoleModel.InsertRoles();
 
 	};
+
 	migrate = async () => {
 		await this.migrateUserPermissions();
 		console.log(`Role migration successful----${environmentConfig.NODE_ENV}`);

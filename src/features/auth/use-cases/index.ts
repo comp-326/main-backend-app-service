@@ -1,6 +1,6 @@
-import { ExpressError } from '@backend-service-common/errors/ExpressError';
-import { IUser } from '@backend-service/features/users/models/interfaces';
-import passwords from '@backend-service/utils/passwords';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { IUser } from '@exam-cell-features/users/models/interfaces';
+import passwords from '@exam-cell-utils/passwords';
 import {IAuthRepository, IAuthUseCase} from './../interfaces'; 
 
 export class AuthUseCase implements IAuthUseCase{

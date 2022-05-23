@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { v2 as cloudinary } from 'cloudinary';
-import { cloudinaryConfig } from '@backend-service-config';
+import { cloudinaryConfig } from '@exam-cell-config';
 
 cloudinary.config({
 	cloud_name: cloudinaryConfig.CLOUDINARY_NAME,

@@ -1,5 +1,5 @@
-import { BASE_DIR } from '@backend-service-config';
-import { createDirectory } from '@backend-service-utils/fileSystem';
+import { BASE_DIR } from '@exam-cell-config';
+import { createDirectory } from '@exam-cell-utils/fileSystem';
 import multer from 'multer';
 import path from 'path';
 

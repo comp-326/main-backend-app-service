@@ -3,7 +3,7 @@ import { AuthController } from '../controllers';
 import { AuthUseCase } from '../use-cases';
 import { Router } from 'express';
 import authRepository from '../repository';
-import { loginRequired } from '@backend-service/middlewares/Auth';
+import { loginRequired } from '@exam-cell-middlewares/Auth';
 
 export default function logoutUserRoute(app: Router) {
 	return (pathName: string) => {

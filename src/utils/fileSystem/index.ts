@@ -4,7 +4,7 @@ import deleteFile from './deleteFile';
 import dirExistAsync from './dirExistAsync';
 import dirExistSync from './dirExist';
 
-// import { NODE_ENV } from "@backend-service-config"
+// import { NODE_ENV } from "@exam-cell-config"
 import setEnvironmentVariables from './envSetup';
 
 export default Object.freeze({

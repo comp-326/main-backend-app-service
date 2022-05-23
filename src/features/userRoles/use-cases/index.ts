@@ -1,4 +1,4 @@
-import { IUserRoleRepository, IUserRoleUseCase } from '@backend-service-features/userRoles/interfaces';
+import { IUserRoleRepository, IUserRoleUseCase } from '@exam-cell-features/userRoles/interfaces';
 
 export class UserRoleUseCases implements IUserRoleUseCase{
 	private readonly repository: IUserRoleRepository;

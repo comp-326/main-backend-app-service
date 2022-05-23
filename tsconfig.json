@@ -1,67 +1,68 @@
 {
-  "compileOnSave": false,
-  "ts-node": {
-    "transpileOnly": true,
-    "require": [ "typescript-transform-paths/register" ],
-  },
-  "compilerOptions": {
-      "plugins": [
-        // Transform paths in output .js files
-        {
-          "transform": "typescript-transform-paths",
-          "exclude": [ "**/node_modules/**" ]
-        },
-        // Transform paths in output .d.ts files (Include this line if you output declarations files)
-        {
-          "transform": "typescript-transform-paths",
-          "afterDeclarations": true,
-          "exclude": [ "**/node_modules/**" ]
-        }
-      ],
-     "types": ["node", "jest"],
-    "target": "es2017",
-    "module": "commonjs",
-    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./",
-    "rootDir": "./",
-    "paths": {
-      "@backend-service/*": ["./src/*"],
-      "@backend-service-app": ["./src/app"],
-      "@backend-service-config": ["./src/config"],
-      "@backend-service-api/*": ["./src/api/*"],
-      "@backend-service-setup": ["./src/setup"],
-      "@backend-service-setup/*": ["./src/setup/*"],
-      "@backend-service-features/*": ["./src/features/*"],
-      "@backend-service-models/*": ["./src/models/*"],
-      "@backend-service-common/*": ["./src/common/*"],
-      "@backend-service-services/*": ["./src/services/*"],
-      "@backend-service-helpers/*": ["./src/helpers/*"],
-      "@backend-service-utils/*": ["./src/utils/*"],
-      "@backend-service-constants/*": ["./src/constants/*"],
-      "@backend-service-uploadSDK": ["./src/uploadSDK"],
-      "@backend-service-uploader": ["./src/uploader"],
-      "@backend-service-db/*": ["./src/databases/*"],
-      "@backend-service-middlewares/*": ["./src/middlewares/*"],
-    }
-  },
-  "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts",".", "gulpfile.ts"]
+	"compileOnSave": false,
+	"ts-node": {
+		"transpileOnly": true,
+		"require": ["typescript-transform-paths/register"]
+	},
+	"compilerOptions": {
+		"plugins": [
+			// Transform paths in output .js files
+			{
+				"transform": "typescript-transform-paths",
+				"exclude": ["**/node_modules/**"]
+			},
+			// Transform paths in output .d.ts files (Include this line if you output declarations files)
+			{
+				"transform": "typescript-transform-paths",
+				"afterDeclarations": true,
+				"exclude": ["**/node_modules/**"]
+			}
+		],
+		"types": ["node", "jest"],
+		"target": "es2017",
+		"module": "commonjs",
+		"lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"outDir": "./dist",
+		"moduleResolution": "node",
+		"removeComments": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"baseUrl": "./",
+		"rootDir": "./",
+		"paths": {
+			"@exam-cell/*": ["./*"],
+			"@exam-cell-base/*": ["./src/*"],
+			"@exam-cell-app": ["./src/app"],
+			"@exam-cell-config": ["./src/config"],
+			"@exam-cell-api/*": ["./src/api/*"],
+			"@exam-cell-setup": ["./src/setup"],
+			"@exam-cell-setup/*": ["./src/setup/*"],
+			"@exam-cell-features/*": ["./src/features/*"],
+			"@exam-cell-models/*": ["./src/models/*"],
+			"@exam-cell-common/*": ["./src/common/*"],
+			"@exam-cell-services/*": ["./src/services/*"],
+			"@exam-cell-helpers/*": ["./src/helpers/*"],
+			"@exam-cell-utils/*": ["./src/utils/*"],
+			"@exam-cell-constants/*": ["./src/constants/*"],
+			"@exam-cell-uploadSDK": ["./src/uploadSDK"],
+			"@exam-cell-uploader": ["./src/uploader"],
+			"@exam-cell-db/*": ["./src/databases/*"],
+			"@exam-cell-middlewares/*": ["./src/middlewares/*"]
+		}
+	},
+	"exclude": ["node_modules"],
+	"include": ["./src/**/*.ts", ".", "gulpfile.ts", "knexfile.ts"]
 }

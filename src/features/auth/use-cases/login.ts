@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ExpressError } from '@backend-service/common/errors/ExpressError';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IAuthRepository } from '../interfaces';
-import { IUser } from '@backend-service-features/users/models/interfaces';
-import passwords from '@backend-service/utils/passwords';
+import { IUser } from '@exam-cell-features/users/models/interfaces';
+import passwords from '@exam-cell-utils/passwords';
 
 type IUserData = { email: string; password: string }
 

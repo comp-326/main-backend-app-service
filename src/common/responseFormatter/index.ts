@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { StatusCodeType, StatusType } from '@backend-service-common/errors/ExpressError';
+import { StatusCodeType, StatusType } from '@exam-cell-common/errors/ExpressError';
 
 export interface ISuccessResponse {
     data: any,

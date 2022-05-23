@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IUser } from '@backend-service/features/users/models/interfaces';
-import { INext, IRequest, IResponse } from '@backend-service/common/types';
+import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 type userType = {
     email:string,
