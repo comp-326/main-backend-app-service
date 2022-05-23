@@ -52,23 +52,25 @@ userRoleSchema.statics.getDefaultRole = async function () {
 
 userRoleSchema.statics.InsertRoles = async function () {
 	const roles: { [key: string]: number[] } = {
-		['User']: [
-			Permissions.VIEW,
-			Permissions.LIKE,
-			Permissions.SHARE,
-			Permissions.COMMENT,
-			Permissions.USER
+		['student']: [
+			Permissions.STUDENT
 		],
-		['Admin']: [
-			Permissions.VIEW,
-			Permissions.LIKE,
-			Permissions.SHARE,
-			Permissions.COMMENT,
-			Permissions.USER,
+		['lecturer']: [
+			Permissions.LECTURER
+		],
+		['moderator']:[
+			Permissions.STUDENT,
+			Permissions.LECTURER,
+			Permissions.MODERATOR
+		],
+		['administrator']: [
+			Permissions.STUDENT,
+			Permissions.LECTURER,
+			Permissions.MODERATOR,
 			Permissions.ADMIN
 		]
 	};
-	const defaultRole = 'User';
+	const defaultRole = 'student';
 	Object.keys(roles).forEach(async (r) => {
 		let role = await userRoleModel.findOne({ name: r });
 		if (!role)

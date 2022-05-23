@@ -84,6 +84,51 @@ export const	loginRequired = async (req: IRequest, res: IResponse, next: INext) 
 		return next(error);
 	}
 };
+export const studentRequired = async (req: IRequest, res: IResponse, next: INext) => {
+	try {
+		loginRequired(req, res, async () => {
+			const user = await UserModel.findById(req.user.userId);
+			const role = await RoleModel.findById(user!.role);
+			const permitted =  role!.hasPermission(Permissions.ADMIN);
+			if (!permitted) 
+				return res.sendStatus(403);
+				
+			return next();
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+export const lecturerRequired = async (req: IRequest, res: IResponse, next: INext) => {
+	try {
+		loginRequired(req, res, async () => {
+			const user = await UserModel.findById(req.user.userId);
+			const role = await RoleModel.findById(user!.role);
+			const permitted =  role!.hasPermission(Permissions.LECTURER);
+			if (!permitted) 
+				return res.sendStatus(403);
+				
+			return next();
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
+export const moderatorRequired = async (req: IRequest, res: IResponse, next: INext) => {
+	try {
+		loginRequired(req, res, async () => {
+			const user = await UserModel.findById(req.user.userId);
+			const role = await RoleModel.findById(user!.role);
+			const permitted =  role!.hasPermission(Permissions.MODERATOR);
+			if (!permitted) 
+				return res.sendStatus(403);
+				
+			return next();
+		});
+	} catch (error) {
+		return next(error);
+	}
+};
 
 export const adminRequired = async (req: IRequest, res: IResponse, next: INext) => {
 	try {
