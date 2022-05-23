@@ -59,6 +59,7 @@
     "sqlite3": "^5.0.8",
     "swagger-ui-express": "^4.3.0",
     "ts-jest-resolver": "^2.0.0",
+    "uuid": "^8.3.2",
     "winston": "^3.6.0",
     "yamljs": "^0.3.0"
   },
