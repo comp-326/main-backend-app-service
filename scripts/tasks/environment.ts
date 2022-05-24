@@ -1,6 +1,8 @@
+import { BASE_DIR } from '@exam-cell/src/config';
 import crypto from 'crypto';
-import dirExistSync from './dirExist';
+import { dirExistSync } from '@exam-cell/src/utils/fileSystem';
 import fs from 'fs';
+import gulp from 'gulp';
 import os from 'os';
 import path from 'path';
 
@@ -71,4 +73,9 @@ function setEnvironmentVariables(envFilePath: string) {
 	);
 }
 
-export default setEnvironmentVariables;
+
+async function setEnvironmentEnv() {
+	return setEnvironmentVariables(path.join(path.dirname(BASE_DIR), '.env.example'));
+}
+
+export default gulp.task('env:set', setEnvironmentEnv);

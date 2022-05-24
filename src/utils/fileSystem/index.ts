@@ -5,20 +5,17 @@ import dirExistAsync from './dirExistAsync';
 import dirExistSync from './dirExist';
 
 // import { NODE_ENV } from "@exam-cell-config"
-import setEnvironmentVariables from './envSetup';
 
 export default Object.freeze({
 	dirExistAsync,
 	dirExistSync,
 	createDirectory,
-	deleteFile,
-	setEnvironmentVariables
+	deleteFile
 });
 
 export {
 	dirExistAsync,
 	dirExistSync,
-	setEnvironmentVariables,
 	createDirectory,
 	deleteFile
 };
