@@ -5,9 +5,9 @@ import path from 'path';
 dotenv.config();
 const config = {
 	ENV: {
-		PORT: process.env.PORT || 'exam-cellautomaton-app',
+		PORT: process.env.PORT || 6200,
 		API_PREFIX: process.env.API_PREFIX || '/api/v1',
-		APP_NAME: process.env.APP_NAME!,
+		APP_NAME: process.env.APP_NAME || 'exam cellautomaton app',
 		NODE_ENV: process.env.NODE_ENV!,
 		SECRET_KEY: process.env.SECRET_KEY!,
 		REFRESH_KEY: process.env.REFRESH_KEY!,
