@@ -1,4 +1,3 @@
-require('module-alias/register');
 import app from './app';
 import chalk from 'chalk';
 import { environmentConfig } from './config';
