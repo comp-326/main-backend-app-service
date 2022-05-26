@@ -1,14 +1,9 @@
-import Password from '@exam-cell-utils/passwords';
-import UserInfoValidator from '../utils/userInfoValidator';
-import makeCreateUserEntity from './user';
+import { makeCreateDepartmentEntity } from './department';
 
-const createUser = makeCreateUserEntity({
-	validator: UserInfoValidator,
-	passwordUtil: Password,
+const createDeparrmentEntity = makeCreateDepartmentEntity();
+
+export { createDeparrmentEntity };
+
+export default Object.freeze({
+	createDeparrmentEntity,
 });
-
-export { createUser };
-
-export default createUser;
-
-// export type UserInfoValidator = typeof Validate
