@@ -14,4 +14,4 @@ const buildProduction = () => {
 	return compiled.js.pipe(sourcemaps.write('.')).pipe(gulp.dest('./build/src'));
 };
 
-gulp.task('build', buildProduction);
+export default gulp.task('build', buildProduction);
