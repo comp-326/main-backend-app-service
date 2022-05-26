@@ -81,7 +81,7 @@ export  function  makeCreateStudentEntity({
 			getRole: () => (role ? role : 'user'),
 			getProfilePic: () => profilePicture,
 			getPassword: () => userPassword,
-			getIsDelete: () => isDeleted,
+			getIsDeleted: () => isDeleted,
 			getGender: () => gender,
 			getEmail: () => email
 		});

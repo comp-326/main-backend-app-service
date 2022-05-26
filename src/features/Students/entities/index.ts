@@ -12,4 +12,4 @@ export { createStudentEntity };
 export type createStudentEntityType = typeof createStudentEntity
 
 export default createStudentEntity;
-
+// export type UserInfoValidator = typeof Validate
