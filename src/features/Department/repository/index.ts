@@ -7,3 +7,5 @@ const departmentRepository = Object.freeze({
 });
 
 export type departmentRepositoryType = typeof departmentRepository;
+
+export default departmentRepository;

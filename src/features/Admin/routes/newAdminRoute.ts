@@ -4,9 +4,9 @@ import { createAdminController } from '../controllers';
 
 export  function newAdminRoute(app: Router) {
 	return (pathName: string) => {
-		const userRouter = Router();
-		app.use(`${pathName}`, userRouter);
-		userRouter.post('/account/register', createAdminController);
+		const adminRouter = Router();
+		app.use(`${pathName}`, adminRouter);
+		adminRouter.post('/new', createAdminController);
 
 	};
 }
