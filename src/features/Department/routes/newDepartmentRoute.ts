@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
-import UserController from '../controllers';
-import UserRepository from '../repository';
-import { UserUseCase } from '../use-cases';
+import { createNewDepartmentController } from '../controllers';
 
-
-export default function newUserRoute(app:Router){
-	return (pathName:string)=>{
-		const userUseCase = new UserUseCase(UserRepository);
-		const controller = new UserController(userUseCase);
-		const userRouter = Router();
-		app.use(`${pathName}`,userRouter);
-		userRouter.post('/account/register',controller.createUser);
-
+export default function newDepartmentRoute(app: Router) {
+	return (pathName: string) => {
+		const departmentRouter = Router();
+		app.use(`${pathName}`, departmentRouter);
+		departmentRouter.post('/new', createNewDepartmentController);
 	};
 }
