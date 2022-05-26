@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import adminDomain from '@exam-cell-features/Admin';
+import courseDomain from '@exam-cell-features/Course';
 import departmentDomain from '@exam-cell-features/Department';
 import facultyDomain from '@exam-cell-features/Faculty';
 import lecturerDomain from '@exam-cell-features/Lecturers';
@@ -13,6 +14,7 @@ export default function () {
 	apiRoute.get('/test', testRoute);
 	apiRoute.use('/docs', swaggerServe, swaggerSetup);
 	adminDomain({ app: apiRoute, pathName: '/admin' });
+	courseDomain({ app: apiRoute, pathName: '/courses' });
 	facultyDomain({ app: apiRoute, pathName: '/faculty' });
 	departmentDomain({ app: apiRoute, pathName: '/department' });
 	studentDomain({ app: apiRoute, pathName: '/students' });
