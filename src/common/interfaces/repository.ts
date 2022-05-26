@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface IBaseRepository {
+export interface IBaseRepository<T> {
 	find: (query: any) => Promise<any>;
 	findById: (id: string) => Promise<any>;
 	updateOne: (query: any) => Promise<any>;

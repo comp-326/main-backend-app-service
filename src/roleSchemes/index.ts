@@ -14,12 +14,6 @@ class RoleMigrator {
 	};
 
 }
-(async () => {
-	const roleMigrator = new RoleMigrator();
-	await roleMigrator.migrate();
-	setTimeout(() => {
-		process.exit(0);
-	}, 3000);
-})();
+const migrate = new RoleMigrator().migrate;
 
-
+export { migrate as migrateRole };
