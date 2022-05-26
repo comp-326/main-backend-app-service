@@ -3,7 +3,7 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
 
-export  function  makeCreateLecturerEntity({
+export  function  makeCreateStudentEntity({
 	validator,
 	passwordUtil
 }: {
@@ -81,7 +81,7 @@ export  function  makeCreateLecturerEntity({
 			getRole: () => (role ? role : 'user'),
 			getProfilePic: () => profilePicture,
 			getPassword: () => userPassword,
-			getIsDelete: () => isDeleted,
+			getIsDeleted: () => isDeleted,
 			getGender: () => gender,
 			getEmail: () => email
 		});

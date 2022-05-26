@@ -1,15 +1,18 @@
 import { TypeMapper } from '@exam-cell-common/utils';
-import { addNewAdminUseCase } from '../use-cases';
+import { addNewStudentUseCase } from '../use-cases';
 import { makeCreateStudentController } from './createStudent';
 
-const createStudentController = makeCreateStudentController({ useCase: addNewAdminUseCase });
+const createStudentController = makeCreateStudentController({
+	useCase: addNewStudentUseCase,
+});
 
 export { createStudentController };
 
 const studentController = Object.freeze({ createStudentController });
 
-type controllerType = typeof studentController
+type controllerType = typeof studentController;
 
 export default studentController;
 
-export type studentControllerType = TypeMapper<controllerType>[keyof controllerType];
+export type studentControllerType =
+	TypeMapper<controllerType>[keyof controllerType];
