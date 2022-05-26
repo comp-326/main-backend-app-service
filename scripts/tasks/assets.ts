@@ -14,4 +14,4 @@ const copyAssets = () => {
 	return compiled;
 };
 
-gulp.task('copy:views', copyAssets);
+export default gulp.task('copy:views', copyAssets);
