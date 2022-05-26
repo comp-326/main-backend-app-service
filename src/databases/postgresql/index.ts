@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import config from '@exam-cell/knexfile';
+import config from './../../../knexfile';
 import { environmentConfig } from '@exam-cell-config';
 import knex from 'knex';
 
