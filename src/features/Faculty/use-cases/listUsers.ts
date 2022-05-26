@@ -1,5 +1,5 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUserRepository } from '@exam-cell-features/users/interfaces';
+import { IUserRepository } from '@exam-cell-features/Users/interfaces';
 
 export function makeListUsers({repository}:{repository:IUserRepository}){
 	return async ({ limit, offset }: { limit: number; offset: number; }) => {

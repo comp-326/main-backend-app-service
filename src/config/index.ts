@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import config from '@exam-cell-base/node.config';
+import config from '../../node.config';
 
 const {
 	ENV,

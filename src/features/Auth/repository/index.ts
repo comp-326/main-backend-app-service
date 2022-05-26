@@ -1,5 +1,5 @@
 import { IAuthRepository } from '../interfaces';
-import userModel from '@exam-cell-features/users/models';
+import userModel from '@exam-cell-features/Users/models';
 
 
 class AuthRepository implements IAuthRepository {

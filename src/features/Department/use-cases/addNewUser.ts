@@ -1,5 +1,5 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
 import { IUserRepository } from '../interfaces';
 import entity from './../entities';
 

@@ -1,22 +1,23 @@
-import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/users/models/interfaces';
-import { IPassword, IUserValidator } from '@exam-cell-features/users/interfaces';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-export default function makeCreateUserEntity({
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
+
+export  function  makeCreateStudentEntity({
 	validator,
 	passwordUtil
 }: {
-	validator: IUserValidator;
+	validator: IUserValidator,
 	passwordUtil: IPassword;
 }){
-	return async function createUser({
+	return async  ({
 		email,
 		firstName,
 		lastName,
 		password: userPassword,
 		isActive,
 		role, bio, gender, isDeleted, profilePicture
-	}: IUser){
+	}: any)=>{
 		const { isValidEmail, isValidPassword } = validator;
 		const { hashPassword } = passwordUtil;
 		if (!isValidEmail(email)) {

@@ -12,3 +12,4 @@ export { createUser };
 export default createUser;
 
 // export type UserInfoValidator = typeof Validate
+// Router -> Controller -> UseCase -> {Repository,Entities}
