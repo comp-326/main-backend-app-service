@@ -1,16 +1,15 @@
 import Password from '@exam-cell-utils/passwords';
 import UserInfoValidator from '../utils/userInfoValidator';
-import { makeCreateLecturerEntity } from './lecturer';
+import { makeCreateStudentEntity } from './student';
 
-const createLecturerEntity = makeCreateLecturerEntity({
+const createStudentEntity = makeCreateStudentEntity({
 	validator: UserInfoValidator,
 	passwordUtil: Password,
 });
 
-export { createLecturerEntity };
+export { createStudentEntity };
 
-export type createLecturerEntityType = typeof createLecturerEntity
+export type createStudentEntityType = typeof createStudentEntity
 
-export default createLecturerEntity;
-
+export default createStudentEntity;
 // export type UserInfoValidator = typeof Validate

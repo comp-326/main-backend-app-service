@@ -1,11 +1,11 @@
-import { StudentUseCasesType } from '../use-cases';
+import { lecturerUseCasesType } from '../use-cases';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 type Props = {
-	useCase: StudentUseCasesType
+	useCase: lecturerUseCasesType
 }
 
-export function makeCreateStudentController({ useCase }: Props) {
+export function makeCreateLecturerController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
 			const data = await useCase(req.body);
