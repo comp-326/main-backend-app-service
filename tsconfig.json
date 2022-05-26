@@ -43,8 +43,6 @@
 		"baseUrl": "./",
 		"rootDir": "./",
 		"paths": {
-			"@exam-cell/*": ["./*"],
-			"@exam-cell-base/*": ["./src/*"],
 			"@exam-cell-app": ["./src/app"],
 			"@exam-cell-config": ["./src/config"],
 			"@exam-cell-api/*": ["./src/api/*"],
@@ -60,9 +58,9 @@
 			"@exam-cell-uploadSDK": ["./src/uploadSDK"],
 			"@exam-cell-uploader": ["./src/uploader"],
 			"@exam-cell-db/*": ["./src/databases/*"],
-			"@exam-cell-middlewares/*": ["./src/middlewares/*"]
+			"@exam-cell-middlewares/*": ["./src/middlewares/*"],
 		}
 	},
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.ts", ".", "gulpfile.ts", "knexfile.ts"]
+	"include": ["./src/**/*.ts", ".", "gulpfile.ts", "knexfile.ts","node.config.ts"]
 }

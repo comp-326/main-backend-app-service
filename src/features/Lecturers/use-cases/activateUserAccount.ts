@@ -1,5 +1,5 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUserRepository } from '@exam-cell-features/users/interfaces';
+import { IUserRepository } from '@exam-cell-features/Users/interfaces';
 import { JWTPayloadType } from '@exam-cell-common/types';
 import createUser from '../entities';
 import tokenGEN from '@exam-cell-utils/jwt/tokenGEN';

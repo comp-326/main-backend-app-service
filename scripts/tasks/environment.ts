@@ -1,6 +1,6 @@
-import { BASE_DIR } from '@exam-cell/src/config';
+import { BASE_DIR } from '@exam-cell-config';
 import crypto from 'crypto';
-import { dirExistSync } from '@exam-cell/src/utils/fileSystem';
+import { dirExistSync } from '@exam-cell-utils/fileSystem';
 import fs from 'fs';
 import gulp from 'gulp';
 import os from 'os';

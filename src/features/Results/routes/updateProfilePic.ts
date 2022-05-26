@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
-import UserController from '@exam-cell-features/users/controllers';
-import UserRepository from '@exam-cell-features/users/repository';
-import { UserUseCase } from '@exam-cell-features/users/use-cases';
+import UserController from '@exam-cell-features/Users/controllers';
+import UserRepository from '@exam-cell-features/Users/repository';
+import { UserUseCase } from '@exam-cell-features/Users/use-cases';
 import { imageUpload } from '@exam-cell-uploader';
 import { loginRequired } from '@exam-cell-middlewares/Auth';
 

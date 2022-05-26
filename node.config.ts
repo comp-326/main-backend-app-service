@@ -25,7 +25,7 @@ const config = {
 	},
 
 	PATHS: {
-		BASE_DIR: path.join(path.dirname(__filename), '.')
+		BASE_DIR: path.join(__dirname,'src')
 	},
 	CLOUDINARY: {
 		CLOUDINARY_NAME: process.env.CLOUDINARY_NAME!,
