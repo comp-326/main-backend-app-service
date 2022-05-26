@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IAuthRepository } from '../interfaces';
-import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
 import passwords from '@exam-cell-utils/passwords';
 
 type IUserData = { email: string; password: string }

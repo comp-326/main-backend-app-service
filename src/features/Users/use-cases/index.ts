@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
 import { JWTPayloadType } from '@exam-cell-common/types';
-import createUser from '@exam-cell-features/users/entities';
+import createUser from '@exam-cell-features/Users/entities';
 import { deleteFile } from '@exam-cell-utils/fileSystem';
-import entity from '@exam-cell-features/users/entities';
+import entity from '@exam-cell-features/Users/entities';
 import tokenGEN from '@exam-cell-utils/jwt/tokenGEN';
 import validateMongodbId from '@exam-cell-utils/mongo/ObjectId-validator';
 import { IUserRepository, IUserUseCases } from '../interfaces';

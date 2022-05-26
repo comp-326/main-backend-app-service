@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IUser } from '@exam-cell-features/users/models/interfaces';
+import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 type userType = {
