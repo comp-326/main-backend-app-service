@@ -1,15 +1,15 @@
 import { TypeMapper } from '@exam-cell-common/utils';
 import adminRepository from '../repository';
-import { makeAddNewAdminUseCase } from './addAdminUseCase';
+import { makeAddNewStudentUseCase } from './addStudent';
 
-const addNewAdminUseCase = makeAddNewAdminUseCase({ repository: adminRepository });
+const addNewStudentUseCase = makeAddNewStudentUseCase({ repository: adminRepository });
 
-export { addNewAdminUseCase };
+export { addNewStudentUseCase };
 
-const adminUseCases = Object.freeze({ addNewAdminUseCase });
+const studentUseCases = Object.freeze({ addNewStudentUseCase });
 
-type useCases = typeof adminUseCases;
+type useCases = typeof studentUseCases;
 
-export type AdminUseCasesType = TypeMapper<useCases>[keyof useCases]
+export type StudentUseCasesType = TypeMapper<useCases>[keyof useCases]
 
-export default adminUseCases;
+export default studentUseCases;

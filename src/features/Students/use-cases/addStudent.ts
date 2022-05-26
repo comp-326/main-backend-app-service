@@ -1,12 +1,12 @@
-import { AdminRepositoryType } from '../repository';
 import { IUser } from '@exam-cell-features/Users/models/interfaces';
+import { StudentRepositoryType } from '../repository';
 import createAdminEntity from '../entities';
 import userModel  from '@exam-cell-features/Users/models';
 
-export function makeAddNewAdminUseCase({ repository }: { repository: AdminRepositoryType }) {
+export function makeAddNewStudentUseCase({ repository }: { repository: StudentRepositoryType }) {
 	return async (adminData: IUser) => {
 		const { getBio, getEmail, getFirstName, getGender, getIsActive, getIsDeleted, getLastName, getPassword, getProfilePic, getRole } = await createAdminEntity(adminData);
-		const saved = await repository.createNewAdmin({
+		const saved = await repository.createNewStudent({
 			model:userModel
 		})({
 			email:getEmail(),
