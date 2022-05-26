@@ -9,7 +9,7 @@ const departmentSchema: mongoose.Schema<IDepartmentDocument> = new mongoose.Sche
 	},
 	faculty: {
 		type: mongoose.SchemaTypes.ObjectId,
-		required: [true, 'Depertment faculty required'],
+		required: [true, 'Department faculty required'],
 		ref: 'Faculty'
 	}
 }, { timestamps: true });

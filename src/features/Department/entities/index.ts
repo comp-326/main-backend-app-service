@@ -1,9 +1,9 @@
 import { makeCreateDepartmentEntity } from './department';
 
-const createDeparrmentEntity = makeCreateDepartmentEntity();
+const createDeparmentEntity = makeCreateDepartmentEntity();
 
-export { createDeparrmentEntity };
+export { createDeparmentEntity };
 
 export default Object.freeze({
-	createDeparrmentEntity,
+	createDeparmentEntity,
 });
