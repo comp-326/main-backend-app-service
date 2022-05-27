@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import newDepartmentRoute from './routes/newDepartmentRoute';
+import newCourseRoute from './routes/newCourseRoute';
 
 export default ({ app, pathName }: { app: Router; pathName: string }) => {
-	newDepartmentRoute(app)(pathName);
+	newCourseRoute(app)(pathName);
 };
