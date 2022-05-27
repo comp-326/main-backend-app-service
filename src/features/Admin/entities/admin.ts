@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
+import { IAdmin } from '../models/interfaces';
+import { IPassword, IUserValidator } from '@exam-cell-features/Lecturers/interfaces';
 
 export  function  makeCreateAdminEntity({
 	validator,
@@ -11,13 +12,8 @@ export  function  makeCreateAdminEntity({
 	passwordUtil: IPassword;
 }){
 	return async  ({
-		email,
-		firstName,
-		lastName,
-		password: userPassword,
-		isActive,
-		role, bio, gender, isDeleted, profilePicture
-	}: any)=>{
+		email,password,role
+	}: IAdmin)=>{
 		const { isValidEmail, isValidPassword } = validator;
 		const { hashPassword } = passwordUtil;
 		if (!isValidEmail(email)) {
@@ -28,23 +24,8 @@ export  function  makeCreateAdminEntity({
 				data: {}
 			});
 		}
-		if (!firstName) {
-			throw new ExpressError({
-				message: 'First name required',
-				data: {},
-				statusCode: 400,
-				status: 'warning'
-			});
-		}
-		if (!lastName) {
-			throw new ExpressError({
-				message: 'Last name required',
-				data: {},
-				status: 'warning',
-				statusCode: 400
-			});
-		}
-		if (!userPassword) {
+	
+		if (!password) {
 			throw new ExpressError({
 				message: 'Password required',
 				data: {},
@@ -52,13 +33,11 @@ export  function  makeCreateAdminEntity({
 				statusCode: 400
 			});
 		}
-		if (userPassword && userPassword.length < 50) {
+		if (password && password.length < 50) {
 			const { ok, errors } = isValidPassword({
-				props: { firstName, lastName, password: userPassword },
+				props: { email,password },
 				fields: [
-					{ fieldName: 'firstName', name: 'First name' },
 					{ fieldName: 'email', name: 'Email address' },
-					{ fieldName: 'lastName', name: 'Last name' }
 				]
 			});
 			if (!ok) {
@@ -70,20 +49,13 @@ export  function  makeCreateAdminEntity({
 				});
 			}
 		}
-		if (userPassword && userPassword.length < 50)
-			userPassword = await hashPassword(userPassword);
+		if (password && password.length < 50)
+			password = await hashPassword(password);
 
 		return Object.freeze({
-			getFirstName: () => firstName,
-			getLastName: () => lastName,
-			getBio: () => bio,
-			getIsActive: () => (isActive ? isActive : false),
-			getRole: () => (role ? role : 'user'),
-			getProfilePic: () => profilePicture,
-			getPassword: () => userPassword,
-			getIsDeleted: () => isDeleted,
-			getGender: () => gender,
-			getEmail: () => email
+			getPassword: () => password,
+			getEmail: () => email,
+			getRole: () => role
 		});
 	};
 }

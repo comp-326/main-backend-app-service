@@ -19,7 +19,8 @@
     "build": "rimraf ./dist && rimraf ./build &&  gulp build",
     "postbuild": "gulp copy:views",
     "test": "jest --coverage",
-    "docs": "ts-node ./src/utils/docs/swagger.ts"
+    "docs": "ts-node ./src/utils/docs/swagger.ts",
+    "ignore":"yarn ngitignore create"
   },
   "keywords": [
     "appointment",
@@ -108,6 +109,7 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^27.4.5",
     "module-alias-jest": "^0.0.3",
+    "ngitignore": "^3.0.0",
     "nodemon": "^2.0.15",
     "path-alias-resolver": "^1.0.3-alpha",
     "prettier": "^2.5.1",

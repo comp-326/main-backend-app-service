@@ -1,4 +1,4 @@
-import { IPassword } from '@exam-cell-features/Users/interfaces';
+import { IPassword } from '@exam-cell-features/Admin/interfaces';
 import bcryptjs from 'bcryptjs';
 
 class Password implements IPassword{
