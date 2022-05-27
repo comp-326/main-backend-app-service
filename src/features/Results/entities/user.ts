@@ -1,5 +1,5 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
+import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
 
 export default function makeCreateUserEntity({

@@ -1,40 +1,17 @@
-import createUser from '../entities/index';
-// import { mongoConfig } from '@exam-cell-config';
-// import mongoose from '@exam-cell-db/mongodb';
-// import userRoleModel from '@exam-cell-features/userRoles/models';
+import { createUnitEntity } from '../entities';
 
-describe('createUser', () => {
-	// beforeAll(async () => {
-	// 	await mongoose.connect(mongoConfig.TEST_DB_URL, {});
-	// 	await mongoose.connection.dropDatabase();
-	// 	await userRoleModel.InsertRoles();
-	// });
-	// afterAll(async () => {
-	// 	await mongoose.connection.dropDatabase();
-	// 	await mongoose.disconnect();
-	// });
-	it('Should create a new user', async () => {
+describe('Create unit', () => {
+	it('Should create a new unit', async () => {
 		// try{
-		const user = await createUser({
-			email: 'test@gmail.com',
-			password: 'Test1234@0',
-			firstName: 'testFirstName',
-			lastName: 'testLastName',
-			role: 'USER',
-			profilePicture:
-				'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-			gender: 'other',
-			bio: 'I am a self motivated user',
-			isActive: false,
-			isDeleted: false,
+		const unit = createUnitEntity({
+			name: 'Data structures and Algorithms',
+			faculty: '628a6f1509bd82ed32a01a5e',
+			department: '62867c9882c5e09e4908f4b6',
+			unitCode: 'CSC101',
 		});
-		expect(user).toBeDefined();
-		expect(user.getEmail()).toBe('test@gmail.com');
-		expect(user.getFirstName()).toBe('testFirstName');
-		expect(user.getLastName()).toBe('testLastName');
-		expect(user.getRole()).toBe('USER');
-		expect(user.getProfilePic()).toBe(
-			'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-		);
+		expect(unit).toBeDefined();
+		expect(unit.getName()).toBe('Data structures and Algorithms');
+		expect(unit.getFaculty()).toBe('628a6f1509bd82ed32a01a5e');
+		expect(unit.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
 	});
 });

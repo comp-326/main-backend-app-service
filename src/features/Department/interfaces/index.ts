@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
+import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { INext,IRequest,IResponse } from '@exam-cell-common/types';
 
 

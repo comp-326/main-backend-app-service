@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
+import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { JWTPayloadType } from '@exam-cell-common/types';
 import createUser from '@exam-cell-features/Users/entities';
 import { deleteFile } from '@exam-cell-utils/fileSystem';
