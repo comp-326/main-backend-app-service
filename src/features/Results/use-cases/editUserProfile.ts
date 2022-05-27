@@ -1,5 +1,5 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
+import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { IUserRepository } from '../interfaces';
 import createUser from '../entities';
 import validateMongodbId from '@exam-cell-utils/mongo/ObjectId-validator';

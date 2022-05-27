@@ -1,40 +1,129 @@
-import createUser from '../entities/index';
-// import { mongoConfig } from '@exam-cell-config';
-// import mongoose from '@exam-cell-db/mongodb';
-// import userRoleModel from '@exam-cell-features/userRoles/models';
+import { createCourseEntity } from '../entities';
 
-describe('createUser', () => {
-	// beforeAll(async () => {
-	// 	await mongoose.connect(mongoConfig.TEST_DB_URL, {});
-	// 	await mongoose.connection.dropDatabase();
-	// 	await userRoleModel.InsertRoles();
-	// });
-	// afterAll(async () => {
-	// 	await mongoose.connection.dropDatabase();
-	// 	await mongoose.disconnect();
-	// });
-	it('Should create a new user', async () => {
-		// try{
-		const user = await createUser({
-			email: 'test@gmail.com',
-			password: 'Test1234@0',
-			firstName: 'testFirstName',
-			lastName: 'testLastName',
-			role: 'USER',
-			profilePicture:
-				'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-			gender: 'other',
-			bio: 'I am a self motivated user',
-			isActive: false,
-			isDeleted: false,
+describe('create course', () => {
+	it('Should create a new course', async () => {
+		const course = createCourseEntity({
+			code: 'CSC101',
+			name: 'Computer Science',
+			department: '62867c9882c5e09e4908f4b6',
+			faculty: '62867c9882c5e09e4908f4b6',
 		});
-		expect(user).toBeDefined();
-		expect(user.getEmail()).toBe('test@gmail.com');
-		expect(user.getFirstName()).toBe('testFirstName');
-		expect(user.getLastName()).toBe('testLastName');
-		expect(user.getRole()).toBe('USER');
-		expect(user.getProfilePic()).toBe(
-			'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-		);
+		expect(course).toBeDefined();
+		expect(course.getCode()).toBe('CSC101');
+		expect(course.getName()).toBe('Computer Science');
+		expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		expect(course.getFaculty()).toBe('62867c9882c5e09e4908f4b6');
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: 'Computer Science',
+				department: '62867c9882c5e09e4908f4b6',
+				faculty: '',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e).toBeDefined();
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: '',
+				name: 'Computer Science',
+				department: '',
+				faculty: '62867c9882c5e09e4908f4b6',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course code is required');
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: '',
+				department: '',
+				faculty: '62867c9882c5e09e4908f4b6',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course name is required');
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: 'Computer Science',
+				department: '',
+				faculty: '62867c9882c5e09e4908f4b6',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course department is required');
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: 'Computer Science',
+				department: 'some-department',
+				faculty: '62867c9882c5e09e4908f4b6',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course department is invalid');
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: 'Computer Science',
+				department: '62867c9882c5e09e4908f4b6',
+				faculty: '',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course faculty is required');
+		}
+	});
+	it('Should not create a new course', async () => {
+		try {
+			const course = createCourseEntity({
+				code: 'CSC101',
+				name: 'Computer Science',
+				department: '62867c9882c5e09e4908f4b6',
+				faculty: 'some-faculty',
+			});
+			expect(course).toBeDefined();
+			expect(course.getCode()).toBe('CSC101');
+			expect(course.getName()).toBe('Computer Science');
+			expect(course.getDepartment()).toBe('62867c9882c5e09e4908f4b6');
+		} catch (e) {
+			expect(e.message).toBe('Course faculty is invalid');
+		}
 	});
 });
