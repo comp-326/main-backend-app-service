@@ -1,24 +1,31 @@
-import { IUser } from '@exam-cell-features/Users/models/interfaces';
+import { ILecturer } from '@exam-cell-features/Lecturers/models/interfaces';
 import { LecturerRepositoryType } from '../repository';
 import createLecturerEntity from '../entities';
-import userModel  from '@exam-cell-features/Users/models';
+import lecturerModel from '@exam-cell-features/Lecturers/models';
 
-export function makeAddNewLecturerUseCase({ repository }: { repository: LecturerRepositoryType }) {
-	return async (lecturerData: IUser) => {
-		const { getBio, getEmail, getFirstName, getGender, getIsActive, getIsDeleted, getLastName, getPassword, getProfilePic, getRole } = await createLecturerEntity(lecturerData);
+export function makeAddNewLecturerUseCase({
+	repository,
+}: {
+	repository: LecturerRepositoryType;
+}) {
+	return async (lecturerData: ILecturer) => {
+		const {
+			getEmail,
+			getFirstName,
+			getGender,
+			getLastName,
+			getPassword,
+			getRole,
+		} = await createLecturerEntity(lecturerData);
 		const saved = await repository.createNewLecturer({
-			model:userModel
+			model: lecturerModel,
 		})({
-			email:getEmail(),
-			firstName:getFirstName(),
-			lastName:getLastName(),
-			gender:getGender(),
-			password:getPassword(),
-			role:getRole(),
-			bio:getBio(),
-			isActive:getIsActive(),
-			profilePicture:getProfilePic(),
-			isDeleted:getIsDeleted()
+			email: getEmail(),
+			firstName: getFirstName(),
+			lastName: getLastName(),
+			gender: getGender(),
+			password: getPassword(),
+			role: getRole(),
 		});
 
 		return saved;

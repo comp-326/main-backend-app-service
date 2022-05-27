@@ -1,23 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
+import { IStudent } from '../models/interfaces';
+import {
+	IPassword,
+	IUserValidator,
+} from '@exam-cell-features/Students/interfaces';
 
-export  function  makeCreateStudentEntity({
+export function makeCreateStudentEntity({
 	validator,
-	passwordUtil
+	passwordUtil,
 }: {
-	validator: IUserValidator,
+	validator: IUserValidator;
 	passwordUtil: IPassword;
-}){
-	return async  ({
+}) {
+	return async ({
+		course,
+		department,
 		email,
 		firstName,
+		gender,
 		lastName,
-		password: userPassword,
-		isActive,
-		role, bio, gender, isDeleted, profilePicture
-	}: any)=>{
+		password,
+		role,
+	}: IStudent) => {
 		const { isValidEmail, isValidPassword } = validator;
 		const { hashPassword } = passwordUtil;
 		if (!isValidEmail(email)) {
@@ -25,7 +31,7 @@ export  function  makeCreateStudentEntity({
 				message: 'Please provide a valid email',
 				statusCode: 400,
 				status: 'warning',
-				data: {}
+				data: {},
 			});
 		}
 		if (!firstName) {
@@ -33,7 +39,7 @@ export  function  makeCreateStudentEntity({
 				message: 'First name required',
 				data: {},
 				statusCode: 400,
-				status: 'warning'
+				status: 'warning',
 			});
 		}
 		if (!lastName) {
@@ -41,49 +47,47 @@ export  function  makeCreateStudentEntity({
 				message: 'Last name required',
 				data: {},
 				status: 'warning',
-				statusCode: 400
+				statusCode: 400,
 			});
 		}
-		if (!userPassword) {
+		if (!password) {
 			throw new ExpressError({
 				message: 'Password required',
 				data: {},
 				status: 'warning',
-				statusCode: 400
+				statusCode: 400,
 			});
 		}
-		if (userPassword && userPassword.length < 50) {
+		if (password && password.length < 50) {
 			const { ok, errors } = isValidPassword({
-				props: { firstName, lastName, password: userPassword },
+				props: { firstName, lastName, password: password },
 				fields: [
 					{ fieldName: 'firstName', name: 'First name' },
 					{ fieldName: 'email', name: 'Email address' },
-					{ fieldName: 'lastName', name: 'Last name' }
-				]
+					{ fieldName: 'lastName', name: 'Last name' },
+				],
 			});
 			if (!ok) {
 				throw new ExpressError({
 					message: 'Invalid password',
 					statusCode: 400,
 					data: errors.replace(/[\t]/, '').trim().split(/\n/),
-					status: 'warning'
+					status: 'warning',
 				});
 			}
 		}
-		if (userPassword && userPassword.length < 50)
-			userPassword = await hashPassword(userPassword);
+		if (password && password.length < 50)
+			password = await hashPassword(password);
 
 		return Object.freeze({
 			getFirstName: () => firstName,
 			getLastName: () => lastName,
-			getBio: () => bio,
-			getIsActive: () => (isActive ? isActive : false),
 			getRole: () => (role ? role : 'user'),
-			getProfilePic: () => profilePicture,
-			getPassword: () => userPassword,
-			getIsDeleted: () => isDeleted,
+			getPassword: () => password,
 			getGender: () => gender,
-			getEmail: () => email
+			getEmail: () => email,
+			getCourse: () => course,
+			getDepartment: () => department,
 		});
 	};
 }

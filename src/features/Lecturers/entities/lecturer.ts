@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-import { IPassword, IUserValidator } from '@exam-cell-features/Users/interfaces';
+import { ILecturer } from '../models/interfaces';
+import { IPassword, IUserValidator } from '@exam-cell-features/Lecturers/interfaces';
 
 export  function  makeCreateLecturerEntity({
 	validator,
@@ -11,13 +12,8 @@ export  function  makeCreateLecturerEntity({
 	passwordUtil: IPassword;
 }){
 	return async  ({
-		email,
-		firstName,
-		lastName,
-		password: userPassword,
-		isActive,
-		role, bio, gender, isDeleted, profilePicture
-	}: any)=>{
+		email,firstName,gender,lastName,password,role
+	}: ILecturer)=>{
 		const { isValidEmail, isValidPassword } = validator;
 		const { hashPassword } = passwordUtil;
 		if (!isValidEmail(email)) {
@@ -44,7 +40,7 @@ export  function  makeCreateLecturerEntity({
 				statusCode: 400
 			});
 		}
-		if (!userPassword) {
+		if (!password) {
 			throw new ExpressError({
 				message: 'Password required',
 				data: {},
@@ -52,9 +48,9 @@ export  function  makeCreateLecturerEntity({
 				statusCode: 400
 			});
 		}
-		if (userPassword && userPassword.length < 50) {
+		if (password && password.length < 50) {
 			const { ok, errors } = isValidPassword({
-				props: { firstName, lastName, password: userPassword },
+				props: { firstName, lastName, password: password },
 				fields: [
 					{ fieldName: 'firstName', name: 'First name' },
 					{ fieldName: 'email', name: 'Email address' },
@@ -70,18 +66,14 @@ export  function  makeCreateLecturerEntity({
 				});
 			}
 		}
-		if (userPassword && userPassword.length < 50)
-			userPassword = await hashPassword(userPassword);
+		if (password && password.length < 50)
+			password = await hashPassword(password);
 
 		return Object.freeze({
 			getFirstName: () => firstName,
 			getLastName: () => lastName,
-			getBio: () => bio,
-			getIsActive: () => (isActive ? isActive : false),
-			getRole: () => (role ? role : 'user'),
-			getProfilePic: () => profilePicture,
-			getPassword: () => userPassword,
-			getIsDeleted: () => isDeleted,
+			getRole: () => role,
+			getPassword: () => password,
 			getGender: () => gender,
 			getEmail: () => email
 		});
