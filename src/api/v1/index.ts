@@ -6,6 +6,7 @@ import facultyDomain from '@exam-cell-features/Faculty';
 import lecturerDomain from '@exam-cell-features/Lecturers';
 import studentDomain from '@exam-cell-features/Students';
 import testRoute from './testRoute';
+import unitDomain from '@exam-cell-features/Units';
 import { swaggerServe, swaggerSetup } from '@exam-cell-utils/docs';
 
 const apiRoute = Router();
@@ -18,7 +19,8 @@ export default function () {
 	facultyDomain({ app: apiRoute, pathName: '/faculty' });
 	departmentDomain({ app: apiRoute, pathName: '/department' });
 	studentDomain({ app: apiRoute, pathName: '/students' });
-	lecturerDomain({ app: apiRoute, pathName: '/lcturers' });
+	lecturerDomain({ app: apiRoute, pathName: '/leturers' });
+	unitDomain({ app: apiRoute, pathName: '/units' });
 
 	return apiRoute;
 }
