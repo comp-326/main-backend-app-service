@@ -1,6 +1,6 @@
 import { environmentConfig } from '@exam-cell-config';
 import knex from 'knex';
-import config, { knexEnvType } from '@exam-cell/knexfile';
+import config, { knexEnvType } from './../../../knexfile';
 
 type Env = keyof knexEnvType
 
