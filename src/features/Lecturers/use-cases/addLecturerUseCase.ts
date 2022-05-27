@@ -1,11 +1,11 @@
 import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { LecturerRepositoryType } from '../repository';
-import createAdminEntity from '../entities';
+import createLecturerEntity from '../entities';
 import userModel  from '@exam-cell-features/Users/models';
 
 export function makeAddNewLecturerUseCase({ repository }: { repository: LecturerRepositoryType }) {
-	return async (adminData: IUser) => {
-		const { getBio, getEmail, getFirstName, getGender, getIsActive, getIsDeleted, getLastName, getPassword, getProfilePic, getRole } = await createAdminEntity(adminData);
+	return async (lecturerData: IUser) => {
+		const { getBio, getEmail, getFirstName, getGender, getIsActive, getIsDeleted, getLastName, getPassword, getProfilePic, getRole } = await createLecturerEntity(lecturerData);
 		const saved = await repository.createNewLecturer({
 			model:userModel
 		})({

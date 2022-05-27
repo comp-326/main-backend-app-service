@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IBaseRepository } from '../interfaces/repository';
 
-export abstract class BaseRepository<T> implements IBaseRepository<T> {
-    public abstract find(query: any): Promise<T[]>;
-    public abstract findById(id: string): Promise<T>;
-    public abstract updateOne(query: any): Promise<T>;
-    public abstract updateById(query: any): Promise<T>;
-    public abstract findAndSoftDelete(query: any): Promise<T>;
-    public abstract findAndHardDelete(query: any): Promise<T>;
-    public abstract createNew(query: any): Promise<T>;
-    public abstract updateMany(query: any): Promise<T>;
+export abstract class BaseRepository implements IBaseRepository {
+    public abstract find(query: any): Promise<any>;
+    public abstract findById(id: string): Promise<any>;
+    public abstract updateOne(query: any): Promise<any>;
+    public abstract updateById(query: any): Promise<any>;
+    public abstract findAndSoftDelete(query: any): Promise<any>;
+    public abstract findAndHardDelete(query: any): Promise<any>;
+    public abstract createNew(query: any): Promise<any>;
+    public abstract updateMany(query: any): Promise<any>;
 }

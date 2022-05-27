@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { IUser } from '@exam-cell-features/Users/modelsinterfaces';
+import { IUser } from '@exam-cell-features/Users/models/interfaces';
 import { IUserRepository } from '@exam-cell-features/Users/interfaces';
 import UserModel from '@exam-cell-features/Users/models';
 import UserRoleModel from '@exam-cell-features/userRoles/models';

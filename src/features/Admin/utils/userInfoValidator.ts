@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import emailRegex from '@exam-cell-constants/emailRegex';
-import { IUserValidator, PasswordValidatorType } from '../interfaces';
+import { IUserValidator, PasswordValidatorType } from './../interfaces';
 
 class UserInfoValidator implements IUserValidator{
 	isValidEmail = (email: string) => {
