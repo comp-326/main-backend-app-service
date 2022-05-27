@@ -2,7 +2,6 @@
 import { Router } from 'express';
 import { UserRoleController } from '@exam-cell-features/userRoles/controllers';
 import { UserRoleUseCases } from '@exam-cell-features/userRoles/use-cases';
-import { adminRequired } from '@exam-cell-middlewares/Auth';
 import userRolesRepository from '@exam-cell-features/userRoles/repository';
 
 
@@ -12,7 +11,7 @@ export default function getUserRolesRoute(app: Router){
 		const controller = new UserRoleController(userRolesUseCase);
 		const folderRouter = Router();
 		app.use(`${pathName}`, folderRouter);
-		folderRouter.get('/all', adminRequired,controller.getRoles);
+		folderRouter.get('/all',controller.getRoles);
 
 	};
 }

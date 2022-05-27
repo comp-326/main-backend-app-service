@@ -1,8 +1,8 @@
-import { IUser } from '@exam-cell-features/Users/models/interfaces';
-import { UserModelType } from '@exam-cell-features/Users/models';
+import { ILecturer } from './../models/interfaces';
+import { LecturerModelType } from '../models';
 
-export function createNewLecturer({ model }: { model: UserModelType }) {
-	return async (studentData: IUser) => {
+export function createNewLecturer({ model }: { model: LecturerModelType }) {
+	return async (studentData: ILecturer) => {
 		const student = await model.create(studentData);
 
 		return student;
