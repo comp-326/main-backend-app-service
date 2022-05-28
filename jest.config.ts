@@ -4,16 +4,21 @@ export default {
 	coverageDirectory: 'coverage',
 	resolver: 'ts-jest-resolver',
 	// preset: '@shelf/jest-mongodb',
-	// globalSetup:'./test-setup/setup.ts',
-	// globalTeardown:'./test-setup/tearDown.ts',
+	// globalSetup: '<rootDir>/tests_setup/testSetup.ts',
+	// globalTeardown: '<rootDir>/tests_setup/testTearDown.ts',
+	setupFiles: [
+		'<rootDir>/src/tests_setup/testSetup.ts',
+		'<rootDir>/src/tests_setup/testTearDown.ts',
+	],
+
 	moduleNameMapper: {
-		'^@exam-cell-(.*)$': '<rootDir>/src/$1',
+		// '^@exam-cell-(.*)$': '<rootDir>/src/$1',
 		'^@exam-cell-app': '<rootDir>/src/app',
 		'^@exam-cell-config': '<rootDir>/src/config',
 		'^@exam-cell-api/(.*)$': '<rootDir>/src/api/$1',
 		'^@exam-cell-setup': '<rootDir>/src/setup',
 		'^@exam-cell-setup/(.*)$': '<rootDir>/src/setup/$1',
-		'^@exam-cell-features/(.*)$': '<rootDir>/features/$1',
+		'^@exam-cell-features/(.*)$': '<rootDir>/src/features/$1',
 		'^@exam-cell-models/(.*)$': '<rootDir>/src/models/$1',
 		'^@exam-cell-common/(.*)$': '<rootDir>/src/common/$1',
 		'^@exam-cell-services/(.*)$': '<rootDir>/src/services/$1',
@@ -34,8 +39,7 @@ export default {
 		'**/__tests__/**/*.[jt]s?(x)',
 		'**/?(*.)+(spec|test).[tj]s?(x)',
 	],
-
-	testPathIgnorePatterns: ['/node_modules/'],
-
+	preset: '@shelf/jest-mongodb',
+	testPathIgnorePatterns: ['/node_modules/', 'build/', 'dist/'],
 	transformIgnorePatterns: ['/node_modules/', '\\.pnp\\.[^\\/]+$'],
 };

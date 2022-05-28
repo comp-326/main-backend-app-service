@@ -20,7 +20,7 @@
     "postbuild": "gulp copy:views",
     "test": "jest --coverage",
     "docs": "ts-node ./src/utils/docs/swagger.ts",
-    "ignore":"yarn ngitignore create"
+    "ignore": "yarn ngitignore create"
   },
   "keywords": [
     "appointment",
@@ -108,13 +108,14 @@
     "gulp-ts-alias": "^2.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "jest": "^27.4.5",
+    "mock-mongoose": "^8.0.1-a",
     "module-alias-jest": "^0.0.3",
     "ngitignore": "^3.0.0",
     "nodemon": "^2.0.15",
     "path-alias-resolver": "^1.0.3-alpha",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "supertest": "^6.2.2",
+    "supertest": "^6.2.3",
     "swagger-autogen": "^2.21.1",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",

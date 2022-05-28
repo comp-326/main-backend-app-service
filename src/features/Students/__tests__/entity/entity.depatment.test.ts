@@ -1,4 +1,4 @@
-import { createStudentEntity } from '../entities';
+import { createStudentEntity } from '../../entities';
 
 describe('Create student', () => {
 	it('Should create a new student', async () => {
