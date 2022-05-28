@@ -115,7 +115,7 @@
     "path-alias-resolver": "^1.0.3-alpha",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "supertest": "^6.2.2",
+    "supertest": "^6.2.3",
     "swagger-autogen": "^2.21.1",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",

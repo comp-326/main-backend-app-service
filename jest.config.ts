@@ -7,8 +7,8 @@ export default {
 	// globalSetup: '<rootDir>/tests_setup/testSetup.ts',
 	// globalTeardown: '<rootDir>/tests_setup/testTearDown.ts',
 	setupFiles: [
-		'<rootDir>/tests_setup/src/testSetup.ts',
-		'<rootDir>/tests_setup/src/testTearDown.ts',
+		'<rootDir>/src/tests_setup/testSetup.ts',
+		'<rootDir>/src/tests_setup/testTearDown.ts',
 	],
 
 	moduleNameMapper: {
@@ -18,7 +18,7 @@ export default {
 		'^@exam-cell-api/(.*)$': '<rootDir>/src/api/$1',
 		'^@exam-cell-setup': '<rootDir>/src/setup',
 		'^@exam-cell-setup/(.*)$': '<rootDir>/src/setup/$1',
-		'^@exam-cell-features/(.*)$': '<rootDir>/features/$1',
+		'^@exam-cell-features/(.*)$': '<rootDir>/src/features/$1',
 		'^@exam-cell-models/(.*)$': '<rootDir>/src/models/$1',
 		'^@exam-cell-common/(.*)$': '<rootDir>/src/common/$1',
 		'^@exam-cell-services/(.*)$': '<rootDir>/src/services/$1',
