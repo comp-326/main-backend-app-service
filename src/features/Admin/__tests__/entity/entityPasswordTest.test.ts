@@ -1,7 +1,8 @@
-import createAdmin from '../entities/index';
-describe('createAdmin', () => {
-	it('Should create a new user', async () => {
-		const user = await createAdmin({
+import { createAdminEntity } from './../../entities';
+
+describe('Create admin', () => {
+	it('Should create a new admin', async () => {
+		const user = await createAdminEntity({
 			email: 'test@gmail.com',
 			password: 'Test1234@0',
 			role: 'admin',

@@ -4,10 +4,15 @@ export default {
 	coverageDirectory: 'coverage',
 	resolver: 'ts-jest-resolver',
 	// preset: '@shelf/jest-mongodb',
-	// globalSetup:'./test-setup/setup.ts',
-	// globalTeardown:'./test-setup/tearDown.ts',
+	// globalSetup: '<rootDir>/tests_setup/testSetup.ts',
+	// globalTeardown: '<rootDir>/tests_setup/testTearDown.ts',
+	setupFiles: [
+		'<rootDir>/tests_setup/src/testSetup.ts',
+		'<rootDir>/tests_setup/src/testTearDown.ts',
+	],
+
 	moduleNameMapper: {
-		'^@exam-cell-(.*)$': '<rootDir>/src/$1',
+		// '^@exam-cell-(.*)$': '<rootDir>/src/$1',
 		'^@exam-cell-app': '<rootDir>/src/app',
 		'^@exam-cell-config': '<rootDir>/src/config',
 		'^@exam-cell-api/(.*)$': '<rootDir>/src/api/$1',
@@ -34,8 +39,7 @@ export default {
 		'**/__tests__/**/*.[jt]s?(x)',
 		'**/?(*.)+(spec|test).[tj]s?(x)',
 	],
-
-	testPathIgnorePatterns: ['/node_modules/'],
-
+	preset: '@shelf/jest-mongodb',
+	testPathIgnorePatterns: ['/node_modules/', 'build/', 'dist/'],
 	transformIgnorePatterns: ['/node_modules/', '\\.pnp\\.[^\\/]+$'],
 };
