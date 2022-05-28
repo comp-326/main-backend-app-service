@@ -1,5 +1,5 @@
 {
-  "name": "class-dev-backend",
+  "name": "exam-cell-automation-app",
   "version": "1.0.0",
   "description": "class-dev backend application",
   "main": "index.js",
@@ -124,5 +124,13 @@
   },
   "directories": {
     "doc": "docs"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp-326-group-organization-Egerton/main-backend-app-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/comp-326-group-organization-Egerton/main-backend-app-service/issues"
+  },
+  "homepage": "https://github.com/comp-326-group-organization-Egerton/main-backend-app-service#readme"
 }
