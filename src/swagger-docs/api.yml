@@ -1,219 +1,768 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  title: "Exam Cell Automaton API"
-  version: "1.0.0"
-  contact:
-    name: Felix Orinda
-    email: forinda82@gmail.com
+    title: 'Exam Cell Automaton API'
+    version: '1.0.0'
+    contact:
+        name: Felix Orinda
+        email: "forinda82@gmail.com"
 basePath: /api/v1
 host: localhost:6200
 schemes:
-  - http
-  - https
+    - http
+    - https
 tags:
-  - name: Metadata
-    description: Metadata related requests
-  - name: Authorization
-    description: Authorization and Authentication'
-  - name: Lecturer
-    description: Lecturer module
-  - name: Student
-    description: Student module
-  - name: Administrator
-    description: maintainance
-  - name: Units
-    description: Units module
+    - name: Metadata
+      description: Metadata related requests
+    - name: Authorization
+      description: Authorization and Authentication'
+    - name: Lecturer
+      description: Lecturer module
+    - name: Student
+      description: Student module
+    - name: Administrator
+      description: maintainance
+    - name: Units
+      description: Units module
+    - name: Courses
+      description: Courses module
+    - name: Authorization
+      description: Authorization and Authentication
 
 paths:
-  /admin/new:
-    post:
-      tags:
-        - Administrator
-      summary: Create Administrator
-      description: Create a new administrator
-      operationId: getMetadata
-      parameters:
-        - name: Authorization
-          in: header
-          description: Authorization token
-          required: false
-          type: string
-          format: string
-      responses:
-        200:
-          description: Metadata
-          schema:
-            $ref: '#/definitions/Metadata'
-        401:
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/Error'
-        500:
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/Error'
-  /admin/:
-    post:
-      tags:
-        - Metadata
-      summary: Update metadata
-      description: Update metadata
-      operationId: updateMetadata
-      parameters:
-        - name: Authorization
-          in: header
-          description: Authorization token
-          required: true
-          type: string
-          format: string
-        - name: metadata
-          in: body
-          description: Metadata
-          required: true
-          schema:
-            $ref: '#/definitions/Metadata'
-      responses:
-        200:
-          description: Metadata
-          schema:
-            $ref: '#/definitions/Metadata'
-        401:
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/Error'
-        500:
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/Error'
-  /metadata/:
-    delete:
-      tags:
-        - Metadata
-      summary: Delete metadata
-      description: Delete metadata
-      operationId: deleteMetadata
-      parameters:
-        - name: Authorization
-          in: header
-          description: Authorization token
-          required: true
-          type: string
-          format: string
-      responses:
-        200:
-          description: Metadata
-          schema:
-            $ref: '#/definitions/Metadata'
-        401:
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/Error'
+    #######################  API DOCS FOR AUTHENTICATION ################################
+    /auth/login:
+        post:
+            tags:
+                - Authorization
+            summary: Login
+            description: Login to the system
+            consumes:
+                - application/json
+            produces:
+                - application/json
+            parameters:
+                - in: body
+                  name: body
+                  description: Login credentials
+                  required: true
+                  schema:
+                      type: object
+                      properties:
+                          email:
+                              type: string
+                              example:
+                          password:
+                              type: string
+                              example:
+            responses:
+                200:
+                    description: Successful login
+                    schema:
+                        type: object
+                        properties:
+                            token:
+                                type: string
+                                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6ImZlY2VyZW5hQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwYXNzd29yZF92ZXJpZmllZCI6dHJ1ZSwiZW1haWwiOiJmZWNlcmVuYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR6b2Z0d2FyZSIsIm5hbWUiOiJGZWNlcmVuYSIsImF2YXRhciI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAvYXZhdGFyL2ZlY2VyZW5hLmpwZyIsImlzX2FkbWluIjpmYWxzZSwiaXNfZGV2IjpmYWxzZSwiaXNfZGV2X2FkbWluIjpmYWxzZSwiaXNfZGV2X2FkbWluX2FkbWluIjpmYWxzZSwiaXNfZGV2X2FkbWluX2FkbWluX2FkbWluIjpmYWxzZSwiaXNfZGV2X2FkbWluX2FkbWluX2FkbWluX2FkbWluIjpmYWxzZSwiaXNfZGV2X2FkbWluX2FkbWluX2FkbWluX2FkbWluX2FkbWluIjpmYWxzZSw
+                            user:
+                                type: object
+                                properties:
+                                    _id:
+                                        type: string
+                                        example: 5e9f8f9f9f9f9f9f9f9f9f9
+                                    email:
+                                        type: string
+                                        example: dev@gmail.com
+                                    firstName:
+                                        type: string
+                                        example: TestFirstName
+                                    lastName:
+                                        type: string
+                                        example: TestLastName
+                                    role:
+                                        type: string
+                                        example: student
+
+    #######################  API DOCS FOR ADMIN ################################
+    /admin/new:
+        post:
+            tags:
+                - Admin
+            summary: Create Administrator
+            description: Create a new administrator
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /admin/:
+        get:
+            tags:
+                - Admin
+            summary: Get admins
+            description: Get administrators
+            operationId: Get administrators
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /admin/update/{id}:
+        put:
+            tags:
+                - Admin
+            summary: Update admin
+            description: Update admin
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Admin data
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR LECTURERS ################################
+    /lecturer/new:
+        post:
+            tags:
+                - Lecturer
+            summary: Create Lecturer
+            description: Create a new lecturer
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /lecturer/:
+        get:
+            tags:
+                - Lecturer
+            summary: Get lecturers
+            description: Get lecturers
+            operationId: Get lecturers
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /lecturer/update/{id}:
+        put:
+            tags:
+                - Lecturer
+            summary: Update lecturer
+            description: Update lecturer
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Lecturer data
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR STUDENTS ################################
+    /student/new:
+        post:
+            tags:
+                - Student
+            summary: Create Student
+            description: Create a new student
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /student/:
+        get:
+            tags:
+                - Student
+            summary: Get students
+            description: Get students
+            operationId: Get students
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /student/update/{id}:
+        put:
+            tags:
+                - Student
+            summary: Update student
+            description: Update student
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Student data
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR UNITS ################################
+    /units/new:
+        post:
+            tags:
+                - Units
+            summary: Create Unit
+            description: Create a new unit
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /units/:
+        get:
+            tags:
+                - Units
+            summary: Get units
+            description: Get units
+            operationId: Get units
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /units/update/{id}:
+        put:
+            tags:
+                - Units
+            summary: Update unit
+            description: Update unit
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Unit data
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR FACULTY ################################
+    /faculty/new:
+        post:
+            tags:
+                - Faculty
+            summary: Create Faculty
+            description: Create a new faculty
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /faculty/:
+        get:
+            tags:
+                - Faculty
+            summary: Get faculty
+            description: Get faculty
+            operationId: Get faculty
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /faculty/update/{id}:
+        put:
+            tags:
+                - Faculty
+            summary: Update faculty
+            description: Update faculty
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Faculty data
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR COURSE ################################
+    /course/new:
+        post:
+            tags:
+                - Course
+            summary: Create Course
+            description: Create a new course
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /course/:
+        get:
+            tags:
+                - Course
+            summary: Get courses
+            description: Get courses
+            operationId: Get courses
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /course/update/{id}:
+        put:
+            tags:
+                - Course
+            summary: Update course
+            description: Update course
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Course data
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    #######################  API DOCS FOR DEPARTMENTS ################################
+    /departments/new:
+        post:
+            tags:
+                - Departments
+            summary: Create Department
+            description: Create a new department
+            operationId: getMetadata
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /departments/:
+        get:
+            tags:
+                - Departments
+            summary: Get departments
+            description: Get departments
+            operationId: Get departments
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /departments/update/{id}:
+        put:
+            tags:
+                - Departments
+            summary: Update department
+            description: Update department
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Department data
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+#######################  API DOCS FOR DEFINITIONS ################################
 definitions:
-  Metadata:
-    type: object
-    properties:
-      name:
-        type: string
-      description:
-        type: string
-      version:
-        type: string
-      contact:
+    Admin:
         type: object
         properties:
-          name:
-            type: string
-          email:
-            type: string
-          url:
-            type: string
-      license:
+            email:
+                type: string
+            password:
+                type: string
+            role:
+                type: string
+        required:
+            - email
+            - password
+            - role
+    Error:
         type: object
         properties:
-          name:
-            type: string
-          url:
-            type: string
-  Error:
-    type: object
-    properties:
-      message:
-        type: string
-      status:
-        type: string
-      error:
-        type: string
-      details:
-        type: string
-  Lecturer:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      email:
-        type: string
-      password:
-        type: string
-      department:
-        type: string
-      designation:
-        type: string
-      phone:
-        type: string
-      address:
-        type: string
-      created_at:
-        type: string
-      updated_at:
-        type: string
-  Student:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      email:
-        type: string
-      password:
-        type: string
-      department:
-        type: string
-      designation:
-        type: string
-      phone:
-        type: string
-      address:
-        type: string
-      created_at:
-        type: string
-      updated_at:
-        type: string
-  Units:
-    type: object
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      description:
-        type: string
-      created_at:
-        type: string
-      updated_at:
-        type: string
-  Department:
-    type: object
-    properties:
-      message:
-        type: string
-      status:
-        type: string
-      error:
-        type: string
-      details:
-        type: string
-  Faculty:
-    type: object
+            status:
+                type: string
+            message:
+                type: string
+            statusCode:
+                type: integer
+            data:
+                type: [array, object, string, integer]
+    Lecturer:
+        type: object
+        properties:
+            firstName:
+                type: string
+            lastName:
+                type: string
+            email:
+                type: string
+            gender:
+                type: string
+            password:
+                type: string
+            role:
+                type: string
+        required:
+            - firstName
+            - lastName
+            - email
+            - gender
+            - password
+            - role
+    Student:
+        type: object
+        properties:
+            firstName:
+                type: integer
+            lastName:
+                type: string
+            course:
+                type: string
+            email:
+                type: string
+            department:
+                type: string
+            gender:
+                type: string
+            password:
+                type: string
+            role:
+                type: string
+        required:
+            - firstName
+            - lastName
+            - course
+            - email
+            - department
+            - password
+    Units:
+        type: object
+        properties:
+            name:
+                type: integer
+            department:
+                type: string
+            faculty:
+                type: string
+            unitCode:
+                type: string
+            semester:
+                type: integer
+            year:
+                type: integer
+        required:
+            - name
+            - department
+            - faculty
+            - unitCode
+            - semester
+            - year
+    Department:
+        type: object
+        properties:
+            name:
+                type: string
+            faculty:
+                type: string
+        required:
+            - name
+            - faculty
+    Course:
+        type: object
+        properties:
+            name:
+                type: string
+            faculty:
+                type: string
+            department:
+                type: string
+            code:
+                type: string
+        required:
+            - name
+            - faculty
+            - department
+            - code
+    Faculty:
+        type: object
+        properties:
+            name:
+                type: string
+        required:
+            - name
+    Roles:
+        type: object
+        properties:
+            name:
+                type: string
+            permissions:
+                type: integer
+            default:
+                type: boolean
