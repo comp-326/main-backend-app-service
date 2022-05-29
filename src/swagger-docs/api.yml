@@ -13,3 +13,207 @@ schemes:
 tags:
   - name: Metadata
     description: Metadata related requests
+  - name: Authorization
+    description: Authorization and Authentication'
+  - name: Lecturer
+    description: Lecturer module
+  - name: Student
+    description: Student module
+  - name: Administrator
+    description: maintainance
+  - name: Units
+    description: Units module
+
+paths:
+  /admin/new:
+    post:
+      tags:
+        - Administrator
+      summary: Create Administrator
+      description: Create a new administrator
+      operationId: getMetadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: false
+          type: string
+          format: string
+      responses:
+        200:
+          description: Metadata
+          schema:
+            $ref: '#/definitions/Metadata'
+        401:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /admin/:
+    post:
+      tags:
+        - Metadata
+      summary: Update metadata
+      description: Update metadata
+      operationId: updateMetadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+          format: string
+        - name: metadata
+          in: body
+          description: Metadata
+          required: true
+          schema:
+            $ref: '#/definitions/Metadata'
+      responses:
+        200:
+          description: Metadata
+          schema:
+            $ref: '#/definitions/Metadata'
+        401:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+  /metadata/:
+    delete:
+      tags:
+        - Metadata
+      summary: Delete metadata
+      description: Delete metadata
+      operationId: deleteMetadata
+      parameters:
+        - name: Authorization
+          in: header
+          description: Authorization token
+          required: true
+          type: string
+          format: string
+      responses:
+        200:
+          description: Metadata
+          schema:
+            $ref: '#/definitions/Metadata'
+        401:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Metadata:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      version:
+        type: string
+      contact:
+        type: object
+        properties:
+          name:
+            type: string
+          email:
+            type: string
+          url:
+            type: string
+      license:
+        type: object
+        properties:
+          name:
+            type: string
+          url:
+            type: string
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+      details:
+        type: string
+  Lecturer:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      department:
+        type: string
+      designation:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+  Student:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      department:
+        type: string
+      designation:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+  Units:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+  Department:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+      error:
+        type: string
+      details:
+        type: string
+  Faculty:
+    type: object
