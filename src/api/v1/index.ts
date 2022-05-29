@@ -15,9 +15,9 @@ export default function () {
 	apiRoute.get('/test', testRoute);
 	apiRoute.use('/docs', swaggerServe, swaggerSetup);
 	adminDomain({ app: apiRoute, pathName: '/admin' });
-	courseDomain({ app: apiRoute, pathName: '/courses' });
+	courseDomain({ app: apiRoute, pathName: '/course' });
 	facultyDomain({ app: apiRoute, pathName: '/faculty' });
-	departmentDomain({ app: apiRoute, pathName: '/department' });
+	departmentDomain({ app: apiRoute, pathName: '/departments' });
 	studentDomain({ app: apiRoute, pathName: '/students' });
 	lecturerDomain({ app: apiRoute, pathName: '/leturers' });
 	unitDomain({ app: apiRoute, pathName: '/units' });
