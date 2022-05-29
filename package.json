@@ -18,7 +18,7 @@
     "env:set": "gulp env:set",
     "build": "rimraf ./dist && rimraf ./build &&  gulp build",
     "postbuild": "gulp copy:views",
-    "test": "jest --coverage && yarn lint:fix",
+    "test": "jest --coverage",
     "docs": "ts-node ./src/utils/docs/swagger.ts",
     "ignore": "yarn ngitignore create"
   },

@@ -8,8 +8,8 @@ describe('Create admin Email test', () => {
 			role: 'admin',
 		});
 		expect(admin).toBeDefined();
-		expect(admin.getEmail()).toBe('test@gmail.com');
-		expect(admin.getRole()).toBe('admin');
+		expect(admin.getEmail()).toMatchInlineSnapshot('"test@gmail.com"');
+		expect(admin.getRole()).toMatchInlineSnapshot('"admin"');
 	});
 	// Fail to create admin on unprovided email
 	it('Should fail to create a new admin', async () => {
@@ -34,10 +34,12 @@ describe('Create admin Email test', () => {
 				role: 'admin',
 			});
 			expect(admin).toBeDefined();
-			expect(admin.getEmail()).toBe('test@gmail');
+			expect(admin.getEmail()).toMatchInlineSnapshot();
 			expect(admin.getRole()).toBe('admin');
 		} catch (e) {
-			expect(e.message).toBe('Please provide a valid email');
+			expect(e.message).toMatchInlineSnapshot(
+				'"Please provide a valid email"',
+			);
 		}
 	});
 	// Fail on invalid email

@@ -2,7 +2,7 @@ import app from '@exam-cell-app';
 import supertest from 'supertest';
 
 describe('GET: Test route', () => {
-	it('should return 200', async () => {
+	test('should return 200', async () => {
 		const response = await supertest(app).get('/');
 		expect(response.status).toMatchInlineSnapshot('200');
 	});
