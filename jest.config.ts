@@ -39,7 +39,6 @@ export default {
 		'**/__tests__/**/*.[jt]s?(x)',
 		'**/?(*.)+(spec|test).[tj]s?(x)',
 	],
-	preset: '@shelf/jest-mongodb',
 	testPathIgnorePatterns: ['/node_modules/', 'build/', 'dist/'],
 	transformIgnorePatterns: ['/node_modules/', '\\.pnp\\.[^\\/]+$'],
 };
