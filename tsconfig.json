@@ -2,38 +2,24 @@
 	"compileOnSave": false,
 	"ts-node": {
 		"transpileOnly": true,
-		"require": [
-			"typescript-transform-paths/register"
-		]
+		"require": ["typescript-transform-paths/register"]
 	},
 	"compilerOptions": {
 		"plugins": [
 			{
 				"transform": "typescript-transform-paths",
-				"exclude": [
-					"**/node_modules/**"
-				]
+				"exclude": ["**/node_modules/**"]
 			},
 			{
 				"transform": "typescript-transform-paths",
 				"afterDeclarations": true,
-				"exclude": [
-					"**/node_modules/**"
-				]
+				"exclude": ["**/node_modules/**"]
 			}
 		],
-		"types": [
-			"node",
-			"jest"
-		],
+		"types": ["node", "jest"],
 		"target": "es2017",
 		"module": "commonjs",
-		"lib": [
-			"dom",
-			"es6",
-			"es2017",
-			"esnext.asynciterable"
-		],
+		"lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"outDir": "./dist",
@@ -55,59 +41,25 @@
 		"baseUrl": "./",
 		"rootDir": "./",
 		"paths": {
-			"@exam-cell-app": [
-				"./src/app"
-			],
-			"@exam-cell-config": [
-				"./src/config"
-			],
-			"@exam-cell-api/*": [
-				"./src/api/*"
-			],
-			"@exam-cell-setup": [
-				"./src/setup"
-			],
-			"@exam-cell-setup/*": [
-				"./src/setup/*"
-			],
-			"@exam-cell-features/*": [
-				"./src/features/*"
-			],
-			"@exam-cell-models/*": [
-				"./src/models/*"
-			],
-			"@exam-cell-common/*": [
-				"./src/common/*"
-			],
-			"@exam-cell-services/*": [
-				"./src/services/*"
-			],
-			"@exam-cell-helpers/*": [
-				"./src/helpers/*"
-			],
-			"@exam-cell-utils/*": [
-				"./src/utils/*"
-			],
-			"@exam-cell-constants/*": [
-				"./src/constants/*"
-			],
-			"@exam-cell-uploadSDK": [
-				"./src/uploadSDK"
-			],
-			"@exam-cell-uploader": [
-				"./src/uploader"
-			],
-			"@exam-cell-db/*": [
-				"./src/databases/*"
-			],
-			"@exam-cell-middlewares/*": [
-				"./src/middlewares/*"
-			]
+			"@exam-cell-app": ["./src/app"],
+			"@exam-cell-config": ["./src/config"],
+			"@exam-cell-api/*": ["./src/api/*"],
+			"@exam-cell-setup": ["./src/setup"],
+			"@exam-cell-setup/*": ["./src/setup/*"],
+			"@exam-cell-features/*": ["./src/features/*"],
+			"@exam-cell-models/*": ["./src/models/*"],
+			"@exam-cell-common/*": ["./src/common/*"],
+			"@exam-cell-services/*": ["./src/services/*"],
+			"@exam-cell-helpers/*": ["./src/helpers/*"],
+			"@exam-cell-utils/*": ["./src/utils/*"],
+			"@exam-cell-constants/*": ["./src/constants/*"],
+			"@exam-cell-uploadSDK": ["./src/uploadSDK"],
+			"@exam-cell-uploader": ["./src/uploader"],
+			"@exam-cell-db/*": ["./src/databases/*"],
+			"@exam-cell-middlewares/*": ["./src/middlewares/*"]
 		}
 	},
-	"exclude": [
-		"node_modules"
-	],
+	"exclude": ["node_modules"],
 	"include": [
 		"./src/**/*.ts",
 		".",
