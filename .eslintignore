@@ -1,0 +1,14 @@
+jest.config.ts
+build/jest.config.js
+build/jest.config.js.map
+build/jest.config.d.ts
+build/jest.config.d.ts.map
+build
+dist
+.git
+.gitattributes
+.gitignore
+.gitmodules
+.idea
+.vscode
+.vscodeignore
