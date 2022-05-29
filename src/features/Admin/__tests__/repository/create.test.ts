@@ -1,0 +1,100 @@
+import adminModel from '@exam-cell-features/Admin/models';
+import repo from './../../repository';
+
+describe('first', () => {
+	it('Should create an admin user', async () => {
+		try {
+			const d = await repo.createNewAdmin({
+				model: adminModel,
+			})({
+				email: 'janeDoe@gmail.com',
+				password: 'TestAdmin@pass1234',
+				role: '62867c9882c5e09e4908f4b6',
+			});
+			expect(d).toMatchInlineSnapshot(`
+					Object {
+					  "__v": 0,
+					  "_id": "6293c4f96ce787f8f0c157d2",
+					  "email": "janeDoe@gmail.com",
+					  "password": "TestAdmin@pass1234",
+					  "role": "62867c9882c5e09e4908f4b6",
+					}
+			`);
+		} catch (e) {
+			expect(e).toBeDefined();
+			expect(e.message).toMatchInlineSnapshot(
+				'"E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: \\"janeDoe@gmail.com\\" }"',
+			);
+			expect(e).toMatchInlineSnapshot(
+				'[MongoServerError: E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: "janeDoe@gmail.com" }]',
+			);
+		}
+	});
+	it('Should create an admin user', async () => {
+		try {
+			const d = await repo.createNewAdmin({
+				model: adminModel,
+			})({
+				email: 'janeDoe@gmail.com',
+				password: 'TestAdmin@pass1234',
+				role: '62867c9882c5e09e4908f4b6',
+			});
+			expect(d).toMatchInlineSnapshot(`
+			`);
+		} catch (e) {
+			expect(e).toBeDefined();
+			expect(e.message).toMatchInlineSnapshot(
+				'"E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: \\"janeDoe@gmail.com\\" }"',
+			);
+			expect(e).toMatchInlineSnapshot(
+				'[MongoServerError: E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: "janeDoe@gmail.com" }]',
+			);
+		}
+	});
+
+	it('Should not create an admin user', async () => {
+		try {
+			await repo.createNewAdmin({
+				model: adminModel,
+			})({
+				email: 'janeDoe@gmail.com',
+				password: 'TestAdmin@pass1234',
+				role: '62867c9882c5e09e4908f4b',
+			});
+		} catch (e) {
+			expect(e).toMatchInlineSnapshot(
+				'[ValidationError: Admin validation failed: role: Cast to ObjectId failed for value "62867c9882c5e09e4908f4b" (type string) at path "role" because of "BSONTypeError"]',
+			);
+		}
+	});
+	it('Should not create an admin user', async () => {
+		try {
+			await repo.createNewAdmin({
+				model: adminModel,
+			})({
+				email: '',
+				password: '',
+				role: '62867c9882c5e09e4908f4b',
+			});
+		} catch (e) {
+			expect(e).toMatchInlineSnapshot(
+				'[ValidationError: Admin validation failed: role: Cast to ObjectId failed for value "62867c9882c5e09e4908f4b" (type string) at path "role" because of "BSONTypeError", email: Path `email` is required., password: Path `password` is required.]',
+			);
+		}
+	});
+	it('Should not create an admin user', async () => {
+		try {
+			await repo.createNewAdmin({
+				model: adminModel,
+			})({
+				email: '',
+				password: '',
+				role: '62867c9882c5e09e4908f4b4',
+			});
+		} catch (e) {
+			expect(e).toMatchInlineSnapshot(
+				'[ValidationError: Admin validation failed: email: Path `email` is required., password: Path `password` is required.]',
+			);
+		}
+	});
+});

@@ -8,6 +8,7 @@ const tearDownTests = async (done: (err: any) => void) => {
 		console.log('Finished on tests');
 
 		await mockMongoose.killMongo();
+		await mongoose.connection.dropDatabase();
 		await mongoose.disconnect();
 		done((err: any) => {
 			if (err) 
