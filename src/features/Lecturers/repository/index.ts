@@ -1,10 +1,28 @@
 import { createNewLecturer } from './createLecturer';
-import { findAllLecturers } from './findAll';
+import { deleteLecturerById } from './deleteLecturerById';
+import { findAllLecturers } from './findAllLecturers';
+import { findLecturerByEmail } from './findLecturerByEmail';
+import { findLecturerById } from './findLecturerById';
+import { updateLecturerById } from './updateLecturerById';
 
-export { createNewLecturer,findAllLecturers };
+export {
+	createNewLecturer,
+	findAllLecturers,
+	findLecturerById,
+	updateLecturerById,
+	findLecturerByEmail,
+	deleteLecturerById,
+};
 
-const lecturerRepository = Object.freeze({ createNewLecturer ,findAllLecturers});
+const lecturerRepository = Object.freeze({
+	createNewLecturer,
+	findAllLecturers,
+	findLecturerById,
+	updateLecturerById,
+	findLecturerByEmail,
+	deleteLecturerById,
+});
 
-export type LecturerRepositoryType = typeof lecturerRepository
+export type LecturerRepositoryType = typeof lecturerRepository;
 
 export default lecturerRepository;

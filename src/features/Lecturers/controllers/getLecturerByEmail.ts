@@ -2,15 +2,17 @@ import { lecturerUseCasesType } from '../use-cases';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 type Props = {
-	useCase: lecturerUseCasesType
-}
+	useCase: lecturerUseCasesType;
+};
 
-export function makeCreateLecturerController({ useCase }: Props) {
+export function makeGetLecturerByEmailController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const data = await useCase.addNewLecturerUseCase(req.body);
+			const response = await useCase.listLecturerByEmailUseCase(
+				req.query.email as string,
+			);
 
-			return res.status(200).json({ data });
+			return res.status(200).json({ data: response });
 		} catch (err) {
 			return next(err);
 		}

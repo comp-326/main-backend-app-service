@@ -44,8 +44,9 @@ describe('Query courses', () => {
 			expect(response.body).toMatchInlineSnapshot(`
 			Object {
 			  "data": Object {},
-			  "message": "Cast to ObjectId failed for value \\"didjodijddsiojo\\" (type string) at path \\"_id\\" for model \\"Course\\"",
-			  "status": "error",
+			  "message": "Invalid course id",
+			  "status": "warning",
+			  "statusCode": 400,
 			}
 		`);
 		} catch (err) {
