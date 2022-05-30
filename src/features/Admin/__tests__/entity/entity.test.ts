@@ -7,7 +7,7 @@ describe('createAdmin', () => {
 			role: 'admin',
 		});
 		expect(user).toBeDefined();
-		expect(user.getEmail()).toBe('test@gmail.com');
-		expect(user.getRole()).toBe('admin');
+		expect(user.getEmail()).toMatchInlineSnapshot('"test@gmail.com"');
+		expect(user.getRole()).toMatchInlineSnapshot('"admin"');
 	});
 });
