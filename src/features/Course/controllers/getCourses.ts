@@ -5,12 +5,12 @@ type Props = {
 	useCase: courseUseCasesType;
 };
 
-export function makeCreateNewCourseController({ useCase }: Props) {
+export function makeGetCoursesController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const course = await useCase.addNewCourseUseCase(req.body);
+			const courses = await useCase.listCoursesUseCase();
 
-			return res.status(200).json({ data: course });
+			return res.status(200).json({ data: courses });
 		} catch (error) {
 			return next(error);
 		}

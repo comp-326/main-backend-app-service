@@ -11,8 +11,6 @@ schemes:
     - http
     - https
 tags:
-    - name: Metadata
-      description: Metadata related requests
     - name: Authorization
       description: Authorization and Authentication'
     - name: Lecturer
@@ -87,6 +85,7 @@ paths:
         post:
             tags:
                 - Admin
+                - Administrator
             summary: Create Administrator
             description: Create a new administrator
             operationId: getMetadata
@@ -165,6 +164,7 @@ paths:
         post:
             tags:
                 - Lecturer
+                - Administrator
             summary: Create Lecturer
             description: Create a new lecturer
             operationId: getMetadata
@@ -411,7 +411,7 @@ paths:
                   format: string
                 - name: body
                   in: body
-                  description: Faculty name
+                  description: Faculty data
                   required: true
                   schema:
                     $ref: '#/definitions/Faculty'
@@ -471,7 +471,7 @@ paths:
                   format: string
                 - name: body
                   in: body
-                  description: Faculty name
+                  description: Faculty data
                   required: true
                   schema:
                     $ref: '#/definitions/Faculty'
@@ -488,6 +488,7 @@ paths:
         delete:
             tags:
                 - Faculty
+                - Administrator
             summary: Delete faculty
             description: Delete faculty
             operationId: deleteMetadata
@@ -511,6 +512,7 @@ paths:
         get:
             tags:
                 - Faculty
+                - Administrator
             summary: Find faculty by name
             description: Find faculty by name
             operationId: Find faculty by name
@@ -544,6 +546,7 @@ paths:
         get:
             tags:
                 - Faculty
+                - Administrator
             summary: Find faculty by id
             description: Find faculty by id
             operationId: Find faculty by id
@@ -578,6 +581,7 @@ paths:
         post:
             tags:
                 - Course
+                - Administrator
             summary: Create Course
             description: Create a new course
             operationId: getMetadata
@@ -588,6 +592,12 @@ paths:
                   required: false
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Course data
+                  required: true
+                  schema:
+                        $ref: '#/definitions/Course'
             responses:
                 200:
                     description: Metadata
@@ -601,10 +611,11 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /courses/:
+    /courses/all:
         get:
             tags:
                 - Course
+                - Administrator
             summary: Get courses
             description: Get courses
             operationId: Get courses
@@ -632,8 +643,39 @@ paths:
         put:
             tags:
                 - Course
+                - Administrator
             summary: Update course
             description: Update course
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+                - name: body
+                  in: body
+                  description: Course name
+                  required: true
+                  schema:
+                        $ref: '#/definitions/Course'
+            responses:
+                200:
+                    description: Course data
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    /courses/delete/{id}:
+        delete:
+            tags:
+                - Course
+                - Administrator
+            summary: Delete course
+            description: Delete course
             operationId: deleteMetadata
             parameters:
                 - name: id
@@ -651,11 +693,124 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    /courses/department/{departmentId}:
+         get:
+            tags:
+                - Course
+                - Administrator
+            summary: Get courses
+            description: Get courses
+            operationId: Get courses
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+                - name: departmentId
+                  in: path
+                  required: true
+                  type: string
+
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+                404:
+                    description: Not found
+                    schema:
+                        $ref: '#/definitions/Error'
+    /courses/course/{id}:
+        get:
+            tags:
+                - Course
+                - Administrator
+            summary: Get course
+            description: Get course
+            operationId: Get course
+            parameters:
+                - name: id
+                  in: path
+                  description: Course id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: Course data
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+                404:
+                    description: Not found
+                    schema:
+                        $ref: '#/definitions/Error'
+                400:
+                    description: Bad request
+                    schema:
+                        $ref: '#/definitions/Error'
+    /courses/find/name:
+        get:
+            tags:
+                - Course
+                - Administrator
+            summary: Find course by name
+            description: Find course by name
+            operationId: Find course by name
+            parameters:
+                - name: name
+                  in: query
+                  description: Course name
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+            responses:
+                200:
+                    description: Course data
+                    schema:
+                        $ref: '#/definitions/Course'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    
     #######################  API DOCS FOR DEPARTMENTS ################################
     /departments/new:
         post:
             tags:
                 - Departments
+                - Administrator
             summary: Create Department
             description: Create a new department
             operationId: getMetadata
@@ -679,10 +834,15 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /departments/:
+                404:
+                    description: Not found
+                    schema: 
+                        $ref: '#/definitions/Error'
+    /departments/all:
         get:
             tags:
                 - Departments
+                - Administrator
             summary: Get departments
             description: Get departments
             operationId: Get departments
@@ -702,6 +862,10 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+                404:
+                    description: Not found
+                    schema: 
+                        $ref: '#/definitions/Error'
                 500:
                     description: Internal Server Error
                     schema:
@@ -710,6 +874,7 @@ paths:
         put:
             tags:
                 - Departments
+                - Administrator
             summary: Update department
             description: Update department
             operationId: deleteMetadata
@@ -720,6 +885,12 @@ paths:
                   required: true
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Department data
+                  required: true
+                  schema:
+                        $ref: '#/definitions/Department'
             responses:
                 200:
                     description: Department data
