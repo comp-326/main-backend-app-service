@@ -11,8 +11,14 @@ export function makeAddNewUnitUseCase({
 	repository: unitRepositoryType;
 }) {
 	return async (unitData: IUnit) => {
-		const { getFaculty, getName, getDepartment, getUnitCode } =
-			createUnitEntity(unitData);
+		const {
+			getFaculty,
+			getName,
+			getDepartment,
+			getUnitCode,
+			getSemester,
+			getYear,
+		} = createUnitEntity(unitData);
 		const unit = await repository.createNewUnit({
 			unitModel: unitModel,
 			facultyModel: facultyModel,
@@ -22,6 +28,8 @@ export function makeAddNewUnitUseCase({
 			name: getName(),
 			department: getDepartment(),
 			unitCode: getUnitCode(),
+			year: getYear(),
+			semester: getSemester(),
 		});
 
 		return unit;

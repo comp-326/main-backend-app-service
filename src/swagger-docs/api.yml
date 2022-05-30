@@ -161,7 +161,7 @@ paths:
                     schema:
                         $ref: '#/definitions/Error'
     #######################  API DOCS FOR LECTURERS ################################
-    /lecturer/new:
+    /lecturers/new:
         post:
             tags:
                 - Lecturer
@@ -188,7 +188,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /lecturer/:
+    /lecturers/:
         get:
             tags:
                 - Lecturer
@@ -239,7 +239,7 @@ paths:
                     schema:
                         $ref: '#/definitions/Error'
     #######################  API DOCS FOR STUDENTS ################################
-    /student/new:
+    /students/new:
         post:
             tags:
                 - Student
@@ -266,7 +266,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /student/:
+    /students/:
         get:
             tags:
                 - Student
@@ -293,7 +293,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /student/update/{id}:
+    /students/update/{id}:
         put:
             tags:
                 - Student
@@ -409,6 +409,12 @@ paths:
                   required: false
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Faculty name
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Faculty'
             responses:
                 200:
                     description: Metadata
@@ -422,7 +428,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /faculty/:
+    /faculty/all:
         get:
             tags:
                 - Faculty
@@ -463,6 +469,12 @@ paths:
                   required: true
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Faculty name
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Faculty'
             responses:
                 200:
                     description: Faculty data
@@ -472,8 +484,97 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    /faculty/delete/{id}:
+        delete:
+            tags:
+                - Faculty
+            summary: Delete faculty
+            description: Delete faculty
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Faculty data
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    /faculty/name/find:
+        get:
+            tags:
+                - Faculty
+            summary: Find faculty by name
+            description: Find faculty by name
+            operationId: Find faculty by name
+            parameters:
+                - name: name
+                  in: query
+                  description: Faculty name
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Faculty data
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /faculty/find/id/{id}:
+        get:
+            tags:
+                - Faculty
+            summary: Find faculty by id
+            description: Find faculty by id
+            operationId: Find faculty by id
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Faculty data
+                    schema:
+                        $ref: '#/definitions/Faculty'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
     #######################  API DOCS FOR COURSE ################################
-    /course/new:
+    /courses/new:
         post:
             tags:
                 - Course
@@ -500,7 +601,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /course/:
+    /courses/:
         get:
             tags:
                 - Course
@@ -527,7 +628,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /course/update/{id}:
+    /courses/update/{id}:
         put:
             tags:
                 - Course

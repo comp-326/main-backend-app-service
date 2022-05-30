@@ -17,8 +17,9 @@
     "prebuild": "yarn lint:fix",
     "env:set": "gulp env:set",
     "build": "rimraf ./dist && rimraf ./build &&  gulp build",
-    "postbuild": "gulp copy:views",
-    "test": "jest --coverage",
+    "postbuild": "gulp copy:views && gulp copy:favicon",
+    "test": "jest --coverage -u",
+    "posttest": "yarn lint:fix",
     "docs": "ts-node ./src/utils/docs/swagger.ts",
     "ignore": "yarn ngitignore create"
   },

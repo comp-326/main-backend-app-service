@@ -3,7 +3,7 @@ import { IUnit } from '../models/interfaces';
 import validateMongodbId from '@exam-cell-utils/mongo/ObjectId-validator';
 
 export function makeCreateUnitEntity() {
-	return ({ faculty, name,department,unitCode }: IUnit) => {
+	return ({ faculty, name,department,unitCode,semester,year }: IUnit) => {
 		if (!name) {
 			throw new ExpressError({
 				message: 'Unit name is required',
@@ -15,6 +15,22 @@ export function makeCreateUnitEntity() {
 		if (!unitCode) {
 			throw new ExpressError({
 				message: 'Unit code is required',
+				status: 'warning',
+				data: {},
+				statusCode: 400,
+			});
+		}
+		if (!year) {
+			throw new ExpressError({
+				message: 'Unit year is required',
+				status: 'warning',
+				data: {},
+				statusCode: 400,
+			});
+		}
+		if (!semester) {
+			throw new ExpressError({
+				message: 'Unit semester is required',
 				status: 'warning',
 				data: {},
 				statusCode: 400,
@@ -58,7 +74,8 @@ export function makeCreateUnitEntity() {
 			getFaculty:()=>faculty,
 			getDepartment:()=>department,
 			getUnitCode:()=>unitCode,
-			
+			getSemester:()=>semester,
+			getYear:()=>year,
 		});
 	};
 }
