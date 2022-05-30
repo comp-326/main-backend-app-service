@@ -159,6 +159,7 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    
     #######################  API DOCS FOR LECTURERS ################################
     /lecturers/new:
         post:
@@ -188,10 +189,11 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /lecturers/:
+    /lecturers/all/:
         get:
             tags:
                 - Lecturer
+                - Administrator
             summary: Get lecturers
             description: Get lecturers
             operationId: Get lecturers
@@ -215,10 +217,79 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /lecturer/update/{id}:
+    /lecturers/email/find:
+        get:
+            tags:
+                - Lecturer
+                - Administrator
+            summary: Find lecturer by email
+            description: Find lecturer by email
+            operationId: Find lecturer by email
+            parameters:
+                - name: email
+                  in: query
+                  description: Email
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /lecturers/lecturer/{id}:
+        get:
+            tags:
+                - Lecturer
+                - Administrator
+            summary: Get lecturer
+            description: Get lecturer
+            operationId: Get lecturer
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /lecturers/lecturer/update/{id}:
         put:
             tags:
                 - Lecturer
+                - Administrator
             summary: Update lecturer
             description: Update lecturer
             operationId: deleteMetadata
@@ -238,6 +309,30 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    /lecturers/lecturer/delete/{id}:
+        delete:
+            tags:
+                - Lecturer
+            summary: Delete lecturer
+            description: Delete lecturer
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Lecturer data
+                    schema:
+                        $ref: '#/definitions/Lecturer'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    
     #######################  API DOCS FOR STUDENTS ################################
     /students/new:
         post:

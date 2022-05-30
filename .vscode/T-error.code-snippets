@@ -11,10 +11,10 @@
 		"prefix": "T-error",
 		"body": [
 			"throw new ExpressError({",
-			"message: '$1'",
-			"status: 'warning'",
-			"statusCode: 400",
-			"data: {}",
+			"\tmessage: 'message',",
+			"\tstatus: 'warning',",
+			"\tstatusCode: 400,",
+			"\tdata: {}",
 			"});"
 		],
 		"description": "Error template"

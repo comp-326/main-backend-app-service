@@ -1,33 +1,34 @@
-import { ILecturer } from '@exam-cell-features/Lecturers/models/interfaces';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { LecturerRepositoryType } from '../repository';
-import createLecturerEntity from '../entities';
 import lecturerModel from '@exam-cell-features/Lecturers/models';
+import { validateEmail } from '@exam-cell-utils/mails/validator';
 
-export function makeListLecturerById({
+export function makeListLecturerByEmailUseCase({
 	repository,
 }: {
 	repository: LecturerRepositoryType;
 }) {
-	return async (lecturerData: ILecturer) => {
-		const {
-			getEmail,
-			getFirstName,
-			getGender,
-			getLastName,
-			getPassword,
-			getRole,
-		} = await createLecturerEntity(lecturerData);
-		const saved = await repository.createNewLecturer({
+	return async (email: string) => {
+		if (!validateEmail(email)) {
+			throw new ExpressError({
+				message: 'Email is invalid',
+				status: 'warning',
+				statusCode: 400,
+				data: {},
+			});
+		}
+		const lecturer = await repository.findLecturerByEmail({
 			model: lecturerModel,
-		})({
-			email: getEmail(),
-			firstName: getFirstName(),
-			lastName: getLastName(),
-			gender: getGender(),
-			password: getPassword(),
-			role: getRole(),
-		});
+		})(email);
+		if (!lecturer) {
+			throw new ExpressError({
+				message: 'Lecturer not found',
+				status: 'warning',
+				statusCode: 404,
+				data: {},
+			});
+		}
 
-		return saved;
+		return lecturer;
 	};
 }

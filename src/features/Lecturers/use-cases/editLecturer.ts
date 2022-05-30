@@ -3,8 +3,9 @@ import { ILecturer } from '@exam-cell-features/Lecturers/models/interfaces';
 import { LecturerRepositoryType } from '../repository';
 import createLecturerEntity from '../entities';
 import lecturerModel from '@exam-cell-features/Lecturers/models';
+import validateMongodbId from '@exam-cell-utils/mongo/ObjectId-validator';
 
-export function makeAddNewLecturerUseCase({
+export function makeEditLecturerUseCase({
 	repository,
 }: {
 	repository: LecturerRepositoryType;
@@ -18,7 +19,26 @@ export function makeAddNewLecturerUseCase({
 				data: {},
 			});
 		}
-		const existingLecturer = await repository.getLecturerById(lecturerId);
+		if (!validateMongodbId(lecturerId)) {
+			throw new ExpressError({
+				message: 'Lecturer id is invalid',
+				status: 'warning',
+				statusCode: 400,
+				data: {},
+			});
+		}
+		const existingLecturer = await repository.findLecturerById({
+			model: lecturerModel,
+		})(lecturerId);
+		if (!existingLecturer) {
+			throw new ExpressError({
+				message: 'Lecturer not found',
+				status: 'warning',
+				statusCode: 404,
+				data: {},
+			});
+		}
+
 		const {
 			getEmail,
 			getFirstName,
@@ -26,10 +46,13 @@ export function makeAddNewLecturerUseCase({
 			getLastName,
 			getPassword,
 			getRole,
-		} = await createLecturerEntity(lecturerData);
-		const saved = await repository.createNewLecturer({
+		} = await createLecturerEntity({
+			...existingLecturer._doc,
+			...lecturerData,
+		});
+		const saved = await repository.updateLecturerById({
 			model: lecturerModel,
-		})({
+		})(lecturerId, {
 			email: getEmail(),
 			firstName: getFirstName(),
 			lastName: getLastName(),

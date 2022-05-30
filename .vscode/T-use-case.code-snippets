@@ -1,0 +1,49 @@
+{
+	// Place your backend workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"Use case template": {
+		"scope": "javascript,typescript",
+		"prefix": "T-case",
+		"body": [
+			"import { Interface } from '@exam-cell-features/$1/models/interfaces';",
+			"import { RepositoryType } from '../repository';",
+			"import createEntity from '../entities';",
+			"import model from '@exam-cell-features/$1/models';",
+			"\n",
+			"export function methodName({",
+			"\t\trepository",
+			"\t}: {",
+			"\trepository: RepositoryType;",
+			"}) {",
+			"return async (propData: Interface) => {",
+			"\tconst {",
+			"\t\tmeth1,",
+			"\t\tmeth2,",
+			"\t\tmeth3,",
+			"\t\tmeth4,",
+			"\t\tmeth5,",
+			"\t\tmeth6,",
+			"\t} = await createEntity(propData);",
+			"\tconst saved = await repository.method({",
+			"\tmodel: model,",
+			"})({",
+			"\t\tdata1: meth1(),",
+			"\t\tdata2: meth2(),",
+			"\t\tdata3: meth3(),",
+			"\t\tdata4: meth4(),",
+			"\t\tdata5: meth5(),",
+			"\t\tdata6: meth6(),",
+			"});",
+			"",
+			"\t\treturn saved;",
+			"\t};",
+			"}"
+		],
+		"description": "Usecase template"
+	}
+}
