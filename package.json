@@ -1,6 +1,6 @@
 {
   "name": "exam-cell-automation-app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "class-dev backend application",
   "main": "index.js",
   "scripts": {
