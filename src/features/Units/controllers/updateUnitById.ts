@@ -5,10 +5,10 @@ type Props = {
   useCase: unitUseCasesType;
 };
 
-export function makeCreateNewUnitController({ useCase }: Props) {
+export function makeUpdateUnitController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const response = await useCase.addNewUnitUseCase(req.body);
+			const response = await useCase.editUnitByIdUseCase(req.params.id,req.body);
 
 			return res.status(200).json({ data: response });
 		} catch (error) {

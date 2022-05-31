@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
-import { createNewUnitController } from '../controllers';
+import { updateUnitController } from '../controllers';
 
-export default function newUnitRoute(app: Router) {
+export default function updateUnitByIdRoute(app: Router) {
 	return (pathName: string) => {
 		const unitRouter = Router();
 		app.use(`${pathName}`, unitRouter);
-		unitRouter.post('/new', createNewUnitController);
+		unitRouter.put('/update/:id', updateUnitController);
 	};
 }

@@ -21,7 +21,7 @@ tags:
       description: maintainance
     - name: Units
       description: Units module
-    - name: Courses
+    - name: Course
       description: Courses module
     - name: Authorization
       description: Authorization and Authentication
@@ -300,6 +300,12 @@ paths:
                   required: true
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Update lecturer
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Lecturer'
             responses:
                 200:
                     description: Lecturer data
@@ -473,6 +479,12 @@ paths:
                   required: true
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Student data
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Student'
             responses:
                 200:
                     description: Student data
@@ -512,6 +524,7 @@ paths:
         post:
             tags:
                 - Units
+                - Administrator
             summary: Create Unit
             description: Create a new unit
             operationId: getMetadata
@@ -535,10 +548,11 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /units/:
+    /units/all:
         get:
             tags:
                 - Units
+                - Administrator
             summary: Get units
             description: Get units
             operationId: Get units
@@ -562,10 +576,79 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
+    /units/name/find:
+        get:
+            tags:
+                - Units
+                - Administrator
+            summary: Find unit by name
+            description: Find unit by name
+            operationId: Find unit by name
+            parameters:
+                - name: name
+                  in: query
+                  description: Name
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /units/unit/{id}:
+        get:
+            tags:
+                - Units
+                - Administrator
+            summary: Get unit
+            description: Get unit
+            operationId: Get unit
+            parameters:
+                - name: id
+                  in: path
+                  description: Unit id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
     /units/update/{id}:
         put:
             tags:
                 - Units
+                - Administrator
             summary: Update unit
             description: Update unit
             operationId: deleteMetadata
@@ -573,6 +656,36 @@ paths:
                 - name: id
                   in: path
                   description: User id
+                  required: true
+                  type: string
+                  format: string
+                - name: body
+                  in: body
+                  description: Unit data
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Units'
+            responses:
+                200:
+                    description: Unit data
+                    schema:
+                        $ref: '#/definitions/Units'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    /units/delete/{id}:
+        delete:
+            tags:
+                - Units
+                - Administrator
+            summary: Delete unit
+            description: Delete unit
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: Unit id
                   required: true
                   type: string
                   format: string
@@ -585,7 +698,6 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
-    
     #######################  API DOCS FOR FACULTY ################################
     /faculty/new:
         post:
