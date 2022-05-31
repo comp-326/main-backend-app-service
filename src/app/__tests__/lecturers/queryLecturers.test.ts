@@ -27,10 +27,24 @@ describe('Query lecturer', () => {
 			}
 		`);
 		} catch (err) {
-			expect(err).toMatchInlineSnapshot();
-			expect(err.message).toMatchInlineSnapshot();
-			expect(err.status).toMatchInlineSnapshot();
-			expect(err.statusCode).toMatchInlineSnapshot();
+			expect(err).toMatchInlineSnapshot(`
+			[Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoMatchInlineSnapshot[2m([22m[32mproperties[39m[2m, [22msnapshot[2m)[22m
+
+			[1mMatcher error[22m: Expected [32mproperties[39m must be an object
+
+			Expected properties has type:  string
+			Expected properties has value: [32m"500"[39m]
+		`);
+			expect(err.message).toMatchInlineSnapshot(`
+			"[2mexpect([22m[31mreceived[39m[2m).[22mtoMatchInlineSnapshot[2m([22m[32mproperties[39m[2m, [22msnapshot[2m)[22m
+
+			[1mMatcher error[22m: Expected [32mproperties[39m must be an object
+
+			Expected properties has type:  string
+			Expected properties has value: [32m\\"500\\"[39m"
+		`);
+			expect(err.status).toMatchInlineSnapshot('undefined');
+			expect(err.statusCode).toMatchInlineSnapshot('undefined');
 		}
 	});
 	test('should query lecturer by id', async () => {
