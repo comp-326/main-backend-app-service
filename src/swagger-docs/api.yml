@@ -285,7 +285,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /lecturers/lecturer/update/{id}:
+    /lecturers/update/{id}:
         put:
             tags:
                 - Lecturer
@@ -309,7 +309,7 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
-    /lecturers/lecturer/delete/{id}:
+    /lecturers/delete/{id}:
         delete:
             tags:
                 - Lecturer
@@ -338,6 +338,7 @@ paths:
         post:
             tags:
                 - Student
+                - Administrator
             summary: Create Student
             description: Create a new student
             operationId: getMetadata
@@ -361,10 +362,11 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /students/:
+    /students/all:
         get:
             tags:
                 - Student
+                - Administrator
             summary: Get students
             description: Get students
             operationId: Get students
@@ -388,10 +390,79 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
+    /students/email/find:
+        get:
+            tags:
+                - Student
+                - Administrator
+            summary: Find student by email
+            description: Find student by email
+            operationId: Find student by email
+            parameters:
+                - name: email
+                  in: query
+                  description: Email
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /students/student/{id}:
+        get:
+            tags:
+                - Student
+                - Administrator
+            summary: Get student
+            description: Get student
+            operationId: Get student
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
     /students/update/{id}:
         put:
             tags:
                 - Student
+                - Administrator
             summary: Update student
             description: Update student
             operationId: deleteMetadata
@@ -411,6 +482,31 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    /student/delete/{id}:
+        delete:
+            tags:
+                - Student
+                - Administrator
+            summary: Delete student
+            description: Delete student
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Student data
+                    schema:
+                        $ref: '#/definitions/Student'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    
     #######################  API DOCS FOR UNITS ################################
     /units/new:
         post:
@@ -489,6 +585,7 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
+    
     #######################  API DOCS FOR FACULTY ################################
     /faculty/new:
         post:

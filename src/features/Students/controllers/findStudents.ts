@@ -5,10 +5,10 @@ type Props = {
 	useCase: StudentUseCasesType
 }
 
-export function makeCreateStudentController({ useCase }: Props) {
+export function makeFindStudentsController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const data = await useCase.addNewStudentUseCase(req.body);
+			const data = await useCase.listStudentsUseCase();
 
 			return res.status(200).json({ data });
 		} catch (err) {
