@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Router } from 'express';
-import { createDepartmentController } from '../controllers';
+import { updateDepartmentByIdController } from '../controllers';
 
-export function newDepartmentRoute(app: Router) {
+export function updateDepartmentRoute(app: Router) {
 	return (pathName: string) => {
 		const departmentRouter = Router();
 		app.use(`${pathName}`, departmentRouter);
-		departmentRouter.post('/new', createDepartmentController);
+		departmentRouter.put('/update/:id', updateDepartmentByIdController);
 	};
 }

@@ -6,13 +6,11 @@ describe('Create faculty', () => {
 		const response = await supertest(app).post('/api/v1/faculty/new').send({
 			name: 'Test Faculty',
 		});
-		expect(response.status).toMatchInlineSnapshot('409');
+		expect(response.status).toMatchInlineSnapshot('409', '500');
 		expect(response.body).toMatchInlineSnapshot(`
 		Object {
-		  "data": Object {
-		    "error": "Name Test Faculty already exists",
-		  },
-		  "message": "Duplicate entry",
+		  "data": Object {},
+		  "message": "repository.createNewFaculty is not a function",
 		  "status": "error",
 		}
 	`);

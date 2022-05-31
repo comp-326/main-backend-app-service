@@ -1174,6 +1174,80 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
+    /departments/department/{id}:
+        get:
+            tags:
+                - Departments
+                - Administrator
+            summary: Get department
+            description: Get department
+            operationId: Get department
+            parameters:
+                - name: id
+                  in: path
+                  description: Department id
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+            responses:
+                200:
+                    description: Department data
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                404:
+                    description: Not found
+                    schema: 
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /departments/name/find:
+        get:
+            tags:
+                - Departments
+                - Administrator
+            summary: Find department by name
+            description: Find department by name
+            operationId: Find department by name
+            parameters:
+                - name: name
+                  in: query
+                  description: Department name
+                  required: true
+                  type: string
+                  format: string
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: false
+                  type: string
+            responses:
+                200:
+                    description: Department data
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+                404:
+                    description: Not found
+                    schema: 
+                        $ref: '#/definitions/Error' 
     /departments/update/{id}:
         put:
             tags:
@@ -1202,6 +1276,34 @@ paths:
                         $ref: '#/definitions/Department'
                 401:
                     description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+    /departments/delete/{id}:
+        delete:
+            tags:
+                - Departments
+                - Administrator
+            summary: Delete department
+            description: Delete department
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Department data
+                    schema:
+                        $ref: '#/definitions/Department'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
 #######################  API DOCS FOR DEFINITIONS ################################

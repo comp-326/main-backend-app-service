@@ -1,16 +1,53 @@
 import { TypeMapper } from '@exam-cell-common/utils';
-import { addNewDepartmentUseCase } from '../use-cases';
-import { makeCreateNewDepartmentController } from './createNewDepartment';
+import { makeCreateDepartmentController } from './createDepartment';
+import { makeDeleteDepartmentByIdController } from './deleteDepartmentById';
+import { makeFindDepartmentByIdController } from './findDepartmentById';
+import { makeFindDepartmentByNameController } from './findDepartmentByName';
+import { makeFindDepartmentsController } from './findDepartments';
+import { makeUpdateDepartmentByIdController } from './updateDepartmentById';
+import useCase from '../use-cases';
 
-const createNewDepartmentController = makeCreateNewDepartmentController({
-	useCase: addNewDepartmentUseCase,
+const createDepartmentController = makeCreateDepartmentController({
+	useCase,
+});
+const deleteDepartmentByIdController = makeDeleteDepartmentByIdController({
+	useCase,
+});
+const findDepartmentByNameController = makeFindDepartmentByNameController({
+	useCase,
+});
+const findDepartmentByIdController = makeFindDepartmentByIdController({
+	useCase,
 });
 
-export { createNewDepartmentController };
+const findDepartmentsController = makeFindDepartmentsController({
+	useCase,
+});
+const updateDepartmentByIdController = makeUpdateDepartmentByIdController({
+	useCase,
+});
 
-const departmentController = Object.freeze({ createNewDepartmentController });
+export {
+	createDepartmentController,
+	deleteDepartmentByIdController,
+	findDepartmentByNameController,
+	findDepartmentByIdController,
+	findDepartmentsController,
+	updateDepartmentByIdController,
+};
 
-type departmentType = typeof departmentController;
+const departmentController = Object.freeze({
+	createDepartmentController,
+	deleteDepartmentByIdController,
+	findDepartmentByNameController,
+	findDepartmentByIdController,
+	findDepartmentsController,
+	updateDepartmentByIdController,
+});
+
+type controllerType = typeof departmentController;
+
+export default departmentController;
 
 export type departmentControllerType =
-  TypeMapper<departmentType>[keyof departmentType];
+	TypeMapper<controllerType>[keyof controllerType];

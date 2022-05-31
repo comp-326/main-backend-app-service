@@ -1,4 +1,3 @@
-
 import { FacultyModelType } from '@exam-cell-features/Faculty/models';
 
 export function findAllFaculties({ model }: { model: FacultyModelType }) {

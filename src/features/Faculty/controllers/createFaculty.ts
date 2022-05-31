@@ -1,4 +1,4 @@
-import { facultyUseCasesType } from './../use-cases';
+import { facultyUseCasesType } from '../use-cases';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 export function makeCreateFacultyController({
