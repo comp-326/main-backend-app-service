@@ -1,4 +1,4 @@
-import { createDeparmentEntity } from '../entities';
+import  createDeparmentEntity  from '../entities';
 
 describe('create department', () => {
 	it('Should create a new department', async () => {

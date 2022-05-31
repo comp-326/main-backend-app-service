@@ -109,7 +109,7 @@ paths:
                     description: Internal Server Error
                     schema:
                         $ref: '#/definitions/Error'
-    /admin/:
+    /admin/all:
         get:
             tags:
                 - Admin
@@ -120,6 +120,74 @@ paths:
                 - name: Authorization
                   in: header
                   description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /admin/email/find:
+        get:
+            tags:
+                - Admin
+                - Administrator
+            summary: Find admin by email
+            description: Find admin by email
+            operationId: Find admin by email
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+                - name: email
+                  in: query
+                  description: Email
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Metadata
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
+                500:
+                    description: Internal Server Error
+                    schema:
+                        $ref: '#/definitions/Error'
+    /admin/profile/{id}:
+        get:
+            tags:
+                - Admin
+                - Administrator
+            summary: Get admin profile
+            description: Get admin profile
+            operationId: Get admin profile
+            parameters:
+                - name: Authorization
+                  in: header
+                  description: Authorization token
+                  required: true
+                  type: string
+                  format: string
+                - name: id
+                  in: path
+                  description: Admin id
                   required: true
                   type: string
                   format: string
@@ -159,7 +227,30 @@ paths:
                     description: Unauthorized
                     schema:
                         $ref: '#/definitions/Error'
-    
+    /admin/delete/{id}:
+        delete:
+            tags:
+                - Admin
+                - Administrator
+            summary: Delete admin
+            description: Delete admin
+            operationId: deleteMetadata
+            parameters:
+                - name: id
+                  in: path
+                  description: User id
+                  required: true
+                  type: string
+                  format: string
+            responses:
+                200:
+                    description: Admin data
+                    schema:
+                        $ref: '#/definitions/Admin'
+                401:
+                    description: Unauthorized
+                    schema:
+                        $ref: '#/definitions/Error'
     #######################  API DOCS FOR LECTURERS ################################
     /lecturers/new:
         post:

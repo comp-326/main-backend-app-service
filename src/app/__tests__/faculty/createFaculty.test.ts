@@ -6,7 +6,7 @@ describe('Create faculty', () => {
 		const response = await supertest(app).post('/api/v1/faculty/new').send({
 			name: 'Test Faculty',
 		});
-		expect(response.status).toMatchInlineSnapshot('409', '500');
+		expect(response.status).toMatchInlineSnapshot('500');
 		expect(response.body).toMatchInlineSnapshot(`
 		Object {
 		  "data": Object {},

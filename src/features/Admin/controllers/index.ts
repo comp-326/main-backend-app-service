@@ -1,15 +1,57 @@
 import { TypeMapper } from '@exam-cell-common/utils';
-import { addNewAdminUseCase } from '../use-cases';
 import { makeCreateAdminController } from './createAdmin';
+import { makeDeleteAdminByIdController } from './deleteAdminById';
+import { makeGetAdminByEmailController } from './getAdminByEmail';
+import { makeGetAdminsByIdController } from './getAdminById';
+import { makeGetAdminsController } from './getAdmins';
+import { makeUpdateAdminController } from './updateAdmin';
+import useCase from '../use-cases';
 
-const createAdminController = makeCreateAdminController({ useCase: addNewAdminUseCase });
+const createAdminController = makeCreateAdminController({
+	useCase,
+});
 
-export { createAdminController };
+const deleteAdminByIdController = makeDeleteAdminByIdController({
+	useCase,
+});
 
-const adminController = Object.freeze({ createAdminController });
+const getAdminByEmailController = makeGetAdminByEmailController({
+	useCase,
+});
 
-type adminControllerType = typeof adminController
+const getAdminByIdController = makeGetAdminsByIdController({
+	useCase,
+});
+
+const getAdminsController = makeGetAdminsController({
+	useCase,
+});
+
+const updateAdminController = makeUpdateAdminController({
+	useCase,
+});
+
+export {
+	createAdminController,
+	deleteAdminByIdController,
+	getAdminByEmailController,
+	getAdminByIdController,
+	getAdminsController,
+	updateAdminController,
+};
+
+const adminController = Object.freeze({
+	createAdminController,
+	deleteAdminByIdController,
+	getAdminByEmailController,
+	getAdminByIdController,
+	getAdminsController,
+	updateAdminController,
+});
+
+type controllerType = typeof adminController;
 
 export default adminController;
 
-export type AdminControllerType = TypeMapper<adminControllerType>[keyof adminControllerType]
+export type adminControllerType =
+	TypeMapper<controllerType>[keyof controllerType];
