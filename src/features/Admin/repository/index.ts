@@ -1,10 +1,28 @@
 import { createNewAdmin } from './createAdmin';
-import { findAllAdmins } from './findAll';
+import { deleteAdminById } from './deleteAdminById';
+import { findAdminByEmail } from './findAdminByEmail';
+import { findAdminById } from './findAdminById';
+import { findAllAdmins } from './findAllAdmins';
+import { updateAdminById } from './updateAdminById';
 
-export { createNewAdmin,findAllAdmins };
+export {
+	createNewAdmin,
+	findAllAdmins,
+	findAdminById,
+	updateAdminById,
+	findAdminByEmail,
+	deleteAdminById,
+};
 
-const adminRepository = Object.freeze({ createNewAdmin ,findAllAdmins});
+const adminRepository = Object.freeze({
+	createNewAdmin,
+	findAllAdmins,
+	findAdminById,
+	updateAdminById,
+	findAdminByEmail,
+	deleteAdminById,
+});
 
-export type AdminRepositoryType = typeof adminRepository
+export type AdminRepositoryType = typeof adminRepository;
 
 export default adminRepository;
