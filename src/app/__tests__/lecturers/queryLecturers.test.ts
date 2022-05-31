@@ -17,12 +17,13 @@ describe('Query lecturer', () => {
 	test('should query lecturer all lecturers', async () => {
 		try {
 			const response = await supertest(app).get('/api/v1/lecturers/all');
-			expect(response.status).toMatchInlineSnapshot('500');
+			expect(response.status).toMatchInlineSnapshot('500', '404');
 			expect(response.body).toMatchInlineSnapshot(`
 			Object {
 			  "data": Object {},
-			  "message": "Cast to ObjectId failed for value \\"{ name: 'lecturer' }\\" (type Object) at path \\"role\\" for model \\"Lecturers\\"",
-			  "status": "error",
+			  "message": "Lecturers not found",
+			  "status": "warning",
+			  "statusCode": 404,
 			}
 		`);
 		} catch (err) {
