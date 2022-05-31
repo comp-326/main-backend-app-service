@@ -8,9 +8,9 @@ type Props = {
 export function makeCreateNewUnitController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const deparment = await useCase(req.body);
+			const response = await useCase.addNewUnitUseCase(req.body);
 
-			return res.status(200).json({ data: deparment });
+			return res.status(200).json({ data: response });
 		} catch (error) {
 			return next(error);
 		}

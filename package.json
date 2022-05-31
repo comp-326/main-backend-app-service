@@ -1,6 +1,6 @@
 {
   "name": "exam-cell-automation-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "class-dev backend application",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "migrate:dev:roles": "NODE_ENV=development ts-node ./src/roleSchemes/index.ts",
     "migrate:prod:roles": "NODE_ENV=production node ./build/src/roleSchemes/index.js",
     "migrate:test:roles": "NODE_ENV=testing ts-node ./src/roleSchemes/index.ts",
-    "env": "ts-node ./src/env.ts",
+    "env": "yarn env:set",
     "dev": "NODE_ENV=development nodemon",
     "lint": "eslint .  --ext .ts",
     "copy:views": "gulp copy:views",
@@ -17,8 +17,9 @@
     "prebuild": "yarn lint:fix",
     "env:set": "gulp env:set",
     "build": "rimraf ./dist && rimraf ./build &&  gulp build",
-    "postbuild": "gulp copy:views",
-    "test": "jest --coverage",
+    "postbuild": "gulp copy:views && gulp copy:favicon",
+    "test": "jest --coverage -u",
+    "posttest": "yarn lint:fix",
     "docs": "ts-node ./src/utils/docs/swagger.ts",
     "ignore": "yarn ngitignore create"
   },

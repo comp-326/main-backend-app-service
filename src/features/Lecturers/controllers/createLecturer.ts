@@ -8,7 +8,7 @@ type Props = {
 export function makeCreateLecturerController({ useCase }: Props) {
 	return async (req: IRequest, res: IResponse, next: INext) => {
 		try {
-			const data = await useCase(req.body);
+			const data = await useCase.addNewLecturerUseCase(req.body);
 
 			return res.status(200).json({ data });
 		} catch (err) {

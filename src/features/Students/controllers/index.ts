@@ -1,14 +1,49 @@
 import { TypeMapper } from '@exam-cell-common/utils';
-import { addNewStudentUseCase } from '../use-cases';
 import { makeCreateStudentController } from './createStudent';
+import { makeDeleteStudentByIdController } from './deleteStudentById';
+import { makeFindStudentByEmailController } from './findStudentByEmail';
+import { makeFindStudentByIdController } from './findStudentById';
+import { makeFindStudentsController } from './findStudents';
+import { makeUpdateStudentByIdController } from './updateStudentById';
+import useCase from '../use-cases';
 
 const createStudentController = makeCreateStudentController({
-	useCase: addNewStudentUseCase,
+	useCase,
+});
+const deleteStudentByIdController = makeDeleteStudentByIdController({
+	useCase,
+});
+const findStudentByEmailController = makeFindStudentByEmailController({
+	useCase,
+});
+const findStudentByIdController = makeFindStudentByIdController({
+	useCase,
 });
 
-export { createStudentController };
+const findStudentsController = makeFindStudentsController({
+	useCase,
+});
+const updateStudentByIdController = makeUpdateStudentByIdController({
+	useCase,
+});
 
-const studentController = Object.freeze({ createStudentController });
+export {
+	createStudentController,
+	deleteStudentByIdController,
+	findStudentByEmailController,
+	findStudentByIdController,
+	findStudentsController,
+	updateStudentByIdController,
+};
+
+const studentController = Object.freeze({
+	createStudentController,
+	deleteStudentByIdController,
+	findStudentByEmailController,
+	findStudentByIdController,
+	findStudentsController,
+	updateStudentByIdController,
+});
 
 type controllerType = typeof studentController;
 

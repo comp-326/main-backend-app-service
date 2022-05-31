@@ -1,24 +1,24 @@
-import { IDepartment } from '../models/interfaces';
-import { createDeparmentEntity } from './../entities';
-import departmentModel from '../models';
-import { departmentRepositoryType } from './../repository/index';
-import facultyModel from '@exam-cell-features/Faculty/models';
+import { DepartmentRepositoryType } from '../repository';
+import { IDepartment } from './../models/interfaces';
+import createDepartmentEntity  from '../entities';
+import departmentModel from '@exam-cell-features/Department/models';
 
 export function makeAddNewDepartmentUseCase({
 	repository,
 }: {
-  repository: departmentRepositoryType;
+	repository: DepartmentRepositoryType;
 }) {
 	return async (departmentData: IDepartment) => {
-		const { getFaculty, getName } = createDeparmentEntity(departmentData);
-		const department = await repository.createNewDepartment({
-			departmentModel: departmentModel,
-			facultyModel: facultyModel,
+		const { getFaculty, getName } = await createDepartmentEntity(
+			departmentData,
+		);
+		const saved = await repository.createNewDepartment({
+			model: departmentModel,
 		})({
-			faculty: getFaculty(),
 			name: getName(),
+			faculty: getFaculty(),
 		});
 
-		return department;
+		return saved;
 	};
 }

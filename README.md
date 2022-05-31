@@ -5,7 +5,9 @@ Check the instructions below to setup your environment
 Running project in dev mode
 Install all the dependencies
 ```sh
-$ npm install
+$ npm install 
+#or 
+$ yarn 
 ```
 #####
 App domains
@@ -18,7 +20,9 @@ To set environment variables
 Make sure to run this before you start development otherwise
 the server won't start properly
 ```sh
-$ npm run env
+$ npm run env 
+# or 
+$ yarn env
 ```
 The above script command should populate the `.env` from the `.env.example` snapshot properly.
 
@@ -29,6 +33,8 @@ Once done run:
 This is to run the development server
 ```sh
 $ npm run dev
+# or 
+$ yarn dev
 ```
 # Dev-Endpoints docs
 To access the API docs head over to the `url` below
@@ -41,10 +47,14 @@ This is a pre-deployment script
 Run
 ```sh
 $ npm run build
+# or 
+$ yarn build
 ```
 This will build the typescript project to js
 Then...
 ```sh
 $ npm start
+# or 
+$ yarn start
 ```
 

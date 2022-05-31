@@ -15,11 +15,11 @@ export default function () {
 	apiRoute.get('/test', testRoute);
 	apiRoute.use('/docs', swaggerServe, swaggerSetup);
 	adminDomain({ app: apiRoute, pathName: '/admin' });
-	courseDomain({ app: apiRoute, pathName: '/course' });
+	courseDomain({ app: apiRoute, pathName: '/courses' });
 	facultyDomain({ app: apiRoute, pathName: '/faculty' });
 	departmentDomain({ app: apiRoute, pathName: '/departments' });
 	studentDomain({ app: apiRoute, pathName: '/students' });
-	lecturerDomain({ app: apiRoute, pathName: '/leturers' });
+	lecturerDomain({ app: apiRoute, pathName: '/lecturers' });
 	unitDomain({ app: apiRoute, pathName: '/units' });
 
 	return apiRoute;

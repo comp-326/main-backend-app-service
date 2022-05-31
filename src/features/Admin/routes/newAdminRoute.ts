@@ -2,11 +2,10 @@
 import { Router } from 'express';
 import { createAdminController } from '../controllers';
 
-export  function newAdminRoute(app: Router) {
+export function newStudentRoute(app: Router) {
 	return (pathName: string) => {
 		const adminRouter = Router();
 		app.use(`${pathName}`, adminRouter);
 		adminRouter.post('/new', createAdminController);
-
 	};
 }
