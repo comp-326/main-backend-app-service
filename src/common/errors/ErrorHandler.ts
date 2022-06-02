@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from './ExpressError';
-import capitalize from '@exam-cell-helpers/capitalize';
+import { capitalize } from 'string-shuffle';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
 export default function (err: any, req: IRequest, res: IResponse, next: INext){

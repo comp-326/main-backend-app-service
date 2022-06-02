@@ -17,7 +17,7 @@ describe('Query lecturer', () => {
 	test('should query lecturer all lecturers', async () => {
 		try {
 			const response = await supertest(app).get('/api/v1/lecturers/all');
-			expect(response.status).toMatchInlineSnapshot();
+			expect(response.status).toMatchInlineSnapshot('404');
 			expect(response.body).toMatchInlineSnapshot(`
 			Object {
 			  "data": Object {},
