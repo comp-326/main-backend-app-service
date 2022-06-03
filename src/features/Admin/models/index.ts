@@ -17,6 +17,14 @@ const adminSchema: mongoose.Schema<IAdminDocument> = new mongoose.Schema({
 		required: true,
 		select: false,
 	},
+	firstName: {
+		type: String,
+		required: true,
+	},
+	lastName: {
+		type: String,
+		required: true,
+	},
 	role: {
 		type: mongoose.SchemaTypes.ObjectId,
 		required: true,

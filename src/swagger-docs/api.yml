@@ -102,6 +102,11 @@ paths:
                   required: true
                   schema:
                         $ref: '#/definitions/Admin'
+                        example:
+                            firstName: Jane
+                            lastName: Doe
+                            email: janeDoe@gmail.com
+                            
                         # type: object
                         # properties:
                         #     email:
@@ -1473,6 +1478,10 @@ definitions:
         properties:
             email:
                 type: string
+            firstName:
+                type: string
+            lastName:
+                type: string
             password:
                 type: string
             role:
@@ -1481,6 +1490,8 @@ definitions:
             - email
             - password
             - role
+            - firstName
+            - lastName
     Error:
         type: object
         properties:
