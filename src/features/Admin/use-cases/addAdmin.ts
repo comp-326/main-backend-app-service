@@ -1,10 +1,10 @@
 import { AdminRepositoryType } from '../repository';
-import AppEvents from '@exam-cell-constants/events';
+import { ExpressError } from '@exam-cell-common/errors/ExpressError';
 import { IAdmin } from '@exam-cell-features/Admin/models/interfaces';
-import { Publisher } from '@exam-cell-RedisBaseClient';
 import adminModel from '@exam-cell-features/Admin/models';
 import createAdminEntity from '../entities';
 import moment from 'moment';
+import { subscribeToNewAccountMailer } from '@exam-cell-services/resources/mail/subscribeToMailer';
 
 export function makeAddNewAdminUseCase({
 	repository,
@@ -14,6 +14,17 @@ export function makeAddNewAdminUseCase({
 	return async (adminData: IAdmin) => {
 		const { getEmail, getPassword, getRole, getFirstName, getLastName } =
 			await createAdminEntity(adminData);
+		const existing = await repository.findAdminByEmail({
+			model: adminModel,
+		})(getEmail());
+		if (existing) {
+			throw new ExpressError({
+				message: 'Email already registered',
+				status: 'warning',
+				statusCode: 400,
+				data: {},
+			});
+		}
 		const saved = await repository.createNewAdmin({
 			model: adminModel,
 		})({
@@ -23,17 +34,14 @@ export function makeAddNewAdminUseCase({
 			firstName: getFirstName(),
 			lastName: getLastName(),
 		});
-		Publisher.publish(
-			AppEvents.NEW_ACCOUNT,
-			JSON.stringify({
-				firstName: getFirstName(),
-				lastName: getLastName(),
-				email: getEmail(),
-				password: adminData.password,
-				date: moment().format('LLLL'),
-				subject: 'New Account',
-			}),
-		);
+		subscribeToNewAccountMailer({
+			email: getEmail(),
+			firstName: getFirstName(),
+			lastName: getLastName(),
+			password: getPassword(),
+			subject: 'Account Activation',
+			time: moment().format('LLLL'),
+		});
 
 		return saved;
 	};
