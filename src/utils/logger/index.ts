@@ -87,6 +87,29 @@ const mongoLogOptions = {
 	colorize: false,
 };
 
+const mailLoggerOptions = {
+	transports: [
+		new winston.transports.Console(),
+		new winston.transports.File({
+			filename: path.join(
+				path.dirname(BASE_DIR),
+				'logs',
+				'mail-logs',
+				`${moment(new Date().getTime()).format(
+					'YYYY-MM-DD',
+				)}-mail-logs.json`,
+			),
+		}),
+	],
+	format: winston.format.combine(
+		// winston.format.colorize(),
+		winston.format.json(),
+	),
+	meta: true,
+	expressFormat: true,
+	colorize: false,
+};
+
 const errorLogOptions = {
 	transports: [
 		new winston.transports.Console(),
@@ -117,5 +140,10 @@ export const mongoLogger = winston.createLogger({
 
 export const errorLogger = winston.createLogger({
 	...errorLogOptions,
+	exitOnError: false,
+});
+
+export const mailLogger = winston.createLogger({
+	...mailLoggerOptions,
 	exitOnError: false,
 });

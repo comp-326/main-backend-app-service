@@ -9,9 +9,8 @@ import testRoute from './testRoute';
 import unitDomain from '@exam-cell-features/Units';
 import { swaggerServe, swaggerSetup } from '@exam-cell-utils/docs';
 
-const apiRoute = Router();
-
 export default function () {
+	const apiRoute = Router();
 	apiRoute.get('/test', testRoute);
 	apiRoute.use('/docs', swaggerServe, swaggerSetup);
 	adminDomain({ app: apiRoute, pathName: '/admin' });

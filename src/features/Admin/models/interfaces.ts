@@ -2,9 +2,11 @@
 import mongoose from '@exam-cell-db/mongodb';
 
 export interface IAdmin {
+	firstName: string;
+	lastName: string;
 	email: string;
 	password: string;
-	role:any
+	role: any;
 }
 
 export interface IAdminDocument extends IAdmin, mongoose.Document {

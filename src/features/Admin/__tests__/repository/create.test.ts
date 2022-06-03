@@ -12,21 +12,23 @@ describe('first', () => {
 				role: '62867c9882c5e09e4908f4b6',
 			});
 			expect(d).toMatchInlineSnapshot(`
-					Object {
-					  "__v": 0,
-					  "_id": "6293c4f96ce787f8f0c157d2",
-					  "email": "janeDoe@gmail.com",
-					  "password": "TestAdmin@pass1234",
-					  "role": "62867c9882c5e09e4908f4b6",
-					}
-			`);
+			Object {
+			  "__v": 0,
+			  "_id": "6297cbf00442d1762c0b4fa3",
+			  "email": "janeDoe@gmail.com",
+			  "password": "TestAdmin@pass1234",
+			  "role": "62867c9882c5e09e4908f4b6",
+			}
+		`);
 		} catch (e) {
 			expect(e).toBeDefined();
 			expect(e.message).toMatchInlineSnapshot(
 				'"E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: \\"janeDoe@gmail.com\\" }"',
+				'"Operation `admins.insertOne()` buffering timed out after 10000ms"',
 			);
 			expect(e).toMatchInlineSnapshot(
 				'[MongoServerError: E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: "janeDoe@gmail.com" }]',
+				'[MongooseError: Operation `admins.insertOne()` buffering timed out after 10000ms]',
 			);
 		}
 	});
@@ -40,7 +42,14 @@ describe('first', () => {
 				role: '62867c9882c5e09e4908f4b6',
 			});
 			expect(d).toMatchInlineSnapshot(`
-			`);
+			Object {
+			  "__v": 0,
+			  "_id": "6297cbf00442d1762c0b4fa6",
+			  "email": "janeDoe@gmail.com",
+			  "password": "TestAdmin@pass1234",
+			  "role": "62867c9882c5e09e4908f4b6",
+			}
+		`);
 		} catch (e) {
 			expect(e).toBeDefined();
 			expect(e.message).toMatchInlineSnapshot(
