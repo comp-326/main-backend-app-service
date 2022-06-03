@@ -4,18 +4,13 @@ import supertest from 'supertest';
 describe('Find  faculty', () => {
 	it('Should find faculties', async () => {
 		const response = await supertest(app).get('/api/v1/faculty/all');
-		expect(response.status).toMatchInlineSnapshot('200');
+		expect(response.status).toMatchInlineSnapshot('200', '404');
 		expect(response.body).toMatchInlineSnapshot(`
 		Object {
-		  "data": Array [
-		    Object {
-		      "__v": 0,
-		      "_id": "62946034385a5e967b14a551",
-		      "createdAt": "2022-05-30T06:12:04.518Z",
-		      "name": "Test Faculty",
-		      "updatedAt": "2022-05-30T06:12:04.518Z",
-		    },
-		  ],
+		  "data": Object {},
+		  "message": "No faculties found",
+		  "status": "warning",
+		  "statusCode": 404,
 		}
 	`);
 		expect(response.body.data.name).toMatchInlineSnapshot('undefined');

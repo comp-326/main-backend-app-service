@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import './eventSubscriber';
 import app from './app';
 import chalk from 'chalk';
 import { environmentConfig } from './config';
 import http from 'http';
 import moment from 'moment';
+
 
 const server = http.createServer(app);
 

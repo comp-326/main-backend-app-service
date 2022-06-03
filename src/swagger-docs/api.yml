@@ -96,6 +96,34 @@ paths:
                   required: false
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Administrator details
+                  required: true
+                  schema:
+                        $ref: '#/definitions/Admin'
+                        example:
+                            firstName: Jane
+                            lastName: Doe
+                            email: janeDoe@gmail.com
+                            
+                        # type: object
+                        # properties:
+                        #     email:
+                        #         type: string
+                        #         example:
+                        #     password:
+                        #         type: string
+                        #         example:
+                        #     firstName:
+                        #         type: string
+                        #         example:
+                        #     lastName:
+                        #         type: string
+                        #         example:
+                        #     role:
+                        #         type: string
+                        #         example:
             responses:
                 200:
                     description: Metadata
@@ -267,6 +295,29 @@ paths:
                   required: false
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Lecturer details
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Lecturer'
+                            # type: object
+                            # properties:
+                            #     email:
+                            #         type: string
+                            #         example:
+                            #     password:
+                            #         type: string
+                            #         example:
+                            #     firstName:
+                            #         type: string
+                            #         example:
+                            #     lastName:
+                            #         type: string
+                            #         example:
+                            #     role:
+                            #         type: string
+                            #         example:
             responses:
                 200:
                     description: Metadata
@@ -446,6 +497,29 @@ paths:
                   required: false
                   type: string
                   format: string
+                - name: body
+                  in: body
+                  description: Student details
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Student'
+                                # type: object
+                                # properties:
+                                #     email:
+                                #         type: string
+                                #         example:
+                                #     password:
+                                #         type: string
+                                #         example:
+                                #     firstName:
+                                #         type: string
+                                #         example:
+                                #     lastName:
+                                #         type: string
+                                #         example:
+                                #     role:
+                                #         type: string
+                                #         example:
             responses:
                 200:
                     description: Metadata
@@ -1404,6 +1478,10 @@ definitions:
         properties:
             email:
                 type: string
+            firstName:
+                type: string
+            lastName:
+                type: string
             password:
                 type: string
             role:
@@ -1412,6 +1490,8 @@ definitions:
             - email
             - password
             - role
+            - firstName
+            - lastName
     Error:
         type: object
         properties:

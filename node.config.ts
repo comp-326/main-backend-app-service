@@ -21,41 +21,51 @@ const config = {
 		EMAIL_FROM: process.env.EMAIL_FROM || '',
 		EMAIL_PORT: parseInt(<string>process.env.EMAIL_PORT) || 0,
 		EMAIL_SECURE: process.env.EMAIL_SECURE === 'true' ? true : false,
-		EMAIL_PROXY: process.env.EMAIL_PROXY || ''
+		EMAIL_PROXY: process.env.EMAIL_PROXY || '',
 	},
 
 	PATHS: {
-		BASE_DIR: path.join(__dirname,'src')
+		BASE_DIR: path.join(__dirname, 'src'),
 	},
 	CLOUDINARY: {
 		CLOUDINARY_NAME: process.env.CLOUDINARY_NAME!,
 		CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY!,
-		CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET!
+		CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET!,
 	},
 	DB: {
 		MONGOOSE: {
 			DATABASE_URL: process.env.DATABASE_URL!,
-			TEST_DB_URL: process.env.TEST_DB_URL!
+			TEST_DB_URL: process.env.TEST_DB_URL!,
 		},
 		MONGO_DB: {
 			DB_USER: '',
 			DB_PASSWORD: '',
 			DB_NAME: '',
-			DB_PORT: process.env.MONGO_PORT || 27017
+			DB_PORT: process.env.MONGO_PORT || 27017,
 		},
 		MYSQL: {
 			DB_USER: process.env.MYSQL_USER || 'root',
 			DB_PASSWORD: process.env.MYSQL_PASSWORD || '',
 			DB_NAME: process.env.MYSQL_DB || 'exam_cell',
-			DB_PORT: parseInt(<string>(process.env.MYSQL_PORT)) || 3306
+			DB_PORT: parseInt(<string>process.env.MYSQL_PORT) || 3306,
 		},
 		POSTGRESQL: {
 			DB_USER: process.env.POSTGRES_USER || 'postgres',
 			DB_PASSWORD: process.env.POSTGRES_PASSWORD || '',
 			DB_NAME: process.env.POSTGRES_DB || 'exam_cell',
-			DB_PORT: parseInt(<string>(process.env.POSTGRES_PORT)) || 3306
-		}
-	}
+			DB_PORT: parseInt(<string>process.env.POSTGRES_PORT) || 3306,
+		},
+	},
+	REDIS: {
+		host: process.env.REDIS_HOST! || ('127.0.0.1' as string),
+		port: parseInt(<string>process.env.REDIS_PORT) || 6379,
+		password: process.env.REDIS_PASSWORD! || ('' as string),
+		username: process.env.REDIS_USERNAME! || ('' as string),
+		db: parseInt(<string>process.env.REDIS_DB) || 0,
+	},
+	RABBIT: {
+		url: process.env.RABBITMQ_URL || 'amqp://localhost',
+	},
 };
 
 export default config;

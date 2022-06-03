@@ -13,4 +13,14 @@ export type JWTPayloadType = {
 	email?: string;
 };
 
+
+export type EmailDataType = {
+	firstName: string;
+	lastName: string;
+	time: string;
+	email: string;
+	password?: string;
+	subject: string;
+}
+
 export type IGender = 'male' | 'female' | 'other';

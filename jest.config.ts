@@ -29,6 +29,7 @@ export default {
 		'^@exam-cell-uploader': '<rootDir>/src/uploader',
 		'^@exam-cell-db/(.*)$': '<rootDir>/src/databases/$1',
 		'^@exam-cell-middlewares/(.*)$': '<rootDir>/src/middlewares/$1',
+		'^@exam-cell-RedisBaseClient': '<rootDir>/src/RedisBaseClient',
 	},
 
 	coveragePathIgnorePatterns: ['/node_modules/'],

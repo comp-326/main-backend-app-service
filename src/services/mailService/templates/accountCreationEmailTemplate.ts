@@ -1,6 +1,7 @@
+import { EmailDataType } from '@exam-cell-common/types';
 import ejs from 'ejs';
 
-const template =`<!DOCTYPE html>
+const template = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +21,7 @@ const template =`<!DOCTYPE html>
     <p>
       Hello <%= data.firstName %> <%= data.lastName %> and welcome to ExamCellAutomaton
     </p>
-    <p>We are happy to work with you at ostrich and feel at home</p>
+    <p>To access your account use the following information</p>
     <p>Account has been created for you with the following details</p>
     <p>Email: <%= data.email %></p>
     <p>First name: <%= data.firstName %></p>
@@ -47,12 +48,6 @@ const template =`<!DOCTYPE html>
 </html>
 `;
 
-
-export default function accountCreationEmailTemplate(props: {
-	password: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-}){
-	return ejs.render(template,{data:props});
+export default function accountCreationEmailTemplate(props: EmailDataType) {
+	return ejs.render(template, { data: props });
 }

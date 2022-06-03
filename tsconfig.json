@@ -56,7 +56,8 @@
 			"@exam-cell-uploadSDK": ["./src/uploadSDK"],
 			"@exam-cell-uploader": ["./src/uploader"],
 			"@exam-cell-db/*": ["./src/databases/*"],
-			"@exam-cell-middlewares/*": ["./src/middlewares/*"]
+			"@exam-cell-middlewares/*": ["./src/middlewares/*"],
+			"@exam-cell-RedisBaseClient": ["./src/RedisBaseClient"]
 		}
 	},
 	"exclude": ["node_modules"],

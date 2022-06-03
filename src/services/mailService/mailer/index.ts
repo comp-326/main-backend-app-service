@@ -10,10 +10,9 @@ import {
 	Headers,
 	IcalAttachment,
 	ListHeaders,
-	TextEncoding
+	TextEncoding,
 } from 'nodemailer/lib/mailer';
 import { mailConfig } from '@exam-cell-config';
-
 
 interface IMailer {
 	host: string;
@@ -82,7 +81,7 @@ interface ISendMailOptions {
 	priority?: 'high' | 'normal' | 'low' | undefined;
 }
 
-class Mailer implements IMailer{
+class Mailer implements IMailer {
 	host: string;
 
 	port: number;
@@ -95,7 +94,7 @@ class Mailer implements IMailer{
 
 	proxy: string;
 
-	constructor(){
+	constructor() {
 		this.host = '';
 		this.port = 0;
 		this.secure = false;
@@ -160,8 +159,8 @@ class Mailer implements IMailer{
 			secure: this.getSecure(),
 			auth: {
 				user: this.getMailerUsername(),
-				pass: this.getMailerPassword()
-			}
+				pass: this.getMailerPassword(),
+			},
 		};
 
 		return nodemailer.createTransport(options);
@@ -174,13 +173,13 @@ class Mailer implements IMailer{
 	};
 }
 
-const ostrichMailer = new Mailer();
-ostrichMailer.setHost(mailConfig.EMAIL_HOST)
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const ExamCellmailer = new Mailer();
+ExamCellmailer.setHost(mailConfig.EMAIL_HOST)
 	.setMailerPassword(mailConfig.EMAIL_PASSWORD)
 	.setPort(mailConfig.EMAIL_PORT)
 	.setSecure(mailConfig.EMAIL_SECURE)
 	.setMailerUsername(mailConfig.EMAIL_USER)
 	.setProxy(mailConfig.EMAIL_PROXY);
 
-
-export default ostrichMailer;
+export default ExamCellmailer;
