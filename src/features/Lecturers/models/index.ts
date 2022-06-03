@@ -11,16 +11,23 @@ const lecturerSchema: mongoose.Schema<ILecturerDocument> = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	email: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+
 	password: {
 		type: String,
 		required: true,
 		minLength: 8,
+		select: false,
 	},
 
 	role: {
 		type: mongoose.SchemaTypes.ObjectId,
 		required: true,
-		ref: 'Role',
+		ref: 'UserRoles',
 	},
 });
 
@@ -31,7 +38,7 @@ lecturerSchema.statics.findByEmail = async function (email: string) {
 };
 const lecturerModel = mongoose.model<ILecturerDocument, ILecturerDocumentModel>(
 	'Lecturers',
-	lecturerSchema
+	lecturerSchema,
 );
 
 export type LecturerModelType = typeof lecturerModel;

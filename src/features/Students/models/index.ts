@@ -20,6 +20,7 @@ const studentSchema: mongoose.Schema<IStudentDocument> = new mongoose.Schema({
 		type: String,
 		required: true,
 		minLength: 8,
+		select: false,
 	},
 	course: {
 		type: mongoose.SchemaTypes.ObjectId,
@@ -29,7 +30,7 @@ const studentSchema: mongoose.Schema<IStudentDocument> = new mongoose.Schema({
 	role: {
 		type: mongoose.SchemaTypes.ObjectId,
 		required: true,
-		ref: 'Role',
+		ref: 'UserRoles',
 	},
 });
 
@@ -40,7 +41,7 @@ studentSchema.statics.findByEmail = async function (email: string) {
 };
 const studentModel = mongoose.model<IStudentDocument, IStudentDocumentModel>(
 	'Students',
-	studentSchema
+	studentSchema,
 );
 
 export type StudentModelType = typeof studentModel;
