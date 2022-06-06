@@ -38,7 +38,7 @@ export function makeAddNewAdminUseCase({
 			email: getEmail(),
 			firstName: getFirstName(),
 			lastName: getLastName(),
-			password: getPassword(),
+			password: adminData.password,
 			subject: 'Account Activation',
 			time: moment().format('LLLL'),
 		});

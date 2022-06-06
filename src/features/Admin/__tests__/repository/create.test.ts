@@ -54,9 +54,11 @@ describe('first', () => {
 			expect(e).toBeDefined();
 			expect(e.message).toMatchInlineSnapshot(
 				'"E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: \\"janeDoe@gmail.com\\" }"',
+				`"Admin validation failed: lastName: Path \`lastName\` is required., firstName: Path \`firstName\` is required., role: Path \`role\` is required."`,
 			);
 			expect(e).toMatchInlineSnapshot(
 				'[MongoServerError: E11000 duplicate key error collection: exam-cell-automatontestdb.admins index: email_1 dup key: { email: "janeDoe@gmail.com" }]',
+				`[ValidationError: Admin validation failed: lastName: Path \`lastName\` is required., firstName: Path \`firstName\` is required., role: Path \`role\` is required.]`,
 			);
 		}
 	});
@@ -73,6 +75,7 @@ describe('first', () => {
 		} catch (e) {
 			expect(e).toMatchInlineSnapshot(
 				'[ValidationError: Admin validation failed: role: Cast to ObjectId failed for value "62867c9882c5e09e4908f4b" (type string) at path "role" because of "BSONTypeError"]',
+				`[ValidationError: Admin validation failed: lastName: Path \`lastName\` is required., firstName: Path \`firstName\` is required., role: Path \`role\` is required.]`,
 			);
 		}
 	});
@@ -88,6 +91,7 @@ describe('first', () => {
 		} catch (e) {
 			expect(e).toMatchInlineSnapshot(
 				'[ValidationError: Admin validation failed: role: Cast to ObjectId failed for value "62867c9882c5e09e4908f4b" (type string) at path "role" because of "BSONTypeError", email: Path `email` is required., password: Path `password` is required.]',
+				`[ValidationError: Admin validation failed: lastName: Path \`lastName\` is required., firstName: Path \`firstName\` is required., email: Path \`email\` is required., password: Path \`password\` is required.]`,
 			);
 		}
 	});
@@ -103,6 +107,7 @@ describe('first', () => {
 		} catch (e) {
 			expect(e).toMatchInlineSnapshot(
 				'[ValidationError: Admin validation failed: email: Path `email` is required., password: Path `password` is required.]',
+				`[ValidationError: Admin validation failed: lastName: Path \`lastName\` is required., firstName: Path \`firstName\` is required., email: Path \`email\` is required., password: Path \`password\` is required.]`,
 			);
 		}
 	});
