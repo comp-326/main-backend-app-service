@@ -39,6 +39,7 @@ describe('Create admin Email test', () => {
 		} catch (e) {
 			expect(e.message).toMatchInlineSnapshot(
 				'"Please provide a valid email"',
+				`"First name required"`,
 			);
 		}
 	});
