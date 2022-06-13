@@ -66,6 +66,22 @@ const config = {
 	RABBIT: {
 		url: process.env.RABBITMQ_URL || 'amqp://localhost',
 	},
+	MPESA: {
+		MPESA_CONSUMER_KEY: process.env.MPESA_CONSUMER_KEY || '',
+		MPESA_AUTH_KEY:
+			Buffer.from(
+				`${process.env.MPESA_CONSUMER_KEY!}:${process.env.MPESA_CONSUMER_SECRET!}`,
+			).toString('base64') || '',
+		MPESA_CONSUMER_SECRET: process.env.MPESA_CONSUMER_SECRET || '',
+		MPESA_ACCESS_TOKEN_URL: process.env.MPESA_ACCESS_TOKEN_URL || '',
+		MPESA_STK_URL: process.env.MPESA_STK_URL || '',
+		MPESA_BALANCE_URL: process.env.MPESA_BALANCE_URL || '',
+		MPESA_STK_CHECK_URL: process.env.MPESA_STK_CHECK_URL || '',
+		MPESA_STK_CALLBACK_URL: process.env.MPESA_STK_CALLBACK_URL || '',
+		MPESA_STK_CALLBACK_IP: process.env.MPESA_STK_CALLBACK_IP || '',
+		MPESA_STK_CALLBACK_CONFIRM_URL:
+			process.env.MPESA_STK_CALLBACK_CONFIRM_URL || '',
+	},
 };
 
 export default config;

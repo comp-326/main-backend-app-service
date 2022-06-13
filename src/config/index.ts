@@ -6,8 +6,9 @@ const {
 	DB: { MONGOOSE: mongoConfig, POSTGRESQL: pgConfig, MYSQL: mysqlConfig },
 	PATHS: { BASE_DIR },
 	MAIL,
-	CLOUDINARY,
-	REDIS,
+	CLOUDINARY: cloudinaryConfig,
+	REDIS: redisConfig,
+	MPESA: mpesaConfig,
 } = config;
 const mongoUrl =
 	ENV.NODE_ENV === 'development'
@@ -20,9 +21,10 @@ export {
 	mongoUrl,
 	MAIL as mailConfig,
 	ENV as environmentConfig,
-	CLOUDINARY as cloudinaryConfig,
+	cloudinaryConfig,
 	BASE_DIR,
 	pgConfig,
 	mysqlConfig,
-	REDIS as redisConfig,
+	redisConfig,
+	mpesaConfig,
 };

@@ -1,0 +1,36 @@
+import { Router } from 'express';
+import { mpesaAccessTokenRoute } from './routes/accessTokenRoute';
+import { mpesaB2CResultRoute } from './routes/b2cResultRoute';
+import { mpesaB2CRoute } from './routes/b2cRoute';
+import { mpesaB2CTimeoutRoute } from './routes/b2cTimeoutRoute';
+import { mpesaBalanceResultRoute } from './routes/balanceResultRoute';
+import { mpesaBalanceRoute } from './routes/balanceRoute';
+import { mpesaBalanceTimeoutRoute } from './routes/balanceTimeoutRoute';
+import { mpesaConfirmationRoute } from './routes/confirmationRoute';
+import { mpesaRegistrationRoute } from './routes/registerRoute';
+import { mpesaReversalResultRoute } from './routes/reverseResultRoute';
+import { mpesaReversalRoute } from './routes/reverseRoute';
+import { mpesaReversalTimeoutRoute } from './routes/reverseTimeoutRoute';
+import { mpesaSTKRoute } from './routes/stkRoute';
+import { mpesaSimulationRoute } from './routes/simulateRoute';
+import { mpesaStkCallbackRoute } from './routes/stkCallBackRoute';
+import { mpesaValidationRoute } from './routes/validationRoute';
+
+export default ({ app, pathName }: { app: Router; pathName: string }) => {
+	mpesaAccessTokenRoute(app)(pathName);
+	mpesaB2CRoute(app)(pathName);
+	mpesaB2CResultRoute(app)(pathName);
+	mpesaB2CTimeoutRoute(app)(pathName);
+	mpesaBalanceRoute(app)(pathName);
+	mpesaBalanceResultRoute(app)(pathName);
+	mpesaBalanceTimeoutRoute(app)(pathName);
+	mpesaConfirmationRoute(app)(pathName);
+	mpesaRegistrationRoute(app)(pathName);
+	mpesaReversalRoute(app)(pathName);
+	mpesaReversalResultRoute(app)(pathName);
+	mpesaReversalTimeoutRoute(app)(pathName);
+	mpesaSimulationRoute(app)(pathName);
+	mpesaSTKRoute(app)(pathName);
+	mpesaStkCallbackRoute(app)(pathName);
+	mpesaValidationRoute(app)(pathName);
+};
