@@ -1,0 +1,82 @@
+version: '3'
+services:
+    exam-cell-server:
+        container_name: exam-cell-server
+        image: exam-cell-server
+        restart: always
+        build: .
+        ports:
+            - "5001:5001"
+        volumes:
+            - ./data:/data
+        environment:
+            - API_PREFIX=/api/v1
+            - API_VERSION=/api/v1
+            - APP_NAME=exam-cell-automaton
+            - DATABASE_URL=mongodb://localhost:2700/exam-cell-automatondev
+            - EMAIL_HOST=smtp.mailtrap.io
+            - EMAIL_PASSWORD=95033326e19078
+            - EMAIL_PORT=2525
+            - EMAIL_SECURE=false
+            - EMAIL_USER=b6695e458f195d
+            - ENC_KEY="e4811aa2c2025d94ff3a88f924c4e414dc1df03a9549a07186294b93444a61a7f0671f75e0361691e0f38f3e0ca84847f54e637186353cd38f4808b86dac82d6"
+            - HOST="localhost"
+            - MPESA_ACCESS_TOKEN_URL="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+            - MPESA_BALANCE_URL="https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query"
+            - MPESA_CONSUMER_KEY="dDHJTcjJC3VauSn1ISs0M1PmltL9tDg0"
+            - MPESA_CONSUMER_SECRET="wGCi9PICBSEhRayp"
+            - MPESA_ENDPOINT="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type"
+            - MPESA_STK_CALLBACK_CONFIRM_URL=
+            - MPESA_STK_CALLBACK_IP="http://192.168.100.142:6200/api/v1/mpesa"
+            - MPESA_STK_CALLBACK_URL=
+            - MPESA_STK_CHECK_URL=
+            - MPESA_STK_URL=https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest
+            - PORT=6200
+            - REDIS_DB=0
+            - REDIS_HOST=localhost
+            - REDIS_PASSWORD=
+            - REDIS_PORT=
+            - REDIS_URL=
+            - REDIS_USERNAME=
+            - REFRESH_KEY=b405e21e1fc11f85cb79651a9e0a9f11cbb652f459c4a9955b1ef26e69d92a8fec32f7633443edd3ecf270d8f84170275bc334d69df43aa3cc067cd3d6923121
+            - SECRET_KEY=c56a0627610c82c7d51a412b20e20facd42544c1edcf4a08554cd39b2c8848bd05eceb22ec2e287d72e8fd51ab4bfc936deb197e3562e25e0d9e1e3cb9cf0eea
+            - TEST_DB_URL=mongodb://localhost:2700/exam-cell-automatontestdb
+            - TEST_EMAIL_HOST=smtp.mailtrap.io
+            - TEST_EMAIL_PASSWORD=95033326e19078
+            - TEST_EMAIL_PORT=2525
+            - TEST_EMAIL_SECURE=false
+            - TEST_EMAIL_USER=b6695e458f195d
+            - TEST_PORT=5000
+            - TEST_REDIS_DB=0
+            - TEST_REDIS_HOST=localhost
+            - TEST_REDIS_PASSWORD=
+            - TEST_REDIS_PORT=
+            - TEST_REDIS_URL=
+            - TEST_REDIS_USERNAME=
+            - TEST_SECRET_KEY=c56a0627610c82c7d51a412b20e20facd42544c1edcf4a08554cd39b2c8848bd05eceb22ec2e287d72e8fd51ab4bfc936deb197e3562e25e0d9e1e3cb9cf0eea
+            - TEST_SECRET_KEY_2=c56a0627610c82c7d51a412b20e20facd42544c1edcf4a08554cd39b2c8848bd05eceb22ec2e287d72e8fd51ab4bfc936deb197e3562e25e0d9e1e3cb9cf0eea
+            - TEST_SECRET_KEY_3=c56a0627610c82c7d51a412b20e20facd42544c1edcf4a08554cd39b2c8848bd05eceb22ec2e287d72e8fd51ab4bfc936deb197e3562e25e0d9e1e3cb9cf0eea
+            - TEST_SECRET_KEY_4=c56a0627610c82c7d51a412b20e20facd42544c1edcf4a08554cd39b2c8848bd05eceb22ec2e287d72e8fd51ab4bfc936deb197e3562e25e0d9e1e3cb9cf0eea
+            - TEST_SECRET_KEY_5=c56a0627610c82c7d51a412b20e20facd42544c1edcf4
+        links:
+            - mongo
+            - redis
+    # mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        restart: always
+        ports:
+            - "2700:27017"
+        volumes:
+            - ./data:/data
+
+    # redis
+    redis:
+        container_name: redis
+        image: redis
+        restart: always
+        ports:
+            - "4200:6379"
+        volumes:
+            - ./data:/data
