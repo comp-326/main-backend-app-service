@@ -1,34 +1,36 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-// import fetch from 'node-fetch';
+import axios from 'axios';
+import { mpesaConfig } from '@exam-cell-config';
 
 export function makeMpesaSimulationUseCase() {
-	return async (accessToken:string) => {
+	return async (accessToken: string) => {
 		try {
-			const fetch = await import('node-fetch').then((mod) => mod.default);
-			const url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
-			const auth = 'Bearer ' + accessToken;
+			console.log('Simulating MPESA', accessToken);
 
-			const response = await fetch(url, {
-				method: 'POST',
-				headers: {
-					Authorization: auth,
-				},
-				body: JSON.stringify({
-					ShortCode: '600383',
+			const resp = await axios.post(
+				mpesaConfig.MPESA_C2B_SIMULATION_URL,
+				{
+					ShortCode: '600997',
 					CommandID: 'CustomerPayBillOnline',
-					Amount: '100',
+					Amount: '1',
 					Msisdn: '254708374149',
 					BillRefNumber: 'TestAPI',
-				}),
-			});
+				},
 
-			return await response.json();
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				},
+			);
+
+			return resp.data;
 		} catch (error) {
 			throw new ExpressError({
-				message: 'message',
+				message: error.message,
 				status: 'warning',
 				statusCode: 400,
-				data: { err: error.message },
+				data: { err: error },
 			});
 		}
 	};

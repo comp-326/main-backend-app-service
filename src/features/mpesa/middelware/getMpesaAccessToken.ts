@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // import fetch from 'node-fetch';
+import axios from 'axios';
 import { mpesaConfig } from '@exam-cell-config';
 import { INext, IRequest, IResponse } from '@exam-cell-common/types';
 
@@ -7,22 +9,19 @@ export async function getMpesaAccessToken(
 	res: IResponse,
 	next: INext,
 ) {
-	// access token
 	try {
-		const fetch = await import('node-fetch').then((mod) => mod.default);
-		const response = await fetch(mpesaConfig.MPESA_ACCESS_TOKEN_URL, {
-			method: 'GET',
+		const response = await axios.get(mpesaConfig.MPESA_ACCESS_TOKEN_URL, {
 			headers: {
-				Authorization: `Bearer ${mpesaConfig.MPESA_AUTH_KEY}`,
+				Authorization: `Basic ${Buffer.from(
+					`${mpesaConfig.MPESA_CONSUMER_KEY}:${mpesaConfig.MPESA_CONSUMER_SECRET}`,
+				).toString('base64')}`,
 			},
 		});
 
-		const data = await response.json();
-		console.log('Token data', data);
-		req.mpesaAccessToken = data.access_token;
+		req.mpesaAccessToken = response.data.access_token;
 
 		return next();
-	} catch (error) {
-		return next(error);
+	} catch (err: any) {
+		return next(err);
 	}
 }

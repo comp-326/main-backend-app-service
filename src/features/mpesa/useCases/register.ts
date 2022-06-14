@@ -1,33 +1,33 @@
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
-// import fetch from 'node-fetch';
+import axios from 'axios';
+import { mpesaConfig } from '@exam-cell-config';
 
 export function makeMpesaRegistrationUseCase() {
 	return async (accessToken: string) => {
 		try {
-			const fetch = await import('node-fetch').then((mod) => mod.default);
-			const url =
-				'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
-			const auth = 'Bearer ' + accessToken;
-			const response = await fetch(url, {
-				method: 'POST',
-				headers: {
-					Authorization: auth,
+			console.log('Registering MPESA', accessToken);
+			const response = await axios.post(
+				mpesaConfig.MPESA_REGISTER_URL,
+				{
+					ShortCode: 600997,
+					ResponseType: 'Completed',
+					ConfirmationURL: `${mpesaConfig.MPESA_STK_CALLBACK_IP}/confirmation`,
+					ValidationURL: `${mpesaConfig.MPESA_STK_CALLBACK_IP}/validation`,
 				},
-				body: JSON.stringify({
-					ShortCode: '600383',
-					ResponseType: 'Complete',
-					ConfirmationURL: 'http://197.248.86.122:801/confirmation',
-					ValidationURL: 'http://197.248.86.122:801/validation',
-				}),
-			});
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				},
+			);
 
-			return await response.json();
+			return response.data;
 		} catch (error) {
 			throw new ExpressError({
-				message: 'message',
+				message:error.message,
 				status: 'warning',
 				statusCode: 400,
-				data: { err: error.message },
+				data: { err: error },
 			});
 		}
 	};
