@@ -3,6 +3,7 @@
 
 ### Node ###
 # Logs
+*.rdb
 logs
 *.log
 npm-debug.log*
