@@ -1,0 +1,9 @@
+.github
+.idea
+.vscode
+.vscode-test
+.vscode-test-data
+coverage
+node_modules
+.nyc_output
+.nyc_cache
