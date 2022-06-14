@@ -66,6 +66,7 @@
 		".",
 		"gulpfile.ts",
 		"knexfile.ts",
-		"node.config.ts"
+		"node.config.ts",
+		"iptest.ts",
 	]
 }
