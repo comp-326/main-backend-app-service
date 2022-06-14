@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ExpressError } from '@exam-cell-common/errors/ExpressError';
+import axios from 'axios';
 import { mpesaConfig } from '@exam-cell-config';
 
 export function makeMpesaAccessTokenUseCase() {
 	return async () => {
 		try {
-			const fetch = await import('node-fetch').then((mod) => mod.default);
-			const response = await fetch(mpesaConfig.MPESA_ACCESS_TOKEN_URL, {
-				method: 'GET',
-				headers: {
-					// Authorization: 'Bearer ZERISlRjakpDM1ZhdVNuMUlTczBNMVBtbHRMOXREZzA6d0dDaTlQSUNCU0VoUmF5cA==',
-					Authorization: `Bearer ${mpesaConfig.MPESA_AUTH_KEY}`,
-				},
-			});
-		
-			return response.json();
+			const response = await axios.get(
+				mpesaConfig.MPESA_ACCESS_TOKEN_URL,
+				{
+					headers:{
+						Authorization: `Basic ${Buffer.from(`${mpesaConfig.MPESA_CONSUMER_KEY}:${mpesaConfig.MPESA_CONSUMER_SECRET}`).toString('base64')}`,
+					}
+				}
+			);
+
+			return response.data;
 		} catch (err: any) {
 			throw new ExpressError({
 				message: err.message,

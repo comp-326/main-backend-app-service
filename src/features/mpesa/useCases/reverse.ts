@@ -34,10 +34,10 @@ export function makeMpesaReversalUseCase() {
 			return await response.json();
 		} catch (err) {
 			throw new ExpressError({
-				message: 'message',
+				message: err.message,
 				status: 'warning',
 				statusCode: 400,
-				data: { err: err.mesage },
+				data: { err: err },
 			});
 		}
 	};

@@ -1,3 +1,4 @@
+import { address } from 'ip';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import dotenv from 'dotenv';
 import path from 'path';
@@ -68,19 +69,29 @@ const config = {
 	},
 	MPESA: {
 		MPESA_CONSUMER_KEY: process.env.MPESA_CONSUMER_KEY || '',
-		MPESA_AUTH_KEY:
-			Buffer.from(
-				`${process.env.MPESA_CONSUMER_KEY!}:${process.env.MPESA_CONSUMER_SECRET!}`,
-			).toString('base64') || '',
+		MPESA_STK_PASS_KEY: process.env.MPESA_STK_PASS_KEY || '',
 		MPESA_CONSUMER_SECRET: process.env.MPESA_CONSUMER_SECRET || '',
-		MPESA_ACCESS_TOKEN_URL: process.env.MPESA_ACCESS_TOKEN_URL || '',
-		MPESA_STK_URL: process.env.MPESA_STK_URL || '',
-		MPESA_BALANCE_URL: process.env.MPESA_BALANCE_URL || '',
-		MPESA_STK_CHECK_URL: process.env.MPESA_STK_CHECK_URL || '',
-		MPESA_STK_CALLBACK_URL: process.env.MPESA_STK_CALLBACK_URL || '',
-		MPESA_STK_CALLBACK_IP: process.env.MPESA_STK_CALLBACK_IP || '',
-		MPESA_STK_CALLBACK_CONFIRM_URL:
-			process.env.MPESA_STK_CALLBACK_CONFIRM_URL || '',
+		MPESA_STK_BUSINESS_SHORT_CODE:
+			process.env.MPESA_STK_BUSINESS_SHORT_CODE || '',
+		MPESA_C2B_SIMULATION_URL:
+			process.env.MPESA_C2B_SIMULATION_URL ||
+			'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate',
+		MPESA_REGISTER_URL:
+			process.env.MPESA_REGISTER_URL ||
+			'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl',
+		MPESA_STK_URL:
+			process.env.MPESA_STK_URL ||
+			'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',
+		MPESA_ACCESS_TOKEN_URL:
+			process.env.MPESA_ACCESS_TOKEN_URL ||
+			'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials',
+		MPESA_BALANCE_URL:
+			process.env.MPESA_BALANCE_URL! ||
+			'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query',
+		MPESA_SIMULATION_URL:
+			process.env.MPESA_SIMULATION_URL ||
+			'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest',
+		MPESA_STK_CALLBACK_IP: `http://${address()}:6200/api/v1/mpesa`,
 	},
 };
 

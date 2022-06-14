@@ -62,7 +62,7 @@ function setEnvironmentVariables(envFilePath: string) {
 	const sampleEnvBuffer = Object.entries(data)
 		.sort((a, b) => a[0].localeCompare(b[0]))
 		.map(([k]) => {
-			return `${k}=`;
+			return `${k}=value`;
 		});
 
 	fs.writeFileSync(environmentPath, env.join(os.EOL), 'utf8');

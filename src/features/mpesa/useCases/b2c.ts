@@ -33,10 +33,10 @@ export function makeMpesaB2CUseCase() {
 			return await response.json();
 		} catch (err: any) {
 			throw new ExpressError({
-				message: 'message',
+				message: err.message,
 				status: 'warning',
 				statusCode: 400,
-				data: { err: err.mesage },
+				data: { err: err },
 			});
 		}
 	};
