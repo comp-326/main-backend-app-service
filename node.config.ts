@@ -72,7 +72,7 @@ const config = {
 		MPESA_STK_PASS_KEY: process.env.MPESA_STK_PASS_KEY || '',
 		MPESA_CONSUMER_SECRET: process.env.MPESA_CONSUMER_SECRET || '',
 		MPESA_STK_BUSINESS_SHORT_CODE:
-			process.env.MPESA_STK_BUSINESS_SHORT_CODE || '',
+			process.env.MPESA_STK_BUSINESS_SHORT_CODE || '174379',
 		MPESA_C2B_SIMULATION_URL:
 			process.env.MPESA_C2B_SIMULATION_URL ||
 			'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate',
@@ -91,7 +91,7 @@ const config = {
 		MPESA_SIMULATION_URL:
 			process.env.MPESA_SIMULATION_URL ||
 			'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest',
-		MPESA_STK_CALLBACK_IP: `http://${address()}:6200/api/v1/mpesa`,
+		MPESA_CALLBACK_IP: `http://${address()}/api/v1/mpesa`,
 	},
 };
 
