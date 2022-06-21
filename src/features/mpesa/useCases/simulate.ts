@@ -30,7 +30,7 @@ export function makeMpesaSimulationUseCase() {
 				message: error.message,
 				status: 'warning',
 				statusCode: 400,
-				data: { err: error },
+				data: { err: error.response.data },
 			});
 		}
 	};
