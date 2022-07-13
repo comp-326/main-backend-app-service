@@ -15,8 +15,8 @@ export function makeMpesaBalanceUseCase() {
 					PartyA: 600584,
 					IdentifierType: 4,
 					Remarks: 'Completed',
-					QueueTimeOutURL: `${mpesaConfig.MPESA_STK_CALLBACK_IP}/bal_timeout`,
-					ResultURL: `${mpesaConfig.MPESA_STK_CALLBACK_IP}/bal_result`,
+					QueueTimeOutURL: `${mpesaConfig.MPESA_CALLBACK_IP}/bal_timeout`,
+					ResultURL: `${mpesaConfig.MPESA_CALLBACK_IP}/bal_result`,
 				},
 				{
 					headers: {
